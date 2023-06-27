@@ -1,0 +1,80 @@
+{
+  "name": "@texttree/template-rcl",
+  "author": "TextTree.org",
+  "version": "0.1.1",
+  "description": "",
+  "keywords": [
+    "rcl",
+    "react"
+  ],
+  "license": "MIT",
+  "private": false,
+  "main": "dist/index.js",
+  "url": "https://github.com/texttree/template-rcl",
+  "homepage": "https://github.com/texttree/template-rcl#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/texttree/template-rcl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/texttree/template-rcl/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "eslint --fix"
+    ],
+    "*.+(json|md)": [
+      "prettier --write"
+    ]
+  },
+  "scripts": {
+    "build": "styleguidist build",
+    "start": "styleguidist server",
+    "lint": "eslint --fix .",
+    "precommit": "lint-staged",
+    "prepare": "husky install",
+    "prepublishOnly": "shx rm -rf ./dist & babel ./src --out-dir ./dist -s inline",
+    "prettier": "prettier --write .",
+    "release": "standard-version",
+    "release:first": "standard-version --first-release",
+    "release:major": "standard-version --release-as major",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^4.x",
+    "prop-types": "^15.x",
+    "react": "^17.x",
+    "react-dom": "^17.x"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@commitlint/cli": "^17.4.1",
+    "@commitlint/config-conventional": "^17.4.0",
+    "@material-ui/core": "^4.12.4",
+    "babel-loader": "^9.1.2",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.3",
+    "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-styleguidist": "^13.0.0",
+    "shx": "^0.3.4",
+    "standard-version": "^9.5.0",
+    "webpack": "^5.75.0"
+  }
+}
