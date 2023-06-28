@@ -8,16 +8,16 @@ let sections = [
     content: 'README.md',
   },
   {
+    name: 'Hooks',
+    components: ['src/components/useSearchPhotos/useSearchPhotos.jsx'],
+  },
+  {
     name: 'Button Block',
     components: ['src/components/Button/Button.js'],
   },
   {
     name: 'Canvas Block',
     components: ['src/components/Canvas/Canvas.js'],
-  },
-  {
-    name: 'useSearchPhotos hooks',
-    components: ['src/components/useSearchPhotos/useSearchPhotos.js'],
   },
 ];
 
@@ -96,6 +96,11 @@ module.exports = {
   webpackConfig: {
     module: {
       rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+        },
         {
           test: /\.js$/,
           exclude: /node_modules/,

@@ -38,6 +38,7 @@
     "prepare": "husky install",
     "prepublishOnly": "shx rm -rf ./dist & babel ./src --out-dir ./dist -s inline",
     "prettier": "prettier --write .",
+    "build:babel": "babel ./src --out-dir ./dist -s inline --ignore './src/components/**/*.jsx'",
     "release": "standard-version",
     "release:first": "standard-version --first-release",
     "release:major": "standard-version --release-as major",
