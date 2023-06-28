@@ -15,6 +15,10 @@ let sections = [
     name: 'Canvas Block',
     components: ['src/components/Canvas/Canvas.js'],
   },
+  {
+    name: 'useSearchPhotos hooks',
+    components: ['src/components/useSearchPhotos/useSearchPhotos.js'],
+  },
 ];
 
 module.exports = {

@@ -3,7 +3,7 @@
 ```jsx
 import React from 'react';
 
-import { Canvas } from '@texttree/template-rcl';
+import { Canvas } from '@texttree/bible-verse-image';
 
 <Canvas
   organization="OBT"
