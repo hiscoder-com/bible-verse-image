@@ -20,6 +20,7 @@ const Canvas = (props) => {
       ctx.drawImage(srs, x0, y0, x1, y1);
     };
 
+    ctx.fillStyle = 'white';
     ctx.font = 'small-caps 30px Helvetica, Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText(organization, 70, 70);
