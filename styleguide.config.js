@@ -11,6 +11,10 @@ let sections = [
     name: 'Button Block',
     components: ['src/components/Button/Button.js'],
   },
+  {
+    name: 'Canvas Block',
+    components: ['src/components/Canvas/Canvas.js'],
+  },
 ];
 
 module.exports = {
@@ -93,6 +97,7 @@ module.exports = {
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
+        { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
       ],
     },
     plugins: [

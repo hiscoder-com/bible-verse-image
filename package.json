@@ -1,5 +1,5 @@
 {
-  "name": "@texttree/template-rcl",
+  "name": "@texttree/bible-verse-image",
   "author": "TextTree.org",
   "version": "0.1.1",
   "description": "",
@@ -10,14 +10,14 @@
   "license": "MIT",
   "private": false,
   "main": "dist/index.js",
-  "url": "https://github.com/texttree/template-rcl",
-  "homepage": "https://github.com/texttree/template-rcl#readme",
+  "url": "https://github.com/texttree/bible-verse-image",
+  "homepage": "https://github.com/texttree/bible-verse-image#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/texttree/template-rcl.git"
+    "url": "git+https://github.com/texttree/bible-verse-image.git"
   },
   "bugs": {
-    "url": "https://github.com/texttree/template-rcl/issues"
+    "url": "https://github.com/texttree/bible-verse-image/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -76,5 +76,10 @@
     "shx": "^0.3.4",
     "standard-version": "^9.5.0",
     "webpack": "^5.75.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.5"
   }
 }
