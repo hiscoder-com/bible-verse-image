@@ -2,11 +2,15 @@ import React, { useRef, useEffect } from 'react';
 
 const Canvas = (props) => {
   const canvasRef = useRef(null);
-  const { organization, bibleText, refText, nameTranslate, srcImage } = props;
+  const { organization, bibletext, reftext, nametranslate, srcimage } = props;
 
   const draw = (ctx) => {
+    if (srcimage === undefined) {
+      return;
+    }
+
     const pic = new Image();
-    pic.src = srcImage;
+    pic.src = srcimage;
     pic.onload = function () {
       //Вписываем картинку в размер холста
 
@@ -27,15 +31,15 @@ const Canvas = (props) => {
 
     ctx.font = 'small-caps 120px Helvetica, Arial, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(bibleText, 600, 550);
+    ctx.fillText(bibletext, 600, 550);
 
     ctx.font = 'small-caps 40px Helvetica, Arial, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(refText, 600, 650);
+    ctx.fillText(reftext, 600, 650);
 
     ctx.font = 'small-caps 40px Helvetica, Arial, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(nameTranslate, 600, 1150);
+    ctx.fillText(nametranslate, 600, 1150);
   };
 
   useEffect(() => {

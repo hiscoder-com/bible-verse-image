@@ -13,20 +13,17 @@ let obj = {
 const arrayQuery = useSearchPhotos(obj);
 let srcI;
 if (arrayQuery.length) {
-  srcI = arrayQuery[0];
+  srcI = arrayQuery[4];
   srcI = srcI.urls.full;
 }
-let i = 0;
 function Component() {
-  i++;
-  console.log(i);
   return (
     <Canvas
       organization="OBT"
-      bibleText="God is love"
-      refText="1 Jon 4:8"
-      nameTranslate="ESV"
-      srcImage={srcI}
+      bibletext="God is love"
+      reftext="1 Jon 4:8"
+      nametranslate="ESV"
+      srcimage={srcI}
     />
   );
 }
