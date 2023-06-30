@@ -19,6 +19,10 @@ let sections = [
     name: 'Canvas Block',
     components: ['src/components/Canvas/Canvas.js'],
   },
+  {
+    name: 'Search Block',
+    components: ['src/components/SearchPhotosApp/SearchPhotosApp.js'],
+  },
 ];
 
 module.exports = {

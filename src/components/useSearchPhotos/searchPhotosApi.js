@@ -1,6 +1,6 @@
 import Unsplash, { toJson } from 'unsplash-js';
 
-async function SearchPhotosApi(key, query) {
+async function searchPhotosApi(key, query) {
   const unsplash = new Unsplash({
     accessKey: key,
   });
@@ -13,4 +13,4 @@ async function SearchPhotosApi(key, query) {
     });
 }
 
-export default SearchPhotosApi;
+export default searchPhotosApi;

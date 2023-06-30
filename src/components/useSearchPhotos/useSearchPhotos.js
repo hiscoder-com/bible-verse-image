@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import SearchPhotosApi from './searchPhoto-api';
+import searchPhotosApi from './searchPhotosApi';
 
 function useSearchPhotos({ key, query }) {
   const [arrayQuery, setArrayQuery] = useState([]);
   useEffect(() => {
     if (query?.length > 2) {
-      SearchPhotosApi(key, query).then((array) => {
+      searchPhotosApi(key, query).then((array) => {
         setArrayQuery(array);
       });
     }
