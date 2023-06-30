@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
-import searchPhotosApi from '../useSearchPhotos/searchPhotosApi';
+// import searchPhotosApi from '../useSearchPhotos/searchPhotosApi';
+// import { configs } from 'eslint-plugin-prettier';
+
+import { useSearchPhotos } from '@texttree/bible-verse-image';
 
 const button = {
   backgroundColor: 'rgba(0, 0, 0, 0.75)',
@@ -57,11 +60,18 @@ export default function SearchPhotosUi({ handleChangeUrl }) {
     handleChangeUrl(url);
   }
 
+  function useSearchPhotos(queryObject) {
+    return <>useSearchPhotos(queryObject)</>;
+  }
+
   const searchPhotos = async (e) => {
     e.preventDefault();
 
-    const arrayQuery = await searchPhotosApi(obj.key, obj.query);
-    setPics(arrayQuery);
+    const arrayQuery = useSearchPhotos(obj.key, obj.query);
+    console.log(arrayQuery);
+    if (arrayQuery.length) {
+      setPics(arrayQuery);
+    }
   };
 
   return (
