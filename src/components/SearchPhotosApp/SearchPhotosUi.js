@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-
-// import searchPhotosApi from '../useSearchPhotos/searchPhotosApi';
-// import { configs } from 'eslint-plugin-prettier';
-
-import { useSearchPhotos } from '@texttree/bible-verse-image';
+import React, { useEffect, useState } from 'react';
+import useSearchPhotos from '../useSearchPhotos/useSearchPhotos';
+import { array } from 'prop-types';
 
 const button = {
   backgroundColor: 'rgba(0, 0, 0, 0.75)',
@@ -46,7 +43,9 @@ const cardList = {
 };
 
 export default function SearchPhotosUi({ handleChangeUrl }) {
+  const [queryCount, setQueryCount] = useState(0);
   const [query, setQuery] = useState('God');
+
   const [pics, setPics] = useState([]);
   const [url, setUrl] = useState('');
 
@@ -60,18 +59,18 @@ export default function SearchPhotosUi({ handleChangeUrl }) {
     handleChangeUrl(url);
   }
 
-  function useSearchPhotos(queryObject) {
-    return <>useSearchPhotos(queryObject)</>;
-  }
-
-  const searchPhotos = async (e) => {
-    e.preventDefault();
-
-    const arrayQuery = useSearchPhotos(obj.key, obj.query);
+  const arrayQuery = useSearchPhotos(obj);
+  useEffect(() => {
     console.log(arrayQuery);
     if (arrayQuery.length) {
       setPics(arrayQuery);
     }
+  }, [queryCount]);
+
+  const searchPhotos = async (e) => {
+    e.preventDefault();
+    console.log(queryCount);
+    setQueryCount((queryCount) => queryCount + 1);
   };
 
   return (
