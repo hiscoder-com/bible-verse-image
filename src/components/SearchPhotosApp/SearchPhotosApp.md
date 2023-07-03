@@ -3,34 +3,17 @@
 ```jsx
 import React, { useState } from 'react';
 import SearchPhotosApp from './SearchPhotosApp';
-
-const appAll = {
-  margin: 0,
-  padding: 0,
-};
-
-const container = {
-  margin: '0 auto',
-  maxWwidth: '1000px',
-  padding: '40px',
-};
-
-const title = {
-  fontSize: '4.4rem',
-  fontFamily: '"Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif',
-};
+import './mock/SearchPhotosApp.css';
 
 function Component() {
   const [url, setUrl] = useState('');
   return (
-    <div className="App" style={appAll}>
-      <div className="container" style={container}>
-        <h1 className="title" style={title}>
-          {'React Photo Search'}
-        </h1>
+    <div className="App">
+      <div className="container">
+        <h1 className="title">{'React Photo Search'}</h1>
+        <h6 className="url">{`Current URL: ${url}`}</h6>
         <div className="main">
           <SearchPhotosApp handleChangeUrl={setUrl} />
-          <div> URL: {url}</div>
         </div>
       </div>
     </div>
