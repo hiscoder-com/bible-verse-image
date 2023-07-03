@@ -84,6 +84,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.5",
     "netlify-cli": "^15.7.0",
+    "react-dotenv": "^0.1.3",
     "unsplash-js": "^6.0.0"
   }
 }

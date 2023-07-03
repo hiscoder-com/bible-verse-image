@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import env from 'react-dotenv';
 import useSearchPhotos from '../useSearchPhotos/useSearchPhotos';
 
 export default function SearchPhotosApp({ handleChangeUrl }) {
@@ -8,7 +9,7 @@ export default function SearchPhotosApp({ handleChangeUrl }) {
   const [img, setImg] = useState({});
 
   const { arrayQuery, queryUse } = useSearchPhotos({
-    key: 'v72jwXBy3QD0RDOkyHAaV2t43JP-Z2IkzA1hBwVf-4M',
+    key: env.UNSPLASH_KEY,
     query: query,
   });
 
