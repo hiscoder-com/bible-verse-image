@@ -1,5 +1,7 @@
 ### Default example
 
+Для стилизации компонента подключен файл SearchPhotosApp.css из каталога mock
+
 ```jsx
 import React, { useState } from 'react';
 import SearchPhotosApp from './SearchPhotosApp';
