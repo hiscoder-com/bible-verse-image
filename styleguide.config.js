@@ -57,7 +57,6 @@ module.exports = {
       },
       Code: {
         code: {
-          // make inline code example appear the same color as links
           backgroundColor: '#eff1f3',
           fontSize: 14,
           borderRadius: '6px',
