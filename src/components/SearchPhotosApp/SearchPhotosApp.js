@@ -6,7 +6,6 @@ export default function SearchPhotosApp({ handleChangeUrl }) {
   const [pics, setPics] = useState([]);
   const [img, setImg] = useState({});
 
-  console.log(9, env.UNSPLASH_KEY);
   console.log(10, process.env.UNSPLASH_KEY);
   const { arrayQuery, queryUse } = useSearchPhotos({
     key: process.env.UNSPLASH_KEY,
