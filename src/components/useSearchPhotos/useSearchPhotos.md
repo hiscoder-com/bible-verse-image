@@ -4,13 +4,13 @@
 import React from 'react';
 
 import { useSearchPhotos, Canvas } from '@texttree/bible-verse-image';
+import UNSPLASH_KEY from '../../utils/unSplashKey.js';
 
-let obj = {
-  key: 'v72jwXBy3QD0RDOkyHAaV2t43JP-Z2IkzA1hBwVf-4M',
+const { arrayQuery, queryUse } = useSearchPhotos({
+  key: UNSPLASH_KEY,
   query: 'black',
-};
+});
 
-const arrayQuery = useSearchPhotos(obj);
 let srcI;
 if (arrayQuery.length) {
   srcI = arrayQuery[4];

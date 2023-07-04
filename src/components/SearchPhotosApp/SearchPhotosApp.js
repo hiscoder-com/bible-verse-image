@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import useSearchPhotos from '../useSearchPhotos/useSearchPhotos';
+import UNSPLASH_KEY from '../../utils/unSplashKey.js';
+
 export default function SearchPhotosApp({ handleChangeUrl }) {
   const [query, setQuery] = useState('');
   const [input, setInput] = useState('');
   const [pics, setPics] = useState([]);
   const [img, setImg] = useState({});
 
-  console.log(10, process.env.UNSPLASH_KEY);
   const { arrayQuery, queryUse } = useSearchPhotos({
-    key: process.env.UNSPLASH_KEY,
+    key: UNSPLASH_KEY,
     query: query,
   });
 
