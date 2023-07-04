@@ -1,6 +1,15 @@
 ### Default example
 
 Для стилизации компонента подключен tailwindcss
+Необходимо стилизовать следующие классы компонента:
+
+- labelStyle
+- inputStyle
+- buttonStyle
+- cardStyle
+- cardImageStyle
+- cardCurrentStyle
+- cardLisStyle
 
 ```jsx
 import React, { useState } from 'react';
@@ -19,7 +28,7 @@ const styleClassComponets = {
   inputStyle: 'text-3xl px-2 leading-10 rounded-2xl bg-white mb-4',
   buttonStyle:
     'bg-slate-950 text-white pr-6 pl-6  pb-3 pt-3 border-black border-solid rounded-3xl text-2xl cursor-pointer transition hover:bg-stone-900',
-  cardStyle: 'mb-4 flex',
+  cardStyle: 'mb-4 flex w-6/12 h-3/6',
   cardImageStyle: 'flex-1 rounded-xl',
   cardCurrentStyle: 'rounded-xl  border-y-4 border-solid border-indigo-500',
   cardLisStyle: 'columns-3',
