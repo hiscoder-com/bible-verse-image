@@ -13,8 +13,7 @@ const { arrayQuery, queryUse } = useSearchPhotos({
 
 let srcI;
 if (arrayQuery.length) {
-  srcI = arrayQuery[4];
-  srcI = srcI.urls.full;
+  srcI = arrayQuery[4].urls.full;
 }
 function Component() {
   return (
