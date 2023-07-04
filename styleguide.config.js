@@ -106,10 +106,6 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.(scss|css)$/,
-          use: ['style-loader', 'css-loader'],
-        },
-        {
           test: /\.jsx?$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
@@ -119,7 +115,6 @@ module.exports = {
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
-        { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
       ],
     },
     plugins: [
