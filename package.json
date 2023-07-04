@@ -80,9 +80,6 @@
     "webpack": "^5.75.0"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.13.5",
     "dotenv-webpack": "^8.0.1",
     "netlify-cli": "^15.7.0",
     "unsplash-js": "^6.0.0"
