@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from 'react';
-
+import React, { useEffect } from 'react';
+import { useOnDraw } from './Hooks';
 const Canvas = (props) => {
-  const canvasRef = useRef(null);
+  const { canvasRef, ctxRef } = useOnDraw();
   const { organization, bibletext, reftext, nametranslate, srcimage } = props;
 
   const draw = (ctx) => {
@@ -43,16 +43,17 @@ const Canvas = (props) => {
   };
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-    //Размеры холста
-    canvas.height = 1200;
-    canvas.width = 1200;
+    // const canvas = canvasRef.current;
+    // const context = canvas.getContext('2d');
+    // //Размеры холста
+    // canvas.height = 1200;
+    // canvas.width = 1200;
+
     let animationFrameId;
 
     //Our draw came here
     const render = () => {
-      draw(context);
+      draw(ctxRef);
       //предоставляет разработчикам доступ к жизненному циклу фрейма,
       //позволяя выполнять операции перед вычислением стилей
       //и формированием макета (layout) документа браузером
@@ -65,7 +66,7 @@ const Canvas = (props) => {
     };
   }, [draw]);
 
-  return <canvas ref={canvasRef} {...props} />;
+  return <canvas ref={(canvasRef, ctxRef)} {...props} />;
 };
 
 export default Canvas;
