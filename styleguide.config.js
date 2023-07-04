@@ -117,6 +117,10 @@ module.exports = {
         { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
       ],
     },
-    plugins: [new Dotenv()],
+    plugins: [
+      new Dotenv({
+        ignoreStub: true,
+      }),
+    ],
   },
 };
