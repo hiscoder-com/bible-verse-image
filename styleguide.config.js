@@ -41,6 +41,11 @@ module.exports = {
           content: 'React component library template',
         },
       ],
+      scripts: [
+        {
+          src: 'https://cdn.tailwindcss.com',
+        },
+      ],
     },
   },
   moduleAliases: { [name]: path.resolve(__dirname, 'src') },
