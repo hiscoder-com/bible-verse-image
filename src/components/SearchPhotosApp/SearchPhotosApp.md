@@ -13,7 +13,7 @@
 
 ```jsx
 import React, { useState } from 'react';
-import SearchPhotosApp from './SearchPhotosApp';
+import { SearchPhotosApp } from '@texttree/bible-verse-image';
 
 const styleClass = {
   appStyle: 'm-0 p-0',
