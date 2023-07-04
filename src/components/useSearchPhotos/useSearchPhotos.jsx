@@ -2,17 +2,20 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-function useSearchPhotos(queryObject) {
+function useSearchPhotos({ key, query }) {
   return <></>;
 }
 
 useSearchPhotos.defaultProps = {
-  queryObject: [],
+  key: '',
+  query: '',
 };
 
 useSearchPhotos.propTypes = {
+  /** key */
+  key: PropTypes.string,
   /** queryObject */
-  queryObject: PropTypes.object,
+  query: PropTypes.string,
 };
 
 export default useSearchPhotos;
