@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useSearchPhotos from '../useSearchPhotos/useSearchPhotos';
 import UNSPLASH_KEY from '../../utils/unSplashKey.js';
 
-export default function SearchPhotosApp({ handleChangeUrl }) {
+export default function SearchPhotosApp({ handleChangeUrl, styleClassComponets }) {
   const [query, setQuery] = useState('');
   const [input, setInput] = useState('');
   const [pics, setPics] = useState([]);
@@ -32,29 +32,31 @@ export default function SearchPhotosApp({ handleChangeUrl }) {
 
   return (
     <>
-      <form className="form" onSubmit={searchPhotos}>
-        <label className="label" htmlFor="query">
+      <form onSubmit={searchPhotos}>
+        <label className={styleClassComponets.labelStyle} htmlFor="query">
           📷
         </label>
         <input
           type="text"
           name="query"
-          className="input"
+          className={styleClassComponets.inputStyle}
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button type="submit" className="button">
+        <button type="submit" className={styleClassComponets.buttonStyle}>
           Search
         </button>
       </form>
-      <div className="card-list">
+      <div className={styleClassComponets.cardLisStyle}>
         {pics.map((pic) => (
           <div
-            className={`card${pic.id === img.id ? ' current-image' : ''}`}
+            className={`${styleClassComponets.cardStyle}${
+              pic.id === img.id ? ` ${styleClassComponets.cardCurrentStyle}` : ''
+            }`}
             key={pic.id}
           >
             <img
-              className="card-image"
+              className={styleClassComponets.cardImageStyle}
               alt={pic.alt_description}
               src={pic.urls.full}
               width="50%"
