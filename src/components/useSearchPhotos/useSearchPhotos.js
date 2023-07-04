@@ -5,7 +5,7 @@ function useSearchPhotos({ key, query }) {
   const [arrayQuery, setArrayQuery] = useState([]);
   const [queryUse, setQueryUse] = useState();
   useEffect(() => {
-    if (query?.length > 2) {
+    if (query?.length > 2 && key?.length) {
       searchPhotosApi(key, query).then((array) => {
         setArrayQuery(array);
         setQueryUse(query);
