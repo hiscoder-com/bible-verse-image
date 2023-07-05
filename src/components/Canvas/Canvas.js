@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useOnDraw } from './useOnDraw';
 
 const Canvas = (props) => {
-  const { canvasRef, contextRef } = useOnDraw();
-  const { organization, bibletext, reftext, nametranslate, srcimage } = props;
+  const { organization, bibletext, reftext, nametranslate, srcimage, sizeImage } = props;
+  const { canvasRef, contextRef } = useOnDraw(sizeImage);
 
   const draw = () => {
     const ctx = contextRef.current;
@@ -20,8 +20,8 @@ const Canvas = (props) => {
     pic.onload = function () {
       const x0 = 0;
       const y0 = 0;
-      const x1 = 1200;
-      const y1 = 1200;
+      const x1 = sizeImage;
+      const y1 = sizeImage;
 
       ctx.drawImage(pic, x0, y0, x1, y1);
     };
