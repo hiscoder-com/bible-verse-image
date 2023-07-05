@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useOnDraw } from './useOnDraw';
 
 const Canvas = (props) => {
-  const { organization, bibletext, reftext, nametranslate, srcimage, sizeImage } = props;
-  const { canvasRef, contextRef } = useOnDraw(sizeImage);
+  const { infoImage, textStyles } = props;
+  const { canvasRef, contextRef } = useOnDraw(infoImage.sizeimage);
 
   const draw = () => {
     const ctx = contextRef.current;
@@ -11,37 +11,27 @@ const Canvas = (props) => {
       return;
     }
 
-    if (srcimage === undefined) {
+    if (infoImage.srcimage === undefined) {
       return;
     }
 
     const pic = new Image();
-    pic.src = srcimage;
+    pic.src = infoImage.srcimage;
     pic.onload = function () {
       const x0 = 0;
       const y0 = 0;
-      const x1 = sizeImage;
-      const y1 = sizeImage;
+      const x1 = infoImage.sizeimage;
+      const y1 = infoImage.sizeimage;
 
       ctx.drawImage(pic, x0, y0, x1, y1);
     };
 
-    ctx.fillStyle = 'white';
-    ctx.font = 'small-caps 30px Helvetica, Arial, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(organization, 70, 70);
-
-    ctx.font = 'small-caps 120px Helvetica, Arial, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(bibletext, 600, 550);
-
-    ctx.font = 'small-caps 40px Helvetica, Arial, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(reftext, 600, 650);
-
-    ctx.font = 'small-caps 40px Helvetica, Arial, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(nametranslate, 600, 1150);
+    textStyles.forEach((style) => {
+      ctx.fillStyle = style.fillStyle;
+      ctx.font = style.font;
+      ctx.textAlign = style.textAlign;
+      ctx.fillText(style.text, style.x, style.y);
+    });
   };
 
   useEffect(() => {
