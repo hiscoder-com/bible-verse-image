@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useOnDraw } from './Hooks';
+
 const Canvas = (props) => {
-  const { canvasRef, ctxRef } = useOnDraw();
+  const { canvasRef } = useOnDraw();
   const { organization, bibletext, reftext, nametranslate, srcimage } = props;
 
   const draw = (ctx) => {
@@ -12,16 +13,13 @@ const Canvas = (props) => {
     const pic = new Image();
     pic.src = srcimage;
     pic.onload = function () {
-      //Вписываем картинку в размер холста
-
-      //источник картинки
-      const srs = pic;
+      // Вписываем картинку в размер холста
       const x0 = 0;
       const y0 = 0;
       const x1 = 1200;
       const y1 = 1200;
 
-      ctx.drawImage(srs, x0, y0, x1, y1);
+      ctx.drawImage(pic, x0, y0, x1, y1);
     };
 
     ctx.fillStyle = 'white';
@@ -43,20 +41,16 @@ const Canvas = (props) => {
   };
 
   useEffect(() => {
-    // const canvas = canvasRef.current;
-    // const context = canvas.getContext('2d');
-    // //Размеры холста
-    // canvas.height = 1200;
-    // canvas.width = 1200;
-
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
     let animationFrameId;
 
-    //Our draw came here
+    // Our draw function
     const render = () => {
-      draw(ctxRef);
-      //предоставляет разработчикам доступ к жизненному циклу фрейма,
-      //позволяя выполнять операции перед вычислением стилей
-      //и формированием макета (layout) документа браузером
+      draw(context);
+      // Предоставляет разработчикам доступ к жизненному циклу фрейма,
+      // позволяя выполнять операции перед вычислением стилей
+      // и формированием макета (layout) документа браузером
       animationFrameId = window.requestAnimationFrame(render);
     };
     render();
@@ -64,9 +58,9 @@ const Canvas = (props) => {
     return () => {
       window.cancelAnimationFrame(animationFrameId);
     };
-  }, [draw]);
+  }, [canvasRef, draw]);
 
-  return <canvas ref={(canvasRef, ctxRef)} {...props} />;
+  return <canvas ref={canvasRef} {...props} />;
 };
 
 export default Canvas;
