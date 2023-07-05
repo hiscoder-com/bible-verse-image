@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
-import { useOnDraw } from './Hooks';
+import { useOnDraw } from './useOnDraw';
 
 const Canvas = (props) => {
-  const { canvasRef } = useOnDraw();
+  const { canvasRef, contextRef } = useOnDraw();
   const { organization, bibletext, reftext, nametranslate, srcimage } = props;
 
-  const draw = (ctx) => {
+  const draw = () => {
+    const ctx = contextRef.current;
+    if (!ctx) {
+      return;
+    }
+
     if (srcimage === undefined) {
       return;
     }
@@ -13,7 +18,6 @@ const Canvas = (props) => {
     const pic = new Image();
     pic.src = srcimage;
     pic.onload = function () {
-      // Вписываем картинку в размер холста
       const x0 = 0;
       const y0 = 0;
       const x1 = 1200;
@@ -41,24 +45,19 @@ const Canvas = (props) => {
   };
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
     let animationFrameId;
 
-    // Our draw function
     const render = () => {
-      draw(context);
-      // Предоставляет разработчикам доступ к жизненному циклу фрейма,
-      // позволяя выполнять операции перед вычислением стилей
-      // и формированием макета (layout) документа браузером
+      draw();
       animationFrameId = window.requestAnimationFrame(render);
     };
+
     render();
 
     return () => {
       window.cancelAnimationFrame(animationFrameId);
     };
-  }, [canvasRef, draw]);
+  }, [draw]);
 
   return <canvas ref={canvasRef} {...props} />;
 };
