@@ -16,7 +16,7 @@ if (arrayQuery.length) {
   srcI = arrayQuery[4].urls.full;
 }
 
-const infoImage = {
+const infoimage = {
   srcimage: srcI,
   sizeimage: '1200',
 };
@@ -59,7 +59,7 @@ const textStyles = [
 ];
 
 function Component() {
-  return <Canvas organization="OBT" infoImage={infoImage} textStyles={textStyles} />;
+  return <Canvas organization="OBT" infoimage={infoimage} textStyles={textStyles} />;
 }
 
 Component();
