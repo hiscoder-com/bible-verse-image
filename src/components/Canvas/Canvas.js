@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useOnDraw } from './useOnDraw';
 
-const Canvas = (props) => {
-  const { infoimage, textStyles } = props;
+const Canvas = ({ infoimage, textStyles, ...props }) => {
   const { canvasRef, contextRef } = useOnDraw(infoimage.sizeimage);
 
   const draw = () => {
