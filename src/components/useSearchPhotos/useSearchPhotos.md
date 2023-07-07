@@ -5,6 +5,7 @@ import React from 'react';
 
 import { useSearchPhotos, Canvas } from '@texttree/bible-verse-image';
 import UNSPLASH_KEY from '../../utils/unSplashKey.js';
+import { useOnDraw } from '../Canvas/useCanvasContext.js';
 
 const { arrayQuery, queryUse } = useSearchPhotos({
   key: UNSPLASH_KEY,
@@ -18,7 +19,8 @@ if (arrayQuery.length) {
 
 const infoimage = {
   srcimage: srcI,
-  sizeimage: '1200',
+  height: 1200,
+  width: 1200,
 };
 
 const textStyles = [

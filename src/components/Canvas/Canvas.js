@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
-import { useOnDraw } from './useOnDraw';
+import { useCanvasContext } from './useCanvasContext';
 
 const Canvas = ({ infoimage, textStyles, ...props }) => {
-  const { canvasRef, contextRef } = useOnDraw(infoimage.height, infoimage.width);
+  const { contextRef, setCanvasRef } = useCanvasContext(
+    infoimage.height,
+    infoimage.width
+  );
 
   const draw = () => {
     const ctx = contextRef.current;
     if (!ctx) {
       return;
     }
-
-    if (infoimage.srcimage === undefined) {
-      return;
-    }
-
     const pic = new Image();
     pic.src = infoimage.srcimage;
     pic.onload = function () {
@@ -48,7 +46,7 @@ const Canvas = ({ infoimage, textStyles, ...props }) => {
     };
   }, [draw]);
 
-  return <canvas ref={canvasRef} {...props} />;
+  return <canvas ref={setCanvasRef} {...props} />;
 };
 
 export default Canvas;
