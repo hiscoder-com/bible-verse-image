@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export function useOnDraw(sizeimage) {
+export function useOnDraw(height, width) {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
 
@@ -13,8 +13,8 @@ export function useOnDraw(sizeimage) {
 
   useEffect(() => {
     if (canvasRef.current) {
-      canvasRef.current.height = sizeimage;
-      canvasRef.current.width = sizeimage;
+      canvasRef.current.height = height;
+      canvasRef.current.width = width;
       contextRef.current = canvasRef.current.getContext('2d');
     }
   }, []);
