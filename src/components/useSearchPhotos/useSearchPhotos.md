@@ -1,27 +1,28 @@
 ### Default example
 
 ```jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useSearchPhotos, Canvas } from '@texttree/bible-verse-image';
 import UNSPLASH_KEY from '../../utils/unSplashKey.js';
-import { useOnDraw } from '../Canvas/useCanvasContext.js';
 
 const { arrayQuery, queryUse } = useSearchPhotos({
   key: UNSPLASH_KEY,
   query: 'black',
 });
 
-let srcI;
-if (arrayQuery.length) {
-  srcI = arrayQuery[4].urls.full;
-}
+const [image, setImage] = useState({});
 
-const infoimage = {
-  srcimage: srcI,
-  height: 1200,
-  width: 1200,
-};
+useEffect(() => {
+  if (arrayQuery.length >= 4) {
+    const image = {
+      srcimage: arrayQuery[4].urls.full,
+      height: 1200,
+      width: 1200,
+    };
+    setImage(image);
+  }
+}, [arrayQuery]);
 
 const textStyles = [
   {
@@ -61,7 +62,7 @@ const textStyles = [
 ];
 
 function Component() {
-  return <Canvas organization="OBT" infoimage={infoimage} textStyles={textStyles} />;
+  return <Canvas organization="OBT" infoimage={image} textStyles={textStyles} />;
 }
 
 Component();
