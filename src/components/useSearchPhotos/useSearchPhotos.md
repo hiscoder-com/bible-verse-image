@@ -8,7 +8,7 @@ import UNSPLASH_KEY from '../../utils/unSplashKey.js';
 
 const { arrayQuery, queryUse } = useSearchPhotos({
   key: UNSPLASH_KEY,
-  query: 'black',
+  query: 'white',
 });
 
 const [image, setImage] = useState({});
@@ -26,43 +26,64 @@ useEffect(() => {
 
 const textStyles = [
   {
-    text: 'OBT',
+    type: 'text',
     x: 70,
     y: 70,
-    fillStyle: 'blue',
-    font: 'small-caps 30px Helvetica, Arial, sans-serif',
-    textAlign: 'center',
+    props: {
+      text: 'OBT',
+      fillStyle: 'black',
+      font: 'small-caps 30px Helvetica, Arial, sans-serif',
+      textAlign: 'center',
+      url: '',
+    },
   },
   {
-    text: 'God is love',
+    type: 'text',
     x: 600,
     y: 550,
-    fillStyle: 'blue',
-    font: 'small-caps 120px Helvetica, Arial, sans-serif',
-    textAlign: 'center',
+    props: {
+      text: 'God is love',
+      fillStyle: 'black',
+      font: 'small-caps 120px Helvetica, Arial, sans-serif',
+      textAlign: 'center',
+      url: '',
+    },
   },
 
   {
-    text: '1 Jon 4:8',
-    x: 550,
+    type: 'text',
+    x: 600,
     y: 650,
-    fillStyle: 'blue',
-    font: 'small-caps 40px Helvetica, Arial, sans-serif',
-    textAlign: 'center',
+    props: {
+      text: '1 Jon 4:8',
+      fillStyle: 'black',
+      font: 'small-caps 40px Helvetica, Arial, sans-serif',
+      textAlign: 'center',
+    },
   },
 
   {
-    text: 'ESV',
+    type: 'text',
     x: 600,
     y: 1150,
-    fillStyle: 'blue',
-    font: 'small-caps 120px Helvetica, Arial, sans-serif',
-    textAlign: 'center',
+    props: {
+      text: 'ESV',
+      fillStyle: 'black',
+      font: 'small-caps 120px Helvetica, Arial, sans-serif',
+      textAlign: 'center',
+    },
   },
 ];
 
 function Component() {
-  return <Canvas organization="OBT" infoimage={image} textStyles={textStyles} />;
+  return (
+    <Canvas
+      organization="OBT"
+      infoimage={image}
+      textStyles={textStyles}
+      className={'w-full'}
+    />
+  );
 }
 
 Component();

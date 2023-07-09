@@ -25,7 +25,7 @@ const Canvas = ({ infoimage, textStyles, ...props }) => {
       };
     }
     textStyles.forEach((style) => {
-      ctx.fillStyle = style.fillStyle;
+      ctx.fillStyle = style.props.fillStyle;
       ctx.font = style.props.font;
       ctx.textAlign = style.props.textAlign;
       ctx.fillText(style.props.text, style.x, style.y);
