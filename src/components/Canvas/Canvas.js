@@ -18,8 +18,8 @@ const Canvas = ({ infoimage, textStyles, ...props }) => {
       pic.onload = function () {
         const x0 = 0;
         const y0 = 0;
-        const x1 = infoimage.widthmage;
-        const y1 = infoimage.heightimage;
+        const x1 = infoimage.width;
+        const y1 = infoimage.height;
 
         ctx.drawImage(pic, x0, y0, x1, y1);
       };
