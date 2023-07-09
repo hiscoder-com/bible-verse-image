@@ -49,5 +49,10 @@ const textStyles = [
   },
 ];
 
-<Canvas organization="OBT" infoimage={infoimage} textStyles={textStyles} />;
+<Canvas
+  organization="OBT"
+  infoimage={infoimage}
+  textStyles={textStyles}
+  className={'w-full'}
+/>;
 ```
