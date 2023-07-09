@@ -58,7 +58,7 @@ export default function SearchPhotosApp({ handleChangeUrl, styleClassComponets }
             <img
               className={styleClassComponets.cardImageStyle}
               alt={pic.alt_description}
-              src={pic.urls.full}
+              src={pic.urls.thumb}
               onClick={() => {
                 setImg(pic);
               }}
