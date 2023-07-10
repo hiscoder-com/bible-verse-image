@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useCanvasContext } from './useCanvasContext';
 
-const Canvas = ({ infoimage, textStyles, ...props }) => {
+const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
   const { contextRef, setCanvasRef } = useCanvasContext(
     infoimage.height ?? 1200,
     infoimage.width ?? 1200
@@ -47,7 +47,13 @@ const Canvas = ({ infoimage, textStyles, ...props }) => {
     };
   }, [draw]);
 
-  return <canvas ref={setCanvasRef} {...props} />;
+  return (
+    <canvas
+      ref={setCanvasRef}
+      {...props}
+      style={{ width: infocanvas.width, height: infocanvas.height }}
+    />
+  );
 };
 
 export default Canvas;

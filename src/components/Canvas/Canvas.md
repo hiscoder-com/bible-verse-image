@@ -4,6 +4,10 @@
 import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
+const infocanvas = {
+  height: 1200,
+  width: 1200,
+};
 
 const infoimage = {
   srcimage:
@@ -65,6 +69,7 @@ const textStyles = [
 
 <Canvas
   organization="OBT"
+  infocanvas={infocanvas}
   infoimage={infoimage}
   textStyles={textStyles}
   className={'w-full'}
