@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useCanvasContext } from './useCanvasContext';
 
 const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
@@ -12,33 +12,57 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
     if (!ctx) {
       return;
     }
+
     if (infoimage.srcimage) {
       const pic = new Image();
       pic.src = infoimage.srcimage;
       pic.onload = function () {
-        const canvasWidth = contextRef.current.canvas.width;
-        const canvasHeight = contextRef.current.canvas.height;
+        const canvasWidth = ctx.canvas.width;
+        const canvasHeight = ctx.canvas.height;
         const imageWidth = pic.width;
         const imageHeight = pic.height;
 
         const canvasAspectRatio = canvasWidth / canvasHeight;
         const imageAspectRatio = imageWidth / imageHeight;
 
-        let x, y, width, height;
+        let sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height;
 
         if (imageAspectRatio > canvasAspectRatio) {
-          width = canvasWidth;
-          height = canvasWidth / imageAspectRatio;
+          sourceWidth = imageHeight * canvasAspectRatio;
+          sourceHeight = imageHeight;
+          sourceX = (imageWidth - sourceWidth) / 2;
+          sourceY = 0;
+
           x = 0;
-          y = (canvasHeight - height) / 2;
-        } else {
-          width = canvasHeight * imageAspectRatio;
-          height = canvasHeight;
-          x = (canvasWidth - width) / 2;
           y = 0;
+          width = canvasWidth;
+          height = canvasHeight;
+        } else {
+          sourceWidth = imageWidth;
+          sourceHeight = imageWidth / canvasAspectRatio;
+          sourceX = 0;
+          sourceY = (imageHeight - sourceHeight) / 2;
+
+          x = 0;
+          y = 0;
+          width = canvasWidth;
+          height = canvasHeight;
         }
+
+        ctx.drawImage(
+          pic,
+          sourceX,
+          sourceY,
+          sourceWidth,
+          sourceHeight,
+          x,
+          y,
+          width,
+          height
+        );
       };
     }
+
     textStyles.forEach((style) => {
       ctx.fillStyle = style.props.fillStyle;
       ctx.font = style.props.font;
