@@ -8,15 +8,15 @@ import UNSPLASH_KEY from '../../utils/unSplashKey.js';
 
 const { arrayQuery, queryUse } = useSearchPhotos({
   key: UNSPLASH_KEY,
-  query: 'black',
+  query: 'dog',
 });
 
 const [image, setImage] = useState({});
 
 useEffect(() => {
-  if (arrayQuery.length >= 7) {
+  if (arrayQuery.length >= 4) {
     const image = {
-      srcimage: arrayQuery[7].urls.full,
+      srcimage: arrayQuery[4].urls.full,
       height: 1200,
       width: 1200,
     };

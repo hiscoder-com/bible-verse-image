@@ -16,12 +16,27 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
       const pic = new Image();
       pic.src = infoimage.srcimage;
       pic.onload = function () {
-        const x0 = 0;
-        const y0 = 0;
-        const x1 = infoimage.width;
-        const y1 = infoimage.height;
+        const canvasWidth = contextRef.current.canvas.width;
+        const canvasHeight = contextRef.current.canvas.height;
+        const imageWidth = pic.width;
+        const imageHeight = pic.height;
 
-        ctx.drawImage(pic, x0, y0, x1, y1);
+        const canvasAspectRatio = canvasWidth / canvasHeight;
+        const imageAspectRatio = imageWidth / imageHeight;
+
+        let x, y, width, height;
+
+        if (imageAspectRatio > canvasAspectRatio) {
+          width = canvasWidth;
+          height = canvasWidth / imageAspectRatio;
+          x = 0;
+          y = (canvasHeight - height) / 2;
+        } else {
+          width = canvasHeight * imageAspectRatio;
+          height = canvasHeight;
+          x = (canvasWidth - width) / 2;
+          y = 0;
+        }
       };
     }
     textStyles.forEach((style) => {
