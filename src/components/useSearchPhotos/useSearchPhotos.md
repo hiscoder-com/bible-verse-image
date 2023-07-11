@@ -17,6 +17,7 @@ useEffect(() => {
   if (arrayQuery.length >= 4) {
     const image = {
       srcimage: arrayQuery[4].urls.full,
+      zoom: 1,
     };
     setImage(image);
   }

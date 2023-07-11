@@ -32,22 +32,20 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
           sourceHeight = imageHeight;
           sourceX = (imageWidth - sourceWidth) / 2;
           sourceY = 0;
-
-          x = 0;
-          y = 0;
-          width = canvasWidth;
-          height = canvasHeight;
         } else {
           sourceWidth = imageWidth;
           sourceHeight = imageWidth / canvasAspectRatio;
           sourceX = 0;
           sourceY = (imageHeight - sourceHeight) / 2;
-
-          x = 0;
-          y = 0;
-          width = canvasWidth;
-          height = canvasHeight;
         }
+
+        const zoom = infoimage.zoom || 1;
+        width = canvasWidth * zoom;
+        height = canvasHeight * zoom;
+        x = (canvasWidth - width) / 2;
+        y = (canvasHeight - height) / 2;
+
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight); // Очищаем холст перед отрисовкой
 
         ctx.drawImage(
           pic,
