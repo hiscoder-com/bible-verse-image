@@ -18,6 +18,8 @@ useEffect(() => {
     const image = {
       srcimage: arrayQuery[4].urls.full,
       zoom: 1,
+      offsetX: 0,
+      offsetY: 0,
     };
     setImage(image);
   }

@@ -19,8 +19,12 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
       pic.onload = function () {
         const canvasWidth = ctx.canvas.width;
         const canvasHeight = ctx.canvas.height;
-        const imageWidth = pic.width;
-        const imageHeight = pic.height;
+
+        const offsetX = infoimage.offsetX || 0;
+        const offsetY = infoimage.offsetY || 0;
+
+        const imageWidth = pic.width + offsetX;
+        const imageHeight = pic.height + offsetY;
 
         const canvasAspectRatio = canvasWidth / canvasHeight;
         const imageAspectRatio = imageWidth / imageHeight;
