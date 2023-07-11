@@ -3,8 +3,8 @@ import { useCanvasContext } from './useCanvasContext';
 
 const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
   const { contextRef, setCanvasRef } = useCanvasContext(
-    infoimage.height ?? 1200,
-    infoimage.width ?? 1200
+    infocanvas.height ?? 1200,
+    infocanvas.width ?? 1200
   );
 
   const draw = () => {
@@ -86,13 +86,7 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
     };
   }, [draw]);
 
-  return (
-    <canvas
-      ref={setCanvasRef}
-      {...props}
-      style={{ width: infocanvas.width, height: infocanvas.height }}
-    />
-  );
+  return <canvas ref={setCanvasRef} {...props} />;
 };
 
 export default Canvas;

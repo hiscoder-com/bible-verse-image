@@ -17,8 +17,6 @@ useEffect(() => {
   if (arrayQuery.length >= 4) {
     const image = {
       srcimage: arrayQuery[4].urls.full,
-      height: 1200,
-      width: 1200,
     };
     setImage(image);
   }
