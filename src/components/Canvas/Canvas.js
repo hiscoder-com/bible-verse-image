@@ -13,6 +13,40 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
       return;
     }
 
+    const calculateImageParameters = (pic, ctx, infoimage) => {
+      let sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height;
+
+      sourceX = 0;
+      sourceY = 0;
+      sourceWidth = pic.width;
+      sourceHeight = pic.height;
+      x = 0;
+      y = 0;
+      width = ctx.canvas.width;
+      height = ctx.canvas.height;
+
+      if (infoimage.zoom === undefined) {
+        ({ sourceX, sourceY, sourceWidth, sourceHeight } = centerImage(
+          pic,
+          ctx.canvas.width,
+          ctx.canvas.height
+        ));
+      } else {
+        const zoom = infoimage.zoom;
+        width = pic.width * zoom;
+        height = pic.height * zoom;
+        x = (ctx.canvas.width - width) / 2;
+        y = (ctx.canvas.height - height) / 2;
+      }
+
+      if (infoimage.offsetX !== undefined && infoimage.offsetY !== undefined) {
+        x += infoimage.offsetX;
+        y += infoimage.offsetY;
+      }
+
+      return { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height };
+    };
+
     const centerImage = (pic, canvasWidth, canvasHeight) => {
       const imageWidth = pic.width;
       const imageHeight = pic.height;
@@ -41,36 +75,8 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
       const pic = new Image();
       pic.src = infoimage.srcimage;
       pic.onload = function () {
-        let { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } = {
-          sourceX: 0,
-          sourceY: 0,
-          sourceWidth: pic.width,
-          sourceHeight: pic.height,
-          x: 0,
-          y: 0,
-          width: ctx.canvas.width,
-          height: ctx.canvas.height,
-        };
-
-        if (infoimage.zoom === undefined) {
-          ({ sourceX, sourceY, sourceWidth, sourceHeight } = centerImage(
-            pic,
-            ctx.canvas.width,
-            ctx.canvas.height
-          ));
-        } else {
-          const zoom = infoimage.zoom;
-          width = pic.width * zoom;
-          height = pic.height * zoom;
-          x = (ctx.canvas.width - width) / 2;
-          y = (ctx.canvas.height - height) / 2;
-        }
-
-        if (infoimage.offsetX !== undefined && infoimage.offsetY !== undefined) {
-          x += infoimage.offsetX;
-          y += infoimage.offsetY;
-        }
-
+        const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
+          calculateImageParameters(pic, ctx, infoimage);
         ctx.drawImage(
           pic,
           sourceX,
