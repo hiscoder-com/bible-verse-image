@@ -20,39 +20,56 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
       const canvasAspectRatio = canvasWidth / canvasHeight;
       const imageAspectRatio = imageWidth / imageHeight;
 
-      let sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height;
+      let sourceX, sourceY, sourceWidth, sourceHeight;
 
       if (imageAspectRatio > canvasAspectRatio) {
         sourceWidth = imageHeight * canvasAspectRatio;
         sourceHeight = imageHeight;
         sourceX = (imageWidth - sourceWidth) / 2;
         sourceY = 0;
-
-        x = 0;
-        y = 0;
-        width = canvasWidth;
-        height = canvasHeight;
       } else {
         sourceWidth = imageWidth;
         sourceHeight = imageWidth / canvasAspectRatio;
         sourceX = 0;
         sourceY = (imageHeight - sourceHeight) / 2;
-
-        x = 0;
-        y = 0;
-        width = canvasWidth;
-        height = canvasHeight;
       }
 
-      return { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height };
+      return { sourceX, sourceY, sourceWidth, sourceHeight };
     };
 
     if (infoimage.srcimage) {
       const pic = new Image();
       pic.src = infoimage.srcimage;
       pic.onload = function () {
-        const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
-          centerImage(pic, ctx.canvas.width, ctx.canvas.height);
+        let { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } = {
+          sourceX: 0,
+          sourceY: 0,
+          sourceWidth: pic.width,
+          sourceHeight: pic.height,
+          x: 0,
+          y: 0,
+          width: ctx.canvas.width,
+          height: ctx.canvas.height,
+        };
+
+        if (infoimage.zoom === undefined) {
+          ({ sourceX, sourceY, sourceWidth, sourceHeight } = centerImage(
+            pic,
+            ctx.canvas.width,
+            ctx.canvas.height
+          ));
+        } else {
+          const zoom = infoimage.zoom;
+          width = pic.width * zoom;
+          height = pic.height * zoom;
+          x = (ctx.canvas.width - width) / 2;
+          y = (ctx.canvas.height - height) / 2;
+        }
+
+        if (infoimage.offsetX !== undefined && infoimage.offsetY !== undefined) {
+          x += infoimage.offsetX;
+          y += infoimage.offsetY;
+        }
 
         ctx.drawImage(
           pic,
