@@ -13,43 +13,46 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
       return;
     }
 
+    const centerImage = (pic, canvasWidth, canvasHeight) => {
+      const imageWidth = pic.width;
+      const imageHeight = pic.height;
+
+      const canvasAspectRatio = canvasWidth / canvasHeight;
+      const imageAspectRatio = imageWidth / imageHeight;
+
+      let sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height;
+
+      if (imageAspectRatio > canvasAspectRatio) {
+        sourceWidth = imageHeight * canvasAspectRatio;
+        sourceHeight = imageHeight;
+        sourceX = (imageWidth - sourceWidth) / 2;
+        sourceY = 0;
+
+        x = 0;
+        y = 0;
+        width = canvasWidth;
+        height = canvasHeight;
+      } else {
+        sourceWidth = imageWidth;
+        sourceHeight = imageWidth / canvasAspectRatio;
+        sourceX = 0;
+        sourceY = (imageHeight - sourceHeight) / 2;
+
+        x = 0;
+        y = 0;
+        width = canvasWidth;
+        height = canvasHeight;
+      }
+
+      return { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height };
+    };
+
     if (infoimage.srcimage) {
       const pic = new Image();
       pic.src = infoimage.srcimage;
       pic.onload = function () {
-        const canvasWidth = ctx.canvas.width;
-        const canvasHeight = ctx.canvas.height;
-
-        const offsetX = infoimage.offsetX || 0;
-        const offsetY = infoimage.offsetY || 0;
-
-        const imageWidth = pic.width + offsetX;
-        const imageHeight = pic.height + offsetY;
-
-        const canvasAspectRatio = canvasWidth / canvasHeight;
-        const imageAspectRatio = imageWidth / imageHeight;
-
-        let sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height;
-
-        if (imageAspectRatio > canvasAspectRatio) {
-          sourceWidth = imageHeight * canvasAspectRatio;
-          sourceHeight = imageHeight;
-          sourceX = (imageWidth - sourceWidth) / 2;
-          sourceY = 0;
-        } else {
-          sourceWidth = imageWidth;
-          sourceHeight = imageWidth / canvasAspectRatio;
-          sourceX = 0;
-          sourceY = (imageHeight - sourceHeight) / 2;
-        }
-
-        const zoom = infoimage.zoom || 1;
-        width = canvasWidth * zoom;
-        height = canvasHeight * zoom;
-        x = (canvasWidth - width) / 2;
-        y = (canvasHeight - height) / 2;
-
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight); // Очищаем холст перед отрисовкой
+        const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
+          centerImage(pic, ctx.canvas.width, ctx.canvas.height);
 
         ctx.drawImage(
           pic,
