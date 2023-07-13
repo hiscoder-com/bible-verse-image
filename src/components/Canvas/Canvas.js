@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useCanvasContext } from './useCanvasContext';
 
 const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
@@ -92,10 +92,20 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
     }
 
     textStyles.forEach((style) => {
-      ctx.fillStyle = style.props.fillStyle;
-      ctx.font = style.props.font;
-      ctx.textAlign = style.props.textAlign;
-      ctx.fillText(style.props.text, style.x, style.y);
+      if (style.type === 'image') {
+        const logo = new Image();
+        logo.src = style.props.url;
+        logo.onload = function () {
+          const logoX = style.x;
+          const logoY = style.y;
+          ctx.drawImage(logo, logoX, logoY);
+        };
+      } else {
+        ctx.fillStyle = style.props.fillStyle;
+        ctx.font = style.props.font;
+        ctx.textAlign = style.props.textAlign;
+        ctx.fillText(style.props.text, style.x, style.y);
+      }
     });
   };
 

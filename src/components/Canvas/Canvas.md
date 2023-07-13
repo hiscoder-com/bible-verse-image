@@ -13,22 +13,22 @@ const infoimage = {
   srcimage:
     'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjQwOTl8MHwxfHNlYXJjaHwxfHx3aGl0ZXxlbnwwfHx8fDE2ODczNDczNTZ8MA&ixlib=rb-4.0.3&q=80&w=1200',
   // 'https://img.freepik.com/free-photo/a-cupcake-with-a-strawberry-on-top-and-a-strawberry-on-the-top_1340-35087.jpg',
-  zoom: 2,
+  // zoom: 1,
   // offsetX: 100,
   // offsetY: 0,
 };
 
 const textStyles = [
   {
-    type: 'text',
-    x: 70,
-    y: 70,
+    type: 'image',
+    x: 0,
+    y: 0,
     props: {
       text: 'OBT',
       fillStyle: 'blue',
       font: 'small-caps 30px Helvetica, Arial, sans-serif',
       textAlign: 'center',
-      url: '',
+      url: 'https://svg-files.pixelied.com/8d6c9aeb-58d6-4f23-9cac-e8d9adbf0221/pixelied-i-love-lucy.svg',
     },
   },
   {
