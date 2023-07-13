@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 const { name, version, url } = require('./package.json');
 
 let sections = [
@@ -8,8 +9,20 @@ let sections = [
     content: 'README.md',
   },
   {
+    name: 'Hooks',
+    components: ['src/components/useSearchPhotos/useSearchPhotos.jsx'],
+  },
+  {
     name: 'Button Block',
     components: ['src/components/Button/Button.js'],
+  },
+  {
+    name: 'Canvas Block',
+    components: ['src/components/Canvas/Canvas.js'],
+  },
+  {
+    name: 'Search Block',
+    components: ['src/components/SearchPhotosApp/SearchPhotosApp.js'],
   },
 ];
 
@@ -26,6 +39,11 @@ module.exports = {
         {
           name: 'description',
           content: 'React component library template',
+        },
+      ],
+      scripts: [
+        {
+          src: 'https://cdn.tailwindcss.com',
         },
       ],
     },
@@ -45,7 +63,6 @@ module.exports = {
       },
       Code: {
         code: {
-          // make inline code example appear the same color as links
           backgroundColor: '#eff1f3',
           fontSize: 14,
           borderRadius: '6px',
@@ -89,6 +106,11 @@ module.exports = {
     module: {
       rules: [
         {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+        },
+        {
           test: /\.js$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
@@ -96,8 +118,8 @@ module.exports = {
       ],
     },
     plugins: [
-      new webpack.DefinePlugin({
-        process: { env: {} },
+      new Dotenv({
+        systemvars: true,
       }),
     ],
   },
