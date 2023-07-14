@@ -95,11 +95,15 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
       if (style.type === 'image') {
         const logo = new Image();
         logo.src = style.props.url;
-        logo.onload = function () {
-          const logoX = style.x;
-          const logoY = style.y;
-          ctx.drawImage(logo, logoX, logoY);
-        };
+        if (logo.src.endsWith('.svg') && (logo?.width === 0 || logo?.height === 0)) {
+          console.log('param svg picture width or height are 0');
+        } else {
+          logo.onload = function () {
+            const logoX = style.x;
+            const logoY = style.y;
+            ctx.drawImage(logo, logoX, logoY, logo.width, logo.height);
+          };
+        }
       } else {
         ctx.fillStyle = style.props.fillStyle;
         ctx.font = style.props.font;
