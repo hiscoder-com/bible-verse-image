@@ -18,17 +18,13 @@ const infoimage = {
   // offsetY: 0,
 };
 
-const textStyles = [
+const elementStyles = [
   {
     type: 'image',
     x: 0,
     y: 0,
     props: {
-      text: 'OBT',
-      fillStyle: 'blue',
-      font: 'small-caps 30px Helvetica, Arial, sans-serif',
-      textAlign: 'center',
-      url: 'https://svg-files.pixelied.com/8d6c9aeb-58d6-4f23-9cac-e8d9adbf0221/pixelied-i-love-lucy.svg',
+      url: 'https://raw.githubusercontent.com/texttree/v-cana/master/public/vcana-logo.svg',
     },
   },
   {
@@ -73,7 +69,7 @@ const textStyles = [
   organization="OBT"
   infocanvas={infocanvas}
   infoimage={infoimage}
-  textStyles={textStyles}
+  elementStyles={elementStyles}
   className={'w-full'}
 />;
 ```
