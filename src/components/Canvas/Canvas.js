@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useCanvasContext } from './useCanvasContext';
 
-const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
+const Canvas = ({ infocanvas, infoimage, elementStyles, ...props }) => {
   const { contextRef, setCanvasRef } = useCanvasContext(
     infocanvas.height ?? 1200,
     infocanvas.width ?? 1200
@@ -91,24 +91,28 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
       };
     }
 
-    textStyles.forEach((style) => {
-      if (style.type === 'image') {
-        const logo = new Image();
-        logo.src = style.props.url;
-        if (logo.src.endsWith('.svg') && (logo?.width === 0 || logo?.height === 0)) {
-          console.log('param svg picture width or height are 0');
-        } else {
+    elementStyles.forEach((style) => {
+      switch (style.type) {
+        case 'image':
+          const logo = new Image();
+          logo.src = style.props.url;
           logo.onload = function () {
-            const logoX = style.x;
-            const logoY = style.y;
-            ctx.drawImage(logo, logoX, logoY, logo.width, logo.height);
+            if (logo.src.endsWith('.svg') && (logo?.width === 0 || logo?.height === 0)) {
+              console.warn('Logo is not load: param svg picture width or height are 0');
+            } else {
+              const logoX = style.x;
+              const logoY = style.y;
+              ctx.drawImage(logo, logoX, logoY, logo.width, logo.height);
+            }
           };
-        }
-      } else {
-        ctx.fillStyle = style.props.fillStyle;
-        ctx.font = style.props.font;
-        ctx.textAlign = style.props.textAlign;
-        ctx.fillText(style.props.text, style.x, style.y);
+          break;
+        case 'text':
+          ctx.fillStyle = style.props.fillStyle;
+          ctx.font = style.props.font;
+          ctx.textAlign = style.props.textAlign;
+          ctx.fillText(style.props.text, style.x, style.y);
+        default:
+          break;
       }
     });
   };
