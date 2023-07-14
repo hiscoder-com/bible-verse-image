@@ -47,6 +47,27 @@ const Canvas = ({ infocanvas, infoimage, elementStyles, ...props }) => {
       return { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height };
     };
 
+    function getSizeSvg(src, sizeWidth) {
+      const div = document.createElement('div');
+      document.body.append(div);
+
+      const img = new Image(sizeWidth);
+      img.src = src;
+      let widthImage, heightImage;
+
+      img.onload = () => {
+        div.appendChild(img);
+        console.log(img.width + 'x' + img.height);
+        widthImage = img.width;
+        heightImage = img.height;
+      };
+
+      return {
+        widthImage,
+        heightImage,
+      };
+    }
+
     const centerImage = (pic, canvasWidth, canvasHeight) => {
       const imageWidth = pic.width;
       const imageHeight = pic.height;
@@ -96,14 +117,16 @@ const Canvas = ({ infocanvas, infoimage, elementStyles, ...props }) => {
         case 'image':
           const logo = new Image();
           logo.src = style.props.url;
+
           logo.onload = function () {
-            if (logo.src.endsWith('.svg') && (logo?.width === 0 || logo?.height === 0)) {
-              console.warn('Logo is not load: param svg picture width or height are 0');
-            } else {
-              const logoX = style.x;
-              const logoY = style.y;
-              ctx.drawImage(logo, logoX, logoY, logo.width, logo.height);
+            const logoX = style.x;
+            const logoY = style.y;
+            if (logo.src.endsWith('.svg')) {
+              const { widthImage, heightImage } = getSizeSvg(style.props.url, 550);
+              logo.width = widthImage;
+              logo.height = heightImage;
             }
+            ctx.drawImage(logo, logoX, logoY);
           };
           break;
         case 'text':
