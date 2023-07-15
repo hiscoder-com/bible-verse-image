@@ -47,27 +47,6 @@ const Canvas = ({ infocanvas, infoimage, elementStyles, ...props }) => {
       return { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height };
     };
 
-    function getSizeSvg(src, sizeWidth) {
-      const div = document.createElement('div');
-      document.body.append(div);
-
-      const img = new Image(sizeWidth);
-      img.src = src;
-      let widthImage, heightImage;
-
-      img.onload = () => {
-        div.appendChild(img);
-        console.log(img.width + 'x' + img.height);
-        widthImage = img.width;
-        heightImage = img.height;
-      };
-
-      return {
-        widthImage,
-        heightImage,
-      };
-    }
-
     const centerImage = (pic, canvasWidth, canvasHeight) => {
       const imageWidth = pic.width;
       const imageHeight = pic.height;
@@ -121,12 +100,15 @@ const Canvas = ({ infocanvas, infoimage, elementStyles, ...props }) => {
           logo.onload = function () {
             const logoX = style.x;
             const logoY = style.y;
-            if (logo.src.endsWith('.svg')) {
-              const { widthImage, heightImage } = getSizeSvg(style.props.url, 550);
-              logo.width = widthImage;
-              logo.height = heightImage;
+            if (style.props.zoom) {
+              const zoom = style.props.zoom;
+              const logoWidth = logo.width * zoom;
+              const logoHeight = logo.height * zoom;
+
+              ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
+            } else {
+              ctx.drawImage(logo, logoX, logoY);
             }
-            ctx.drawImage(logo, logoX, logoY);
           };
           break;
         case 'text':
@@ -134,6 +116,7 @@ const Canvas = ({ infocanvas, infoimage, elementStyles, ...props }) => {
           ctx.font = style.props.font;
           ctx.textAlign = style.props.textAlign;
           ctx.fillText(style.props.text, style.x, style.y);
+          break;
         default:
           break;
       }
