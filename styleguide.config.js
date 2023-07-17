@@ -24,6 +24,10 @@ let sections = [
     name: 'Search Block',
     components: ['src/components/SearchPhotosApp/SearchPhotosApp.js'],
   },
+  {
+    name: 'BibleVerse Block',
+    components: ['src/components/BibleVerseImage/BibleVerseImage.js'],
+  },
 ];
 
 module.exports = {
