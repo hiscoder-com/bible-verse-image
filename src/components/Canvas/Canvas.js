@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useCanvasContext } from './useCanvasContext';
 
-const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
+const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
   const { contextRef, setCanvasRef } = useCanvasContext(
     infocanvas.height ?? 1200,
     infocanvas.width ?? 1200
@@ -91,11 +91,35 @@ const Canvas = ({ infocanvas, infoimage, textStyles, ...props }) => {
       };
     }
 
-    textStyles.forEach((style) => {
-      ctx.fillStyle = style.props.fillStyle;
-      ctx.font = style.props.font;
-      ctx.textAlign = style.props.textAlign;
-      ctx.fillText(style.props.text, style.x, style.y);
+    elements.forEach((style) => {
+      switch (style.type) {
+        case 'image':
+          const logo = new Image();
+          logo.src = style.props.url;
+
+          logo.onload = function () {
+            const logoX = style.x;
+            const logoY = style.y;
+            if (style.props.zoom) {
+              const zoom = style.props.zoom;
+              const logoWidth = logo.width * zoom;
+              const logoHeight = logo.height * zoom;
+
+              ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
+            } else {
+              ctx.drawImage(logo, logoX, logoY);
+            }
+          };
+          break;
+        case 'text':
+          ctx.fillStyle = style.props.fillStyle;
+          ctx.font = style.props.font;
+          ctx.textAlign = style.props.textAlign;
+          ctx.fillText(style.props.text, style.x, style.y);
+          break;
+        default:
+          break;
+      }
     });
   };
 
