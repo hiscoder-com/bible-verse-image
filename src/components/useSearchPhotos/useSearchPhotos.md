@@ -30,7 +30,7 @@ const infocanvas = {
   width: 1200,
 };
 
-const textStyles = [
+const elements = [
   {
     type: 'text',
     x: 70,
@@ -87,7 +87,7 @@ function Component() {
       organization="OBT"
       infocanvas={infocanvas}
       infoimage={image}
-      textStyles={textStyles}
+      elements={elements}
       className={'w-full'}
     />
   );
