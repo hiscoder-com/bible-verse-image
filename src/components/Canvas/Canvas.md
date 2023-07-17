@@ -24,7 +24,7 @@ const elements = [
     x: 50,
     y: 50,
     props: {
-      url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/feat-location-logo-denisarger-2/images/vcana-logo.svg',
+      url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
       zoom: 0.5,
     },
   },
