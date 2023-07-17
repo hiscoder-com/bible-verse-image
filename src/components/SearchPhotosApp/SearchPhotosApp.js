@@ -32,7 +32,7 @@ export default function SearchPhotosApp({ handleChangeUrl, styleClassComponets }
 
   return (
     <>
-      <form onSubmit={searchPhotos}>
+      <form onSubmit={searchPhotos} className="border  border-black">
         <label className={styleClassComponets.labelStyle} htmlFor="query">
           📷
         </label>
