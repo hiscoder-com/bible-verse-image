@@ -18,7 +18,7 @@ const infoimage = {
   // offsetY: 0,
 };
 
-const elementStyles = [
+const elements = [
   {
     type: 'image',
     x: 50,
@@ -70,7 +70,7 @@ const elementStyles = [
   organization="OBT"
   infocanvas={infocanvas}
   infoimage={infoimage}
-  elementStyles={elementStyles}
+  elements={elements}
   className={'w-full'}
 />;
 ```

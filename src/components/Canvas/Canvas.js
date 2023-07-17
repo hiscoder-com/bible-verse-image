@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useCanvasContext } from './useCanvasContext';
 
-const Canvas = ({ infocanvas, infoimage, elementStyles, ...props }) => {
+const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
   const { contextRef, setCanvasRef } = useCanvasContext(
     infocanvas.height ?? 1200,
     infocanvas.width ?? 1200
@@ -91,7 +91,7 @@ const Canvas = ({ infocanvas, infoimage, elementStyles, ...props }) => {
       };
     }
 
-    elementStyles.forEach((style) => {
+    elements.forEach((style) => {
       switch (style.type) {
         case 'image':
           const logo = new Image();
