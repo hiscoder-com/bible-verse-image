@@ -38,7 +38,7 @@ const elements = [
       font: 'small-caps 120px Helvetica, Arial, sans-serif',
       textAlign: 'center',
       maxWidth: 650,
-      lineHeight: 120,
+      lineHeight: 100,
     },
   },
 
@@ -51,8 +51,6 @@ const elements = [
       fillStyle: 'blue',
       font: 'small-caps 40px Helvetica, Arial, sans-serif',
       textAlign: 'center',
-      maxWidth: 200,
-      lineHeight: 20,
     },
   },
 
@@ -65,8 +63,6 @@ const elements = [
       fillStyle: 'blue',
       font: 'small-caps 120px Helvetica, Arial, sans-serif',
       textAlign: 'center',
-      maxWidth: 200,
-      lineHeight: 20,
     },
   },
 ];
