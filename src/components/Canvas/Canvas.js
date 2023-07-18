@@ -138,7 +138,7 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
           ctx.font = style.props.font;
           ctx.textAlign = style.props.textAlign;
 
-          if (style.props.maxWidth && style.props.lineHeight) {
+          if (style?.props?.maxWidth && style?.props?.lineHeight) {
             drawWrappedText(
               ctx,
               style.props.text,
