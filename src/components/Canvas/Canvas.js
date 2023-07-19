@@ -71,26 +71,28 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
       return { sourceX, sourceY, sourceWidth, sourceHeight };
     };
 
-    const drawWrappedText = (ctx, text, x, y, maxWidth, lineHeight) => {
+    const drawWrappedText = (ctx, text, x, y, blockWidth, lineHeight, fontHeight) => {
       const words = text.split(' ');
       let line = '';
+      const lineSpacing = lineHeight;
 
       for (let i = 0; i < words.length; i++) {
         const testLine = line + words[i] + ' ';
-        //Получаем ширину строки после добавления слова
         const metrics = ctx.measureText(testLine);
         const testWidth = metrics.width;
 
-        if (testWidth > maxWidth) {
-          ctx.fillText(line, x, y);
+        if (testWidth > blockWidth) {
+          const centerOffset = (blockWidth - ctx.measureText(line).width) / 2;
+          ctx.fillText(line, x + centerOffset, y + fontHeight);
           line = words[i] + ' ';
-          y += lineHeight;
+          y += lineSpacing;
         } else {
           line = testLine;
         }
       }
 
-      ctx.fillText(line, x, y);
+      const centerOffset = (blockWidth - ctx.measureText(line).width) / 2;
+      ctx.fillText(line, x + centerOffset, y + fontHeight);
     };
 
     if (infoimage.srcimage) {
@@ -135,17 +137,18 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
           break;
         case 'text':
           ctx.fillStyle = style.props.fillStyle;
-          ctx.font = style.props.font;
-          ctx.textAlign = style.props.textAlign;
+          ctx.font = `${style.props.fontStyle} ${style.props.fontSize} ${style.props.font}`;
+          const fontHeight = parseInt(style.props.fontSize);
 
-          if (style?.props?.maxWidth && style?.props?.lineHeight) {
+          if (style?.props?.blockWidth && style?.props?.lineHeight) {
             drawWrappedText(
               ctx,
               style.props.text,
               style.x,
               style.y,
-              style.props.maxWidth,
-              style.props.lineHeight
+              style.props.blockWidth,
+              style.props.lineHeight,
+              fontHeight
             );
           } else {
             ctx.fillText(style.props.text, style.x, style.y);
