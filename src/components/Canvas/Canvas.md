@@ -5,8 +5,8 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 1200,
-  width: 1200,
+  height: 900,
+  width: 900,
 };
 
 const infoimage = {
@@ -24,21 +24,23 @@ const elements = [
     x: 50,
     y: 50,
     props: {
-      url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
+      url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg1',
       zoom: 0.5,
     },
   },
   {
     type: 'text',
-    x: 600,
-    y: 450,
+    x: 0,
+    y: 0,
     props: {
       text: 'God is love',
       fillStyle: 'blue',
-      font: 'small-caps 120px Helvetica, Arial, sans-serif',
+      fontStyle: 'small-caps',
+      fontSize: '120px',
+      font: 'Helvetica, Arial, sans-serif',
       textAlign: 'center',
-      maxWidth: 650,
-      lineHeight: 100,
+      blockWidth: 450,
+      lineHeight: 144,
     },
   },
 
@@ -49,7 +51,9 @@ const elements = [
     props: {
       text: '1 Jon 4:8',
       fillStyle: 'blue',
-      font: 'small-caps 40px Helvetica, Arial, sans-serif',
+      fontStyle: 'small-caps',
+      fontSize: '40px',
+      font: 'Helvetica, Arial, sans-serif',
       textAlign: 'center',
     },
   },
@@ -61,7 +65,9 @@ const elements = [
     props: {
       text: 'ESV',
       fillStyle: 'blue',
-      font: 'small-caps 120px Helvetica, Arial, sans-serif',
+      fontStyle: 'small-caps',
+      fontSize: '120px',
+      font: 'Helvetica, Arial, sans-serif',
       textAlign: 'center',
     },
   },
