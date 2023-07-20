@@ -15,7 +15,7 @@
 <h2><div align="center">project_title</div></h2>
 <br />
 
-<center><strong><a href="https://template-rcl.netlify.app">Explore the docs and code playground »</a></strong></center>
+<center><strong><a href="https://bible-verse-image.netlify.app/">Explore the docs and code playground »</a></strong></center>
 <br />
 <br />
 <center>
