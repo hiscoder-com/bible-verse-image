@@ -83,25 +83,31 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
     ) => {
       const words = text.split(' ');
       let line = '';
-      const lineSpacing = lineHeight;
+      blockWidth = blockWidth ?? ctx.canvas.width;
 
       for (let i = 0; i < words.length; i++) {
-        const testLine = line + words[i] + ' ';
+        let testLine = line + words[i];
         const metrics = ctx.measureText(testLine);
         const testWidth = metrics.width;
+        testLine += ' ';
 
         if (testWidth > blockWidth) {
           let offsetX = 0;
 
-          if (alignment === 'center') {
-            offsetX = (blockWidth - ctx.measureText(line).width) / 2;
-          } else if (alignment === 'right') {
-            offsetX = blockWidth - ctx.measureText(line).width;
+          switch (alignment) {
+            case 'center':
+              offsetX = (blockWidth - ctx.measureText(line).width) / 2;
+              break;
+            case 'right':
+              offsetX = blockWidth - ctx.measureText(line).width;
+              break;
+            default:
+              break;
           }
 
           ctx.fillText(line, x + offsetX, y + fontHeight);
           line = words[i] + ' ';
-          y += lineSpacing;
+          y += lineHeight;
         } else {
           line = testLine;
         }
@@ -109,13 +115,17 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
 
       let offsetX = 0;
 
-      if (alignment === 'center') {
-        offsetX = (blockWidth - ctx.measureText(line).width) / 2;
-      } else if (alignment === 'right') {
-        offsetX = blockWidth - ctx.measureText(line).width;
+      switch (alignment) {
+        case 'center':
+          offsetX = (blockWidth - ctx.measureText(line).width) / 2;
+          break;
+        case 'right':
+          offsetX = blockWidth - ctx.measureText(line).width;
+          break;
+        default:
+          break;
       }
-
-      ctx.fillText(line, x + offsetX, y + fontHeight);
+      ctx.fillText(line, x + offsetX, y + lineHeight);
     };
 
     if (infoimage.srcimage) {
@@ -160,24 +170,20 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
           break;
         case 'text':
           ctx.fillStyle = style.props.fillStyle;
-          ctx.font = `${style.props.fontStyle} ${style.props.fontSize} ${style.props.font}`;
-          const fontHeight = parseInt(style.props.fontSize);
-          const lineSpacing = style.props.lineHeight || 1.2 * fontHeight;
+          ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
+          const fontHeight = style.props.fontSize;
+          const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
 
-          if (style?.props?.blockWidth) {
-            drawWrappedText(
-              ctx,
-              style.props.text,
-              style.x,
-              style.y,
-              style.props.blockWidth,
-              lineSpacing,
-              fontHeight,
-              style.props.alignment
-            );
-          } else {
-            ctx.fillText(style.props.text, style.x, style.y);
-          }
+          drawWrappedText(
+            ctx,
+            style.props.text,
+            style.x,
+            style.y,
+            style.props.blockWidth,
+            lineHeight,
+            fontHeight,
+            style.props.alignment
+          );
           break;
         default:
           break;
