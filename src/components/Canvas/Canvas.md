@@ -5,8 +5,8 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 1200,
-  width: 1200,
+  height: 900,
+  width: 900,
 };
 
 const infoimage = {
@@ -30,38 +30,47 @@ const elements = [
   },
   {
     type: 'text',
-    x: 600,
-    y: 550,
+    x: 225,
+    y: 225,
     props: {
       text: 'God is love',
       fillStyle: 'blue',
-      font: 'small-caps 120px Helvetica, Arial, sans-serif',
-      textAlign: 'center',
-      url: '',
+      fontStyle: 'small-caps',
+      fontSize: '120px',
+      font: 'Helvetica, Arial, sans-serif',
+      alignment: 'center',
+      blockWidth: 450,
+      lineHeight: 144,
     },
   },
 
   {
     type: 'text',
-    x: 600,
-    y: 650,
+    x: 225,
+    y: 565,
     props: {
       text: '1 Jon 4:8',
       fillStyle: 'blue',
-      font: 'small-caps 40px Helvetica, Arial, sans-serif',
-      textAlign: 'center',
+      fontStyle: 'small-caps',
+      fontSize: '40px',
+      font: 'Helvetica, Arial, sans-serif',
+      alignment: 'center',
+      blockWidth: 450,
     },
   },
 
   {
     type: 'text',
-    x: 600,
-    y: 1150,
+    x: 225,
+    y: 750,
     props: {
       text: 'ESV',
       fillStyle: 'blue',
-      font: 'small-caps 120px Helvetica, Arial, sans-serif',
-      textAlign: 'center',
+      fontStyle: 'small-caps',
+      fontSize: '80px',
+      font: 'Helvetica, Arial, sans-serif',
+      alignment: 'center',
+      blockWidth: 450,
     },
   },
 ];

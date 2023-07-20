@@ -71,6 +71,53 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
       return { sourceX, sourceY, sourceWidth, sourceHeight };
     };
 
+    const drawWrappedText = (
+      ctx,
+      text,
+      x,
+      y,
+      blockWidth,
+      lineHeight,
+      fontHeight,
+      alignment
+    ) => {
+      const words = text.split(' ');
+      let line = '';
+      const lineSpacing = lineHeight;
+
+      for (let i = 0; i < words.length; i++) {
+        const testLine = line + words[i] + ' ';
+        const metrics = ctx.measureText(testLine);
+        const testWidth = metrics.width;
+
+        if (testWidth > blockWidth) {
+          let offsetX = 0;
+
+          if (alignment === 'center') {
+            offsetX = (blockWidth - ctx.measureText(line).width) / 2;
+          } else if (alignment === 'right') {
+            offsetX = blockWidth - ctx.measureText(line).width;
+          }
+
+          ctx.fillText(line, x + offsetX, y + fontHeight);
+          line = words[i] + ' ';
+          y += lineSpacing;
+        } else {
+          line = testLine;
+        }
+      }
+
+      let offsetX = 0;
+
+      if (alignment === 'center') {
+        offsetX = (blockWidth - ctx.measureText(line).width) / 2;
+      } else if (alignment === 'right') {
+        offsetX = blockWidth - ctx.measureText(line).width;
+      }
+
+      ctx.fillText(line, x + offsetX, y + fontHeight);
+    };
+
     if (infoimage.srcimage) {
       const pic = new Image();
       pic.src = infoimage.srcimage;
@@ -113,9 +160,24 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
           break;
         case 'text':
           ctx.fillStyle = style.props.fillStyle;
-          ctx.font = style.props.font;
-          ctx.textAlign = style.props.textAlign;
-          ctx.fillText(style.props.text, style.x, style.y);
+          ctx.font = `${style.props.fontStyle} ${style.props.fontSize} ${style.props.font}`;
+          const fontHeight = parseInt(style.props.fontSize);
+          const lineSpacing = style.props.lineHeight || 1.2 * fontHeight;
+
+          if (style?.props?.blockWidth) {
+            drawWrappedText(
+              ctx,
+              style.props.text,
+              style.x,
+              style.y,
+              style.props.blockWidth,
+              lineSpacing,
+              fontHeight,
+              style.props.alignment
+            );
+          } else {
+            ctx.fillText(style.props.text, style.x, style.y);
+          }
           break;
         default:
           break;
