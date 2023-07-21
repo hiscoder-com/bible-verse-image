@@ -7,6 +7,75 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
     infocanvas.width ?? 1200
   );
 
+  const drawImageOnCanvas = (ctx, imageSource, infoimage, calculateImageParameters) => {
+    if (!imageSource || !infoimage) {
+      return;
+    }
+
+    const pic = new Image();
+    pic.src = imageSource;
+
+    pic.onload = function () {
+      const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
+        calculateImageParameters(pic, ctx, infoimage);
+      ctx.drawImage(
+        pic,
+        sourceX,
+        sourceY,
+        sourceWidth,
+        sourceHeight,
+        x,
+        y,
+        width,
+        height
+      );
+    };
+  };
+
+  const drawElementsOnCanvas = (ctx, elements, drawWrappedText) => {
+    elements.forEach((style) => {
+      switch (style.type) {
+        case 'image':
+          const logo = new Image();
+          logo.src = style.props.url;
+
+          logo.onload = function () {
+            const logoX = style.x;
+            const logoY = style.y;
+            if (style.props.zoom) {
+              const zoom = style.props.zoom;
+              const logoWidth = logo.width * zoom;
+              const logoHeight = logo.height * zoom;
+
+              ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
+            } else {
+              ctx.drawImage(logo, logoX, logoY);
+            }
+          };
+          break;
+        case 'text':
+          ctx.fillStyle = style.props.fillStyle;
+          ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
+          const fontHeight = style.props.fontSize;
+          const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
+
+          drawWrappedText(
+            ctx,
+            style.props.text,
+            style.x,
+            style.y,
+            style.props.blockWidth,
+            lineHeight,
+            fontHeight,
+            style.props.alignment
+          );
+          break;
+        default:
+          break;
+      }
+    });
+  };
+
   const draw = () => {
     const ctx = contextRef?.current;
     if (!ctx) {
@@ -129,66 +198,10 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
     };
 
     if (infoimage.srcimage) {
-      const pic = new Image();
-      pic.src = infoimage.srcimage;
-      pic.onload = function () {
-        const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
-          calculateImageParameters(pic, ctx, infoimage);
-        ctx.drawImage(
-          pic,
-          sourceX,
-          sourceY,
-          sourceWidth,
-          sourceHeight,
-          x,
-          y,
-          width,
-          height
-        );
-      };
+      drawImageOnCanvas(ctx, infoimage.srcimage, infoimage, calculateImageParameters);
     }
 
-    elements.forEach((style) => {
-      switch (style.type) {
-        case 'image':
-          const logo = new Image();
-          logo.src = style.props.url;
-
-          logo.onload = function () {
-            const logoX = style.x;
-            const logoY = style.y;
-            if (style.props.zoom) {
-              const zoom = style.props.zoom;
-              const logoWidth = logo.width * zoom;
-              const logoHeight = logo.height * zoom;
-
-              ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
-            } else {
-              ctx.drawImage(logo, logoX, logoY);
-            }
-          };
-          break;
-        case 'text':
-          ctx.fillStyle = style.props.fillStyle;
-          ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
-          const fontHeight = style.props.fontSize;
-          const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
-
-          drawWrappedText(
-            ctx,
-            style.props.text,
-            style.x,
-            style.y,
-            style.props.blockWidth,
-            lineHeight,
-            fontHeight,
-            style.props.alignment
-          );
-          break;
-        default:
-          break;
-      }
-    });
+    drawElementsOnCanvas(ctx, elements, drawWrappedText);
   };
 
   useEffect(() => {
