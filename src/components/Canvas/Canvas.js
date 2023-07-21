@@ -7,7 +7,12 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
     infocanvas.width ?? 1200
   );
 
-  const drawImageOnCanvas = (ctx, imageSource, infoimage, calculateImageParameters) => {
+  const drawImageOnCanvas = async (
+    ctx,
+    imageSource,
+    infoimage,
+    calculateImageParameters
+  ) => {
     if (!imageSource || !infoimage) {
       return;
     }
@@ -83,8 +88,8 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
       }
     });
   };
-
   const draw = () => {
+    console.log('Drawing...');
     const ctx = contextRef?.current;
     if (!ctx) {
       return;
@@ -205,26 +210,25 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
       ctx.fillText(line, x + offsetX, y + lineHeight);
     };
 
-    if (infoimage.srcimage) {
-      drawImageOnCanvas(ctx, infoimage.srcimage, infoimage, calculateImageParameters);
-    }
+    // if (infoimage.srcimage) {
+    //   drawImageOnCanvas(ctx, infoimage.srcimage, infoimage, calculateImageParameters);
+    // }
 
-    drawElementsOnCanvas(ctx, elements, drawWrappedText);
+    drawElementsOnCanvas(
+      ctx,
+      elements.filter((style) => style.type === 'image'),
+      drawWrappedText
+    );
+
+    drawElementsOnCanvas(
+      ctx,
+      elements.filter((style) => style.type === 'text'),
+      drawWrappedText
+    );
   };
 
   useEffect(() => {
-    let animationFrameId;
-
-    const render = () => {
-      draw();
-      animationFrameId = window.requestAnimationFrame(render);
-    };
-
-    render();
-
-    return () => {
-      window.cancelAnimationFrame(animationFrameId);
-    };
+    draw();
   }, [draw]);
 
   return <canvas ref={setCanvasRef} {...props} />;
