@@ -32,43 +32,51 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
     };
   };
 
+  const drawImage = (ctx, style) => {
+    const logo = new Image();
+    logo.src = style.props.url;
+
+    logo.onload = function () {
+      const logoX = style.x;
+      const logoY = style.y;
+      if (style.props.zoom) {
+        const zoom = style.props.zoom;
+        const logoWidth = logo.width * zoom;
+        const logoHeight = logo.height * zoom;
+
+        ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
+      } else {
+        ctx.drawImage(logo, logoX, logoY);
+      }
+    };
+  };
+
+  const drawText = (ctx, style, drawWrappedText) => {
+    ctx.fillStyle = style.props.fillStyle;
+    ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
+    const fontHeight = style.props.fontSize;
+    const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
+
+    drawWrappedText(
+      ctx,
+      style.props.text,
+      style.x,
+      style.y,
+      style.props.blockWidth,
+      lineHeight,
+      fontHeight,
+      style.props.alignment
+    );
+  };
+
   const drawElementsOnCanvas = (ctx, elements, drawWrappedText) => {
     elements.forEach((style) => {
       switch (style.type) {
         case 'image':
-          const logo = new Image();
-          logo.src = style.props.url;
-
-          logo.onload = function () {
-            const logoX = style.x;
-            const logoY = style.y;
-            if (style.props.zoom) {
-              const zoom = style.props.zoom;
-              const logoWidth = logo.width * zoom;
-              const logoHeight = logo.height * zoom;
-
-              ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
-            } else {
-              ctx.drawImage(logo, logoX, logoY);
-            }
-          };
+          drawImage(ctx, style);
           break;
         case 'text':
-          ctx.fillStyle = style.props.fillStyle;
-          ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
-          const fontHeight = style.props.fontSize;
-          const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
-
-          drawWrappedText(
-            ctx,
-            style.props.text,
-            style.x,
-            style.y,
-            style.props.blockWidth,
-            lineHeight,
-            fontHeight,
-            style.props.alignment
-          );
+          drawText(ctx, style, drawWrappedText);
           break;
         default:
           break;
