@@ -26,57 +26,63 @@ useEffect(() => {
 }, [arrayQuery]);
 
 const infocanvas = {
-  height: 1200,
-  width: 1200,
+  height: 900,
+  width: 900,
 };
 
 const elements = [
   {
-    type: 'text',
-    x: 70,
-    y: 70,
+    type: 'image',
+    x: 50,
+    y: 50,
     props: {
-      text: 'OBT',
-      fillStyle: 'white',
-      font: 'small-caps 30px Helvetica, Arial, sans-serif',
-      textAlign: 'center',
-      url: '',
+      url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
+      zoom: 0.5,
     },
   },
   {
     type: 'text',
-    x: 600,
-    y: 550,
+    x: 225,
+    y: 225,
     props: {
       text: 'God is love',
-      fillStyle: 'white',
-      font: 'small-caps 120px Helvetica, Arial, sans-serif',
-      textAlign: 'center',
-      url: '',
+      fillStyle: 'blue',
+      fontStyle: 'small-caps',
+      fontSize: 120,
+      font: 'Helvetica, Arial, sans-serif',
+      alignment: 'center',
+      blockWidth: 450,
+      lineHeight: 144,
     },
   },
 
   {
     type: 'text',
-    x: 600,
-    y: 650,
+    x: 225,
+    y: 565,
     props: {
       text: '1 Jon 4:8',
-      fillStyle: 'white',
-      font: 'small-caps 40px Helvetica, Arial, sans-serif',
-      textAlign: 'center',
+      fillStyle: 'blue',
+      fontStyle: 'small-caps',
+      fontSize: 40,
+      font: 'Helvetica, Arial, sans-serif',
+      alignment: 'center',
+      blockWidth: 450,
     },
   },
 
   {
     type: 'text',
-    x: 600,
-    y: 1150,
+    x: 225,
+    y: 750,
     props: {
       text: 'ESV',
-      fillStyle: 'white',
-      font: 'small-caps 120px Helvetica, Arial, sans-serif',
-      textAlign: 'center',
+      fillStyle: 'blue',
+      fontStyle: 'small-caps',
+      fontSize: 80,
+      font: 'Helvetica, Arial, sans-serif',
+      alignment: 'center',
+      blockWidth: 450,
     },
   },
 ];
