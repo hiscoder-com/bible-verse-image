@@ -171,7 +171,7 @@ const CanvasWithBackground = () => {
   };
 
   return (
-    <div>
+    <div className={'p-4 border border-gray-400 rounded-md shadow-md'}>
       <input type="file" accept="image/*" onChange={handleImageUpload} />
       {backgroundImage ? (
         <Canvas
@@ -182,7 +182,7 @@ const CanvasWithBackground = () => {
           className={'w-full'}
         />
       ) : (
-        <p>Пожалуйста, выберите фоновое изображение</p>
+        <p className={'text-red-500'}>Пожалуйста, выберите фоновое изображение</p>
       )}
     </div>
   );
