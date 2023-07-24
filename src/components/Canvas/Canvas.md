@@ -84,7 +84,7 @@ const elements = [
 />;
 ```
 
-### Example 2
+### This is an example that allows you to select a background image from the file system
 
 ```jsx
 import React, { useState } from 'react';
@@ -182,7 +182,7 @@ const CanvasWithBackground = () => {
           className={'w-full'}
         />
       ) : (
-        <p className={'text-red-500'}>Пожалуйста, выберите фоновое изображение</p>
+        <p className={'text-red-500'}>Please select a background image</p>
       )}
     </div>
   );
