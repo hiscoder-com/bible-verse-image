@@ -1,3 +1,5 @@
+const imageCache = {};
+
 export const drawImageOnCanvas = async (
   ctx,
   imageSource,
@@ -8,30 +10,32 @@ export const drawImageOnCanvas = async (
     return;
   }
 
-  const pic = new Image();
-  pic.src = imageSource;
+  if (imageCache[imageSource]) {
+    const pic = imageCache[imageSource];
+    await drawImageFromCache(pic, ctx, infoimage, calculateImageParameters);
+  } else {
+    const pic = new Image();
+    pic.src = imageSource;
 
+    await new Promise((resolve) => {
+      pic.onload = resolve;
+    });
+
+    imageCache[imageSource] = pic;
+    await drawImageFromCache(pic, ctx, infoimage, calculateImageParameters);
+  }
+};
+
+const drawImageFromCache = (pic, ctx, infoimage, calculateImageParameters) => {
   return new Promise((resolve) => {
-    pic.onload = function () {
-      const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
-        calculateImageParameters(pic, ctx, infoimage);
-      ctx.drawImage(
-        pic,
-        sourceX,
-        sourceY,
-        sourceWidth,
-        sourceHeight,
-        x,
-        y,
-        width,
-        height
-      );
-      resolve();
-    };
+    const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
+      calculateImageParameters(pic, ctx, infoimage);
+    ctx.drawImage(pic, sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height);
+    resolve();
   });
 };
 
-export const drawImage = (ctx, style) => {
+const drawImage = (ctx, style) => {
   const logo = new Image();
   logo.src = style.props.url;
 
@@ -50,7 +54,7 @@ export const drawImage = (ctx, style) => {
   };
 };
 
-export const drawText = (ctx, style, drawWrappedText) => {
+const drawText = (ctx, style, drawWrappedText) => {
   ctx.fillStyle = style.props.fillStyle;
   ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
   const fontHeight = style.props.fontSize;
@@ -117,7 +121,7 @@ export const calculateImageParameters = (pic, ctx, infoimage) => {
   return { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height };
 };
 
-export const centerImage = (pic, canvasWidth, canvasHeight) => {
+const centerImage = (pic, canvasWidth, canvasHeight) => {
   const imageWidth = pic.width;
   const imageHeight = pic.height;
 
