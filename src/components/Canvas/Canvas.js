@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useCanvasContext } from './useCanvasContext';
 import {
   drawImageOnCanvas,
@@ -13,7 +13,7 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
     infocanvas.width ?? 1200
   );
 
-  const draw = async () => {
+  const draw = useCallback(async () => {
     console.log('Drawing...');
     const ctx = contextRef?.current;
     if (!ctx) {
@@ -39,7 +39,7 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
       elements.filter((style) => style.type === 'text'),
       drawWrappedText
     );
-  };
+  }, [contextRef, infoimage, elements]);
 
   useEffect(() => {
     draw();
