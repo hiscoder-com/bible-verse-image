@@ -87,7 +87,7 @@ const elements = [
 ### This is an example that allows you to select a background image from the file system
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
@@ -158,6 +158,7 @@ const elements = [
 
 const CanvasWithBackground = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
+  const [count, setCount] = useState(0);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -170,19 +171,33 @@ const CanvasWithBackground = () => {
     }
   };
 
+  const handleIncrement = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  const canvasComponent = useMemo(() => {
+    return (
+      <Canvas
+        organization="OBT"
+        infocanvas={infocanvas}
+        infoimage={{ srcimage: backgroundImage }}
+        elements={elements}
+        className={'w-full'}
+      />
+    );
+  }, [backgroundImage]);
+
   return (
     <div className={'p-4 border border-gray-400 rounded-md shadow-md'}>
       <input type="file" accept="image/*" onChange={handleImageUpload} />
       {backgroundImage ? (
-        <Canvas
-          organization="OBT"
-          infocanvas={infocanvas}
-          infoimage={{ srcimage: backgroundImage }}
-          elements={elements}
-          className={'w-full'}
-        />
+        <>
+          {canvasComponent}
+          <p>Количество: {count}</p>
+          <button onClick={handleIncrement}>Увеличить</button>
+        </>
       ) : (
-        <p className={'text-red-500'}>Please select a background image</p>
+        <p className={'text-red-500'}>Пожалуйста, выберите изображение для фона</p>
       )}
     </div>
   );
