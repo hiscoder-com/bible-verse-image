@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { useCanvasContext } from './useCanvasContext';
 import { drawImageOnCanvas, drawElementsOnCanvas } from './canvasHelpers';
 
@@ -8,30 +8,31 @@ const Canvas = ({ infocanvas, backgroundimage, elements, ...props }) => {
     infocanvas.width ?? 1200
   );
 
-  const draw = useCallback(async () => {
-    console.log('Drawing...');
-    const ctx = contextRef?.current;
-    if (!ctx) {
-      return;
-    }
-
-    if (backgroundimage.srcimage) {
-      await drawImageOnCanvas(ctx, backgroundimage);
-    }
-    drawElementsOnCanvas(
-      ctx,
-      elements.filter((style) => style.type === 'image')
-    );
-
-    drawElementsOnCanvas(
-      ctx,
-      elements.filter((style) => style.type === 'text')
-    );
-  }, [contextRef, backgroundimage, elements]);
-
   useEffect(() => {
+    const draw = async () => {
+      console.log('Drawing...');
+      const ctx = contextRef?.current;
+      if (!ctx) {
+        return;
+      }
+
+      if (backgroundimage.srcimage) {
+        await drawImageOnCanvas(ctx, backgroundimage);
+      }
+      drawElementsOnCanvas(
+        ctx,
+        elements.filter((style) => style.type === 'image')
+      );
+
+      drawElementsOnCanvas(
+        ctx,
+        elements.filter((style) => style.type === 'text')
+      );
+    };
+
     draw();
-  }, [infocanvas, backgroundimage, elements]);
+  }, [backgroundimage, elements]);
+
   return <canvas ref={setCanvasRef} {...props} />;
 };
 
