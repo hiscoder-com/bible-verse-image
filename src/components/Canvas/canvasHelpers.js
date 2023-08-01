@@ -1,30 +1,30 @@
 const imageCache = {};
 
-export const drawImageOnCanvas = async (ctx, imageSource, infoimage) => {
-  if (!imageSource || !infoimage) {
+export const drawImageOnCanvas = async (ctx, backgroundimage) => {
+  if (!backgroundimage.srcimage || !backgroundimage) {
     return;
   }
 
-  if (imageCache[imageSource]) {
-    const pic = imageCache[imageSource];
-    await drawImageFromCache(pic, ctx, infoimage);
+  if (imageCache[backgroundimage.srcimage]) {
+    const pic = imageCache[backgroundimage.srcimage];
+    await drawImageFromCache(pic, ctx, backgroundimage);
   } else {
     const pic = new Image();
-    pic.src = imageSource;
+    pic.src = backgroundimage.srcimage;
 
     await new Promise((resolve) => {
       pic.onload = resolve;
     });
 
-    imageCache[imageSource] = pic;
-    await drawImageFromCache(pic, ctx, infoimage);
+    imageCache[backgroundimage.srcimage] = pic;
+    await drawImageFromCache(pic, ctx, backgroundimage);
   }
 };
 
-const drawImageFromCache = (pic, ctx, infoimage) => {
+const drawImageFromCache = (pic, ctx, backgroundimage) => {
   return new Promise((resolve) => {
     const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
-      calculateImageParameters(pic, ctx, infoimage);
+      calculateImageParameters(pic, ctx, backgroundimage);
     ctx.drawImage(pic, sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height);
     resolve();
   });
@@ -81,7 +81,7 @@ export const drawElementsOnCanvas = (ctx, elements) => {
     }
   });
 };
-export const calculateImageParameters = (pic, ctx, infoimage) => {
+export const calculateImageParameters = (pic, ctx, backgroundimage) => {
   let sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height;
 
   sourceX = 0;
@@ -93,23 +93,23 @@ export const calculateImageParameters = (pic, ctx, infoimage) => {
   width = ctx.canvas.width;
   height = ctx.canvas.height;
 
-  if (infoimage.zoom === undefined) {
+  if (backgroundimage.zoom === undefined) {
     ({ sourceX, sourceY, sourceWidth, sourceHeight } = centerImage(
       pic,
       ctx.canvas.width,
       ctx.canvas.height
     ));
   } else {
-    const zoom = infoimage.zoom;
+    const zoom = backgroundimage.zoom;
     width = pic.width * zoom;
     height = pic.height * zoom;
     x = (ctx.canvas.width - width) / 2;
     y = (ctx.canvas.height - height) / 2;
   }
 
-  if (infoimage.offsetX !== undefined && infoimage.offsetY !== undefined) {
-    x += infoimage.offsetX;
-    y += infoimage.offsetY;
+  if (backgroundimage.offsetX !== undefined && backgroundimage.offsetY !== undefined) {
+    x += backgroundimage.offsetX;
+    y += backgroundimage.offsetY;
   }
 
   return { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height };

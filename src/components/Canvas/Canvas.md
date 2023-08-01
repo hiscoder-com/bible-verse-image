@@ -9,7 +9,7 @@ const infocanvas = {
   width: 900,
 };
 
-const infoimage = {
+const backgroundimage = {
   srcimage:
     'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjQwOTl8MHwxfHNlYXJjaHwxfHx3aGl0ZXxlbnwwfHx8fDE2ODczNDczNTZ8MA&ixlib=rb-4.0.3&q=80&w=1200',
   // 'https://img.freepik.com/free-photo/a-cupcake-with-a-strawberry-on-top-and-a-strawberry-on-the-top_1340-35087.jpg',
@@ -78,7 +78,7 @@ const elements = [
 <Canvas
   organization="OBT"
   infocanvas={infocanvas}
-  infoimage={infoimage}
+  backgroundimage={backgroundimage}
   elements={elements}
   className={'w-full'}
 />;
@@ -95,7 +95,7 @@ const infocanvas = {
   width: 900,
 };
 
-const infoimage = {
+const backgroundimage = {
   srcimage: '',
 };
 
@@ -180,7 +180,7 @@ const CanvasWithBackground = () => {
       <Canvas
         organization="OBT"
         infocanvas={infocanvas}
-        infoimage={{ srcimage: backgroundImage }}
+        backgroundimage={{ srcimage: backgroundImage }}
         elements={elements}
         className={'w-full'}
       />

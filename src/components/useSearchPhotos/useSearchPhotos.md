@@ -92,7 +92,7 @@ function Component() {
     <Canvas
       organization="OBT"
       infocanvas={infocanvas}
-      infoimage={image}
+      backgroundimage={image}
       elements={elements}
       className={'w-full'}
     />

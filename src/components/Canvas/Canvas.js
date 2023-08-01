@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useCanvasContext } from './useCanvasContext';
 import { drawImageOnCanvas, drawElementsOnCanvas } from './canvasHelpers';
 
-const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
+const Canvas = ({ infocanvas, backgroundimage, elements, ...props }) => {
   const { contextRef, setCanvasRef } = useCanvasContext(
     infocanvas.height ?? 1200,
     infocanvas.width ?? 1200
@@ -15,8 +15,8 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
       return;
     }
 
-    if (infoimage.srcimage) {
-      await drawImageOnCanvas(ctx, infoimage.srcimage, infoimage);
+    if (backgroundimage.srcimage) {
+      await drawImageOnCanvas(ctx, backgroundimage);
     }
     drawElementsOnCanvas(
       ctx,
@@ -27,11 +27,11 @@ const Canvas = ({ infocanvas, infoimage, elements, ...props }) => {
       ctx,
       elements.filter((style) => style.type === 'text')
     );
-  }, [contextRef, infoimage, elements]);
+  }, [contextRef, backgroundimage, elements]);
 
   useEffect(() => {
     draw();
-  }, [infocanvas, infoimage, elements]);
+  }, [infocanvas, backgroundimage, elements]);
   return <canvas ref={setCanvasRef} {...props} />;
 };
 
