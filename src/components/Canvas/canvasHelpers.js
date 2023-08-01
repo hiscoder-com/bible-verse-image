@@ -1,18 +1,13 @@
 const imageCache = {};
 
-export const drawImageOnCanvas = async (
-  ctx,
-  imageSource,
-  infoimage,
-  calculateImageParameters
-) => {
+export const drawImageOnCanvas = async (ctx, imageSource, infoimage) => {
   if (!imageSource || !infoimage) {
     return;
   }
 
   if (imageCache[imageSource]) {
     const pic = imageCache[imageSource];
-    await drawImageFromCache(pic, ctx, infoimage, calculateImageParameters);
+    await drawImageFromCache(pic, ctx, infoimage);
   } else {
     const pic = new Image();
     pic.src = imageSource;
@@ -22,11 +17,11 @@ export const drawImageOnCanvas = async (
     });
 
     imageCache[imageSource] = pic;
-    await drawImageFromCache(pic, ctx, infoimage, calculateImageParameters);
+    await drawImageFromCache(pic, ctx, infoimage);
   }
 };
 
-const drawImageFromCache = (pic, ctx, infoimage, calculateImageParameters) => {
+const drawImageFromCache = (pic, ctx, infoimage) => {
   return new Promise((resolve) => {
     const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
       calculateImageParameters(pic, ctx, infoimage);
@@ -54,7 +49,7 @@ const drawImage = (ctx, style) => {
   };
 };
 
-const drawText = (ctx, style, drawWrappedText) => {
+const drawText = (ctx, style) => {
   ctx.fillStyle = style.props.fillStyle;
   ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
   const fontHeight = style.props.fontSize;
@@ -72,21 +67,20 @@ const drawText = (ctx, style, drawWrappedText) => {
   );
 };
 
-export const drawElementsOnCanvas = (ctx, elements, drawWrappedText) => {
+export const drawElementsOnCanvas = (ctx, elements) => {
   elements.forEach((style) => {
     switch (style.type) {
       case 'image':
         drawImage(ctx, style);
         break;
       case 'text':
-        drawText(ctx, style, drawWrappedText);
+        drawText(ctx, style);
         break;
       default:
         break;
     }
   });
 };
-
 export const calculateImageParameters = (pic, ctx, infoimage) => {
   let sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height;
 
