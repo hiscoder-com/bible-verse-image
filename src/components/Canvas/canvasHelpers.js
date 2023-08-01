@@ -6,47 +6,49 @@ export const drawImageOnCanvas = async (ctx, backgroundimage) => {
   }
 
   if (imageCache[backgroundimage.srcimage]) {
-    const pic = imageCache[backgroundimage.srcimage];
-    await drawImageFromCache(pic, ctx, backgroundimage);
+    await drawImageFromCache(imageCache[backgroundimage.srcimage], ctx, backgroundimage);
   } else {
-    const pic = new Image();
-    pic.src = backgroundimage.srcimage;
-
-    await new Promise((resolve) => {
-      pic.onload = resolve;
-    });
-
-    imageCache[backgroundimage.srcimage] = pic;
-    await drawImageFromCache(pic, ctx, backgroundimage);
+    try {
+      const pic = await loadImage(backgroundimage.srcimage);
+      imageCache[backgroundimage.srcimage] = pic;
+      await drawImageFromCache(pic, ctx, backgroundimage);
+    } catch (error) {
+      console.error('Error loading image:', error);
+    }
   }
 };
 
-const drawImageFromCache = (pic, ctx, backgroundimage) => {
-  return new Promise((resolve) => {
-    const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
-      calculateImageParameters(pic, ctx, backgroundimage);
-    ctx.drawImage(pic, sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height);
-    resolve();
+const loadImage = (src) => {
+  return new Promise((resolve, reject) => {
+    const pic = new Image();
+    pic.onload = () => resolve(pic);
+    pic.onerror = (error) => reject(error);
+    pic.src = src;
   });
 };
 
-const drawImage = (ctx, style) => {
-  const logo = new Image();
-  logo.src = style.props.url;
+const drawImageFromCache = async (pic, ctx, backgroundimage) => {
+  const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
+    calculateImageParameters(pic, ctx, backgroundimage);
+  ctx.drawImage(pic, sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height);
+};
 
-  logo.onload = function () {
+const drawImage = async (ctx, style) => {
+  try {
+    const logo = await loadImage(style.props.url);
     const logoX = style.x;
     const logoY = style.y;
     if (style.props.zoom) {
       const zoom = style.props.zoom;
       const logoWidth = logo.width * zoom;
       const logoHeight = logo.height * zoom;
-
       ctx.drawImage(logo, logoX, logoY, logoWidth, logoHeight);
     } else {
       ctx.drawImage(logo, logoX, logoY);
     }
-  };
+  } catch (error) {
+    console.error('Error loading image:', error);
+  }
 };
 
 const drawText = (ctx, style) => {
