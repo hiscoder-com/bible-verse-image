@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useCanvasContext } from './useCanvasContext';
-import { drawImageOnCanvas, drawElementsOnCanvas } from './canvasHelpers';
+import { drawImageOnCanvas } from './imageUtils';
+import { drawElementsOnCanvas } from './canvasUtils';
 
 const Canvas = ({ infocanvas, backgroundimage, elements, ...props }) => {
   const { contextRef, setCanvasRef } = useCanvasContext(

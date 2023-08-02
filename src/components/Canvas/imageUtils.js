@@ -1,5 +1,14 @@
 const imageCache = {};
 
+const loadImage = (src) => {
+  return new Promise((resolve, reject) => {
+    const pic = new Image();
+    pic.onload = () => resolve(pic);
+    pic.onerror = (error) => reject(error);
+    pic.src = src;
+  });
+};
+
 export const drawImageOnCanvas = async (ctx, backgroundimage) => {
   if (!backgroundimage.srcimage || !backgroundimage) {
     return;
@@ -18,22 +27,13 @@ export const drawImageOnCanvas = async (ctx, backgroundimage) => {
   }
 };
 
-const loadImage = (src) => {
-  return new Promise((resolve, reject) => {
-    const pic = new Image();
-    pic.onload = () => resolve(pic);
-    pic.onerror = (error) => reject(error);
-    pic.src = src;
-  });
-};
-
 const drawImageFromCache = async (pic, ctx, backgroundimage) => {
   const { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height } =
     calculateImageParameters(pic, ctx, backgroundimage);
   ctx.drawImage(pic, sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height);
 };
 
-const drawImage = async (ctx, style) => {
+export const drawImage = async (ctx, style) => {
   try {
     const logo = await loadImage(style.props.url);
     const logoX = style.x;
@@ -51,38 +51,6 @@ const drawImage = async (ctx, style) => {
   }
 };
 
-const drawText = (ctx, style) => {
-  ctx.fillStyle = style.props.fillStyle;
-  ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
-  const fontHeight = style.props.fontSize;
-  const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
-
-  drawWrappedText(
-    ctx,
-    style.props.text,
-    style.x,
-    style.y,
-    style.props.blockWidth,
-    lineHeight,
-    fontHeight,
-    style.props.alignment
-  );
-};
-
-export const drawElementsOnCanvas = (ctx, elements) => {
-  elements.forEach((style) => {
-    switch (style.type) {
-      case 'image':
-        drawImage(ctx, style);
-        break;
-      case 'text':
-        drawText(ctx, style);
-        break;
-      default:
-        break;
-    }
-  });
-};
 export const calculateImageParameters = (pic, ctx, backgroundimage) => {
   let sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height;
 
@@ -139,61 +107,4 @@ const centerImage = (pic, canvasWidth, canvasHeight) => {
   }
 
   return { sourceX, sourceY, sourceWidth, sourceHeight };
-};
-
-export const drawWrappedText = (
-  ctx,
-  text,
-  x,
-  y,
-  blockWidth,
-  lineHeight,
-  fontHeight,
-  alignment
-) => {
-  const words = text.split(' ');
-  let line = '';
-  blockWidth = blockWidth ?? ctx.canvas.width;
-
-  for (let i = 0; i < words.length; i++) {
-    let testLine = line + words[i];
-    const metrics = ctx.measureText(testLine);
-    const testWidth = metrics.width;
-    testLine += ' ';
-
-    if (testWidth > blockWidth) {
-      let offsetX = 0;
-
-      switch (alignment) {
-        case 'center':
-          offsetX = (blockWidth - ctx.measureText(line).width) / 2;
-          break;
-        case 'right':
-          offsetX = blockWidth - ctx.measureText(line).width;
-          break;
-        default:
-          break;
-      }
-
-      ctx.fillText(line, x + offsetX, y + fontHeight);
-      line = words[i] + ' ';
-      y += lineHeight;
-    } else {
-      line = testLine;
-    }
-  }
-
-  let offsetX = 0;
-
-  switch (alignment) {
-    case 'center':
-      offsetX = (blockWidth - ctx.measureText(line).width) / 2;
-      break;
-    case 'right':
-      offsetX = blockWidth - ctx.measureText(line).width;
-      break;
-    default:
-      break;
-  }
-  ctx.fillText(line, x + offsetX, y + lineHeight);
 };
