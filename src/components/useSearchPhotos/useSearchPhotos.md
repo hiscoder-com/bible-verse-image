@@ -32,7 +32,18 @@ const infocanvas = {
 
 const elements = [
   {
-    type: 'image',
+    type: 'background', // Change the type to 'image'
+    x: 0,
+    y: 0,
+    props: {
+      url: image.srcimage, // Use the srcimage from the state
+      // zoom: 0.5,
+      // offsetX: 0,
+      // offsetY: 0,
+    },
+  },
+  {
+    type: 'logo',
     x: 50,
     y: 50,
     props: {
