@@ -21,11 +21,9 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
   switch (style.type) {
     case 'background':
       if (style.props.url && imageCache.backgrounds[style.props.url]) {
-        await drawImageFromCache(
-          imageCache.backgrounds[style.props.url],
-          ctx,
-          style.props
-        );
+        let pic = imageCache.backgrounds[style.props.url];
+        const elementWithDimensions = calculateImageParameters(pic, ctx, style.props);
+        await drawImageFromCache(pic, ctx, elementWithDimensions);
       } else if (style.props.url) {
         try {
           const pic = await loadImage(style.props.url);
@@ -47,7 +45,7 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
       } else if (style.props.url) {
         try {
           const logo = await loadImage(style.props.url);
-          imageCache.logos[style.props.url] = logo;
+          imageCache.logos[style.props.url] = logo; // Переносим сохранение в кеш в этот блок
           const { x, y, props } = style;
           const logoWidth = logo.width * props.zoom;
           const logoHeight = logo.height * props.zoom;
