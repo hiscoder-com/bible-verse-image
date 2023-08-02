@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useCanvasContext } from './useCanvasContext';
-import { drawImageOnCanvas } from './imageUtils';
 import { drawElementsOnCanvas } from './canvasUtils';
 
 const Canvas = ({ infocanvas, backgroundimage, elements, ...props }) => {
@@ -16,19 +15,7 @@ const Canvas = ({ infocanvas, backgroundimage, elements, ...props }) => {
       if (!ctx) {
         return;
       }
-
-      if (backgroundimage.srcimage) {
-        await drawImageOnCanvas(ctx, backgroundimage);
-      }
-      drawElementsOnCanvas(
-        ctx,
-        elements.filter((style) => style.type === 'image')
-      );
-
-      drawElementsOnCanvas(
-        ctx,
-        elements.filter((style) => style.type === 'text')
-      );
+      await drawElementsOnCanvas(ctx, elements);
     };
 
     draw();

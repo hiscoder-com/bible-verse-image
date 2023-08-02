@@ -1,17 +1,17 @@
-import { drawImage } from './imageUtils';
+import { drawBackgroundAndLogo } from './imageUtils';
 import { drawText } from './textUtils';
 
-export const drawElementsOnCanvas = (ctx, elements) => {
-  elements.forEach((style) => {
+export const drawElementsOnCanvas = async (ctx, elements) => {
+  for (const style of elements) {
     switch (style.type) {
-      case 'image':
-        drawImage(ctx, style);
-        break;
       case 'text':
         drawText(ctx, style);
         break;
+      case 'background':
+      case 'logo':
+        await drawBackgroundAndLogo(ctx, style);
       default:
         break;
     }
-  });
+  }
 };

@@ -20,7 +20,20 @@ const backgroundimage = {
 
 const elements = [
   {
-    type: 'image',
+    type: 'background',
+    x: 0,
+    y: 0,
+    props: {
+      url: 'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjQwOTl8MHwxfHNlYXJjaHwxfHx3aGl0ZXxlbnwwfHx8fDE2ODczNDczNTZ8MA&ixlib=rb-4.0.3&q=80&w=1200',
+      width: infocanvas.width,
+      height: infocanvas.height,
+      // zoom: 2,
+      // offsetX: 100,
+      // offsetY: 0,
+    },
+  },
+  {
+    type: 'logo',
     x: 50,
     y: 50,
     props: {
@@ -88,20 +101,26 @@ const elements = [
 
 ```jsx
 import React, { useState, useMemo } from 'react';
-
 import { Canvas } from '@texttree/bible-verse-image';
+
 const infocanvas = {
   height: 900,
   width: 900,
 };
 
-const backgroundimage = {
-  srcimage: '',
-};
-
 const elements = [
   {
-    type: 'image',
+    type: 'background',
+    x: 0,
+    y: 0,
+    props: {
+      url: '', // Мы пока не имеем изображения для фона, поэтому оставляем пустым
+      width: infocanvas.width,
+      height: infocanvas.height,
+    },
+  },
+  {
+    type: 'logo',
     x: 50,
     y: 50,
     props: {
@@ -124,7 +143,6 @@ const elements = [
       lineHeight: 144,
     },
   },
-
   {
     type: 'text',
     x: 225,
@@ -139,7 +157,6 @@ const elements = [
       blockWidth: 450,
     },
   },
-
   {
     type: 'text',
     x: 225,
@@ -176,11 +193,13 @@ const CanvasWithBackground = () => {
   };
 
   const canvasComponent = useMemo(() => {
+    // Обновляем элемент с фоновым изображением
+    elements[0].props.url = backgroundImage;
+
     return (
       <Canvas
         organization="OBT"
         infocanvas={infocanvas}
-        backgroundimage={{ srcimage: backgroundImage }}
         elements={elements}
         className={'w-full'}
       />
