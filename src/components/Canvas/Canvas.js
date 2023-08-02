@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useCanvasContext } from './useCanvasContext';
 import { drawElementsOnCanvas } from './canvasUtils';
 
-const Canvas = ({ infocanvas, elements, ...props }) => {
+// eslint-disable-next-line react/display-name
+const Canvas = React.memo(({ infocanvas, elements, ...props }) => {
   const { contextRef, setCanvasRef } = useCanvasContext(
     infocanvas.height ?? 1200,
     infocanvas.width ?? 1200
@@ -22,6 +23,6 @@ const Canvas = ({ infocanvas, elements, ...props }) => {
   }, [elements]);
 
   return <canvas ref={setCanvasRef} {...props} />;
-};
+});
 
 export default Canvas;
