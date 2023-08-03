@@ -1,6 +1,6 @@
 const imageCache = {
   backgrounds: {},
-  logos: {},
+  images: {},
 };
 
 const loadImage = (src) => {
@@ -36,8 +36,8 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
       }
       break;
     case 'image':
-      if (style.props.url && imageCache.logos[style.props.url]) {
-        const logo = imageCache.logos[style.props.url];
+      if (style.props.url && imageCache.images[style.props.url]) {
+        const logo = imageCache.images[style.props.url];
         const { x, y, props } = style;
         const logoWidth = logo.width * props.zoom;
         const logoHeight = logo.height * props.zoom;
@@ -45,7 +45,7 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
       } else if (style.props.url) {
         try {
           const logo = await loadImage(style.props.url);
-          imageCache.logos[style.props.url] = logo; // Переносим сохранение в кеш в этот блок
+          imageCache.images[style.props.url] = logo; // Переносим сохранение в кеш в этот блок
           const { x, y, props } = style;
           const logoWidth = logo.width * props.zoom;
           const logoHeight = logo.height * props.zoom;
