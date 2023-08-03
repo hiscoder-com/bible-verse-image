@@ -68,3 +68,24 @@ export const drawTriangle = (ctx, style) => {
     ctx.stroke();
   }
 };
+
+export const drawOval = (ctx, style) => {
+  const { x, y } = style;
+  const { radiusX, radiusY, fillColor, strokeColor, strokeWidth } = style.props;
+
+  ctx.beginPath();
+  ctx.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
+
+  if (fillColor) {
+    ctx.fillStyle = fillColor;
+    ctx.fill();
+  }
+
+  if (strokeColor && strokeWidth) {
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = strokeWidth;
+    ctx.stroke();
+  }
+
+  ctx.closePath();
+};

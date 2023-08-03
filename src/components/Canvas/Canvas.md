@@ -70,6 +70,18 @@ const elements = [
     },
   },
   {
+    type: 'oval',
+    x: 150,
+    y: 200,
+    props: {
+      radiusX: 80,
+      radiusY: 80,
+      fillColor: '#ff00ff',
+      strokeColor: 'red',
+      strokeWidth: 5,
+    },
+  },
+  {
     type: 'image',
     x: 50,
     y: 50,
