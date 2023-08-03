@@ -1,5 +1,5 @@
 import { drawBackgroundAndLogo } from './imageUtils';
-import { drawRectangle, drawLine } from './figureUtils';
+import { drawRectangle, drawLine, drawTriangle } from './figureUtils';
 import { drawText } from './textUtils';
 
 export const drawElementsOnCanvas = async (ctx, elements) => {
@@ -10,6 +10,9 @@ export const drawElementsOnCanvas = async (ctx, elements) => {
         break;
       case 'rectangle':
         drawRectangle(ctx, style);
+        break;
+      case 'triangle':
+        drawTriangle(ctx, style);
         break;
       case 'line':
         drawLine(ctx, style);

@@ -57,6 +57,19 @@ const elements = [
     },
   },
   {
+    type: 'triangle',
+    props: {
+      vertex1: { x: 400, y: 50 },
+      vertex2: { x: 450, y: 100 },
+      vertex3: { x: 750, y: 100 },
+      fillColor: 'red',
+      strokeColor: 'blue',
+      strokeWidth: 4,
+      lineColor: 'black',
+      lineWidth: 2,
+    },
+  },
+  {
     type: 'image',
     x: 50,
     y: 50,
