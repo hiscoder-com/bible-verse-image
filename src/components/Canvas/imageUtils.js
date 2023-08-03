@@ -5,13 +5,11 @@ const imageCache = {
 
 const loadImageFromCache = (src, cacheKey) => {
   return new Promise((resolve, reject) => {
-    // Проверяем, есть ли изображение уже в кеше
     if (imageCache[cacheKey][src]) {
       resolve(imageCache[cacheKey][src]);
     } else {
       const pic = new Image();
       pic.onload = () => {
-        // Кешируем загруженное изображение
         imageCache[cacheKey][src] = pic;
         resolve(pic);
       };
