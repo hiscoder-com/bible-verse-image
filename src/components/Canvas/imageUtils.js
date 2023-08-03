@@ -35,7 +35,7 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
         }
       }
       break;
-    case 'logo':
+    case 'image':
       if (style.props.url && imageCache.logos[style.props.url]) {
         const logo = imageCache.logos[style.props.url];
         const { x, y, props } = style;

@@ -43,7 +43,7 @@ const elements = [
     },
   },
   {
-    type: 'logo',
+    type: 'image',
     x: 50,
     y: 50,
     props: {
