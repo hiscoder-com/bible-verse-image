@@ -55,8 +55,6 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
         }
       }
       break;
-    default:
-      break;
   }
 };
 

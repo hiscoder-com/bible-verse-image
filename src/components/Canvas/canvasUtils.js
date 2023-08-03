@@ -10,7 +10,6 @@ export const drawElementsOnCanvas = async (ctx, elements) => {
       case 'background':
       case 'image':
         await drawBackgroundAndLogo(ctx, style);
-      default:
         break;
     }
   }
