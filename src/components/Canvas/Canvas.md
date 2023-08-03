@@ -32,6 +32,19 @@ const elements = [
       // offsetY: 0,
     },
   },
+
+  {
+    type: 'rectangle',
+    x: 0,
+    y: 0,
+    props: {
+      fillColor: 'blue',
+      width: 100,
+      height: 150,
+      strokeColor: 'black',
+      strokeWidth: 2,
+    },
+  },
   {
     type: 'image',
     x: 50,
