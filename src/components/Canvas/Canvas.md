@@ -46,6 +46,17 @@ const elements = [
     },
   },
   {
+    type: 'line',
+    x1: 0,
+    y1: 0,
+    x2: 100,
+    y2: 100,
+    props: {
+      lineColor: 'red',
+      lineWidth: 3,
+    },
+  },
+  {
     type: 'image',
     x: 50,
     y: 50,

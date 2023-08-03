@@ -18,3 +18,19 @@ export const drawRectangle = (ctx, style) => {
 
   ctx.closePath();
 };
+
+export const drawLine = (ctx, style) => {
+  const { x1, y1, x2, y2 } = style;
+  const { lineColor, lineWidth } = style.props;
+
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+
+  if (lineColor && lineWidth) {
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = lineWidth;
+  }
+  ctx.stroke();
+  ctx.closePath();
+};
