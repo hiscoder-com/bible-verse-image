@@ -44,16 +44,8 @@ export const drawLine = (ctx, style) => {
 };
 
 export const drawTriangle = (ctx, style) => {
-  const {
-    vertex1,
-    vertex2,
-    vertex3,
-    fillColor,
-    strokeColor,
-    strokeWidth,
-    lineColor,
-    lineWidth,
-  } = style.props;
+  const { vertex1, vertex2, vertex3, fillColor, strokeColor, strokeWidth, lineWidth } =
+    style.props;
 
   ctx.beginPath();
   ctx.moveTo(vertex1.x, vertex1.y);
@@ -72,8 +64,7 @@ export const drawTriangle = (ctx, style) => {
     ctx.stroke();
   }
 
-  if (lineColor && lineWidth) {
-    ctx.strokeStyle = lineColor;
+  if (lineWidth) {
     ctx.lineWidth = lineWidth;
     ctx.moveTo(vertex1.x, vertex1.y);
     ctx.lineTo(vertex2.x, vertex2.y);

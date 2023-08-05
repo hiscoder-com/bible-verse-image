@@ -65,7 +65,6 @@ const elements = [
       fillColor: 'red',
       strokeColor: 'blue',
       strokeWidth: 4,
-      lineColor: 'black',
       lineWidth: 2,
     },
   },
