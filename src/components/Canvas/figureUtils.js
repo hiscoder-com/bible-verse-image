@@ -1,6 +1,9 @@
 export const drawRectangle = (ctx, style) => {
-  const { x, y } = style;
-  const { width, height, fillColor, strokeColor, strokeWidth } = style.props;
+  const {
+    x,
+    y,
+    props: { width, height, fillColor, strokeColor, strokeWidth },
+  } = style;
 
   ctx.beginPath();
   ctx.rect(x, y, width, height);
@@ -20,8 +23,13 @@ export const drawRectangle = (ctx, style) => {
 };
 
 export const drawLine = (ctx, style) => {
-  const { x1, y1, x2, y2 } = style;
-  const { lineColor, lineWidth } = style.props;
+  const {
+    x1,
+    y1,
+    x2,
+    y2,
+    props: { lineColor, lineWidth },
+  } = style;
 
   ctx.beginPath();
   ctx.moveTo(x1, y1);
@@ -36,8 +44,16 @@ export const drawLine = (ctx, style) => {
 };
 
 export const drawTriangle = (ctx, style) => {
-  const { vertex1, vertex2, vertex3 } = style.props;
-  const { fillColor, strokeColor, strokeWidth, lineColor, lineWidth } = style.props;
+  const {
+    vertex1,
+    vertex2,
+    vertex3,
+    fillColor,
+    strokeColor,
+    strokeWidth,
+    lineColor,
+    lineWidth,
+  } = style.props;
 
   ctx.beginPath();
   ctx.moveTo(vertex1.x, vertex1.y);
@@ -70,8 +86,11 @@ export const drawTriangle = (ctx, style) => {
 };
 
 export const drawOval = (ctx, style) => {
-  const { x, y } = style;
-  const { radiusX, radiusY, fillColor, strokeColor, strokeWidth } = style.props;
+  const {
+    x,
+    y,
+    props: { radiusX, radiusY, fillColor, strokeColor, strokeWidth },
+  } = style;
 
   ctx.beginPath();
   ctx.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
