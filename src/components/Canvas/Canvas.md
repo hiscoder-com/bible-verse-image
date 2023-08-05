@@ -64,8 +64,7 @@ const elements = [
       vertex3: { x: 750, y: 100 },
       fillColor: 'red',
       strokeColor: 'blue',
-      strokeWidth: 4,
-      lineWidth: 2,
+      strokeWidth: 2,
     },
   },
   {

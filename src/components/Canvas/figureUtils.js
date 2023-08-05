@@ -1,3 +1,6 @@
+const defaultColor = 'black';
+const defaultWidth = 1;
+
 export const drawRectangle = (ctx, style) => {
   const {
     x,
@@ -8,17 +11,13 @@ export const drawRectangle = (ctx, style) => {
   ctx.beginPath();
   ctx.rect(x, y, width, height);
 
-  if (fillColor) {
-    ctx.fillStyle = fillColor;
-    ctx.fill();
-  }
+  ctx.fillStyle = fillColor === undefined ? defaultColor : fillColor;
+  ctx.fill();
 
-  if (strokeColor && strokeWidth) {
-    ctx.strokeStyle = strokeColor;
-    ctx.lineWidth = strokeWidth;
-    ctx.stroke();
-  }
+  ctx.strokeStyle = strokeColor === undefined ? defaultColor : strokeColor;
+  ctx.lineWidth = strokeWidth === undefined ? defaultWidth : strokeWidth;
 
+  ctx.stroke();
   ctx.closePath();
 };
 
@@ -35,17 +34,15 @@ export const drawLine = (ctx, style) => {
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
 
-  if (lineColor && lineWidth) {
-    ctx.strokeStyle = lineColor;
-    ctx.lineWidth = lineWidth;
-  }
+  ctx.strokeStyle = lineColor === undefined ? defaultColor : lineColor;
+  ctx.lineWidth = lineWidth === undefined ? defaultWidth : lineWidth;
+
   ctx.stroke();
   ctx.closePath();
 };
 
 export const drawTriangle = (ctx, style) => {
-  const { vertex1, vertex2, vertex3, fillColor, strokeColor, strokeWidth, lineWidth } =
-    style.props;
+  const { vertex1, vertex2, vertex3, fillColor, strokeColor, strokeWidth } = style.props;
 
   ctx.beginPath();
   ctx.moveTo(vertex1.x, vertex1.y);
@@ -53,27 +50,18 @@ export const drawTriangle = (ctx, style) => {
   ctx.lineTo(vertex3.x, vertex3.y);
   ctx.closePath();
 
-  if (fillColor) {
-    ctx.fillStyle = fillColor;
-    ctx.fill();
-  }
+  ctx.fillStyle = fillColor === undefined ? defaultColor : fillColor;
+  ctx.fill();
 
-  if (strokeColor && strokeWidth) {
-    ctx.strokeStyle = strokeColor;
-    ctx.lineWidth = strokeWidth;
-    ctx.stroke();
-  }
-
-  if (lineWidth) {
-    ctx.lineWidth = lineWidth;
-    ctx.moveTo(vertex1.x, vertex1.y);
-    ctx.lineTo(vertex2.x, vertex2.y);
-    ctx.moveTo(vertex2.x, vertex2.y);
-    ctx.lineTo(vertex3.x, vertex3.y);
-    ctx.moveTo(vertex3.x, vertex3.y);
-    ctx.lineTo(vertex1.x, vertex1.y);
-    ctx.stroke();
-  }
+  ctx.strokeStyle = strokeColor === undefined ? defaultColor : strokeColor;
+  ctx.lineWidth = strokeWidth === undefined ? defaultWidth : strokeWidth;
+  ctx.moveTo(vertex1.x, vertex1.y);
+  ctx.lineTo(vertex2.x, vertex2.y);
+  ctx.moveTo(vertex2.x, vertex2.y);
+  ctx.lineTo(vertex3.x, vertex3.y);
+  ctx.moveTo(vertex3.x, vertex3.y);
+  ctx.lineTo(vertex1.x, vertex1.y);
+  ctx.stroke();
 };
 
 export const drawOval = (ctx, style) => {
@@ -86,16 +74,12 @@ export const drawOval = (ctx, style) => {
   ctx.beginPath();
   ctx.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
 
-  if (fillColor) {
-    ctx.fillStyle = fillColor;
-    ctx.fill();
-  }
+  ctx.fillStyle = fillColor === undefined ? defaultColor : fillColor;
+  ctx.fill();
 
-  if (strokeColor && strokeWidth) {
-    ctx.strokeStyle = strokeColor;
-    ctx.lineWidth = strokeWidth;
-    ctx.stroke();
-  }
+  ctx.strokeStyle = strokeColor === undefined ? defaultColor : strokeColor;
+  ctx.lineWidth = strokeWidth === undefined ? defaultWidth : strokeWidth;
 
+  ctx.stroke();
   ctx.closePath();
 };
