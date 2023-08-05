@@ -1,16 +1,13 @@
-const imageCache = {
-  backgrounds: {},
-  images: {},
-};
+const imageCache = {};
 
-const loadImageFromCache = (src, cacheKey) => {
+const loadImageFromCache = (src) => {
   return new Promise((resolve, reject) => {
-    if (imageCache[cacheKey][src]) {
-      resolve(imageCache[cacheKey][src]);
+    if (imageCache[src]) {
+      resolve(imageCache[src]);
     } else {
       const pic = new Image();
       pic.onload = () => {
-        imageCache[cacheKey][src] = pic;
+        imageCache[src] = pic;
         resolve(pic);
       };
       pic.onerror = (error) => reject(error);
@@ -29,7 +26,7 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
     case 'background':
       if (style.props.url) {
         try {
-          const pic = await loadImageFromCache(style.props.url, 'backgrounds');
+          const pic = await loadImageFromCache(style.props.url);
           const elementWithDimensions = calculateImageParameters(pic, ctx, style.props);
           await drawImageFromCache(pic, ctx, elementWithDimensions);
         } catch (error) {
@@ -40,7 +37,7 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
     case 'image':
       if (style.props.url) {
         try {
-          const logo = await loadImageFromCache(style.props.url, 'images');
+          const logo = await loadImageFromCache(style.props.url);
           const { x, y, props } = style;
           const logoWidth = logo.width * props.zoom;
           const logoHeight = logo.height * props.zoom;
