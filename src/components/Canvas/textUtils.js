@@ -77,15 +77,18 @@ export const drawTextInRectangle = (ctx, style) => {
   const {
     x,
     y,
-    props: { width, height, backgroundColor, text, fillStyle, fontStyle, fontSize, font },
+    props: { backgroundColor, text, fillStyle, fontStyle, fontSize, font },
   } = style;
+
+  const textWidth = ctx.measureText(text).width;
+
+  const height = 1.2 * fontSize;
+  const width = textWidth + 60;
 
   ctx.fillStyle = backgroundColor;
   ctx.fillRect(x, y, width, height);
 
-  const textWidth = ctx.measureText(text).width;
-
-  const textX = x + (width - textWidth) / 2;
+  const textX = x + 30;
   const textY = y - height / 4;
 
   drawText(ctx, {
@@ -98,6 +101,6 @@ export const drawTextInRectangle = (ctx, style) => {
     },
     x: textX,
     y: textY,
-    blockWidth: width - textWidth,
+    blockWidth: width - 30,
   });
 };

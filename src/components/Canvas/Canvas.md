@@ -105,17 +105,15 @@ const elements = [
   },
   {
     type: 'selected',
-    x: 225,
-    y: 370,
+    x: 255,
+    y: 390,
     props: {
       text: 'Love',
       fillStyle: 'white',
-      fontStyle: 'normal',
+      fontStyle: 'small-caps',
       fontSize: 120,
       font: 'Arial',
       backgroundColor: 'grey',
-      width: 400,
-      height: 144,
     },
   },
 
