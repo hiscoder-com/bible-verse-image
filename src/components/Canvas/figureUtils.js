@@ -1,5 +1,5 @@
 const defaultStrokeColor = 'black';
-const defaultFillColor = 'black';
+const defaultFillColor = 'white';
 const defaultWidth = 1;
 
 export const drawRectangle = (ctx, style) => {
