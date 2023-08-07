@@ -1,4 +1,5 @@
-const defaultColor = 'black';
+const defaultStrokeColor = 'black';
+const defaultFillColor = 'black';
 const defaultWidth = 1;
 
 export const drawRectangle = (ctx, style) => {
@@ -11,10 +12,10 @@ export const drawRectangle = (ctx, style) => {
   ctx.beginPath();
   ctx.rect(x, y, width, height);
 
-  ctx.fillStyle = fillColor === undefined ? defaultColor : fillColor;
+  ctx.fillStyle = fillColor === undefined ? defaultFillColor : fillColor;
   ctx.fill();
 
-  ctx.strokeStyle = strokeColor === undefined ? defaultColor : strokeColor;
+  ctx.strokeStyle = strokeColor === undefined ? defaultStrokeColor : strokeColor;
   ctx.lineWidth = strokeWidth === undefined ? defaultWidth : strokeWidth;
 
   ctx.stroke();
@@ -34,7 +35,7 @@ export const drawLine = (ctx, style) => {
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
 
-  ctx.strokeStyle = lineColor === undefined ? defaultColor : lineColor;
+  ctx.strokeStyle = lineColor === undefined ? defaultStrokeColor : lineColor;
   ctx.lineWidth = lineWidth === undefined ? defaultWidth : lineWidth;
 
   ctx.stroke();
@@ -50,10 +51,10 @@ export const drawTriangle = (ctx, style) => {
   ctx.lineTo(vertex3.x, vertex3.y);
   ctx.closePath();
 
-  ctx.fillStyle = fillColor === undefined ? defaultColor : fillColor;
+  ctx.fillStyle = fillColor === undefined ? defaultFillColor : fillColor;
   ctx.fill();
 
-  ctx.strokeStyle = strokeColor === undefined ? defaultColor : strokeColor;
+  ctx.strokeStyle = strokeColor === undefined ? defaultStrokeColor : strokeColor;
   ctx.lineWidth = strokeWidth === undefined ? defaultWidth : strokeWidth;
   ctx.moveTo(vertex1.x, vertex1.y);
   ctx.lineTo(vertex2.x, vertex2.y);
@@ -74,10 +75,10 @@ export const drawOval = (ctx, style) => {
   ctx.beginPath();
   ctx.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
 
-  ctx.fillStyle = fillColor === undefined ? defaultColor : fillColor;
+  ctx.fillStyle = fillColor === undefined ? defaultFillColor : fillColor;
   ctx.fill();
 
-  ctx.strokeStyle = strokeColor === undefined ? defaultColor : strokeColor;
+  ctx.strokeStyle = strokeColor === undefined ? defaultStrokeColor : strokeColor;
   ctx.lineWidth = strokeWidth === undefined ? defaultWidth : strokeWidth;
 
   ctx.stroke();
