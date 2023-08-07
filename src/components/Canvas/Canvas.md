@@ -103,6 +103,21 @@ const elements = [
       lineHeight: 144,
     },
   },
+  {
+    type: 'selected',
+    x: 225,
+    y: 370,
+    props: {
+      text: 'Love',
+      fillStyle: 'white',
+      fontStyle: 'normal',
+      fontSize: 120,
+      font: 'Arial',
+      backgroundColor: 'grey',
+      width: 400,
+      height: 144,
+    },
+  },
 
   {
     type: 'text',

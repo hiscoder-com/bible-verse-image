@@ -1,6 +1,6 @@
 import { drawBackgroundAndLogo } from './imageUtils';
 import { drawRectangle, drawLine, drawTriangle, drawOval } from './figureUtils';
-import { drawText } from './textUtils';
+import { drawText, drawTextInRectangle } from './textUtils';
 
 export const drawElementsOnCanvas = async (ctx, elements) => {
   for (const style of elements) {
@@ -8,18 +8,21 @@ export const drawElementsOnCanvas = async (ctx, elements) => {
       case 'text':
         drawText(ctx, style);
         break;
-      case 'rectangle':
-        drawRectangle(ctx, style);
+      case 'selected':
+        drawTextInRectangle(ctx, style);
         break;
-      case 'triangle':
-        drawTriangle(ctx, style);
-        break;
-      case 'line':
-        drawLine(ctx, style);
-        break;
-      case 'oval':
-        drawOval(ctx, style);
-        break;
+      // case 'rectangle':
+      //   drawRectangle(ctx, style);
+      //   break;
+      // case 'triangle':
+      //   drawTriangle(ctx, style);
+      //   break;
+      // case 'line':
+      //   drawLine(ctx, style);
+      //   break;
+      // case 'oval':
+      //   drawOval(ctx, style);
+      //   break;
       case 'background':
       case 'image':
         await drawBackgroundAndLogo(ctx, style);

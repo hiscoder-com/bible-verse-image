@@ -72,3 +72,32 @@ const drawWrappedText = (
   }
   ctx.fillText(line, x + offsetX, y + lineHeight);
 };
+
+export const drawTextInRectangle = (ctx, style) => {
+  const {
+    x,
+    y,
+    props: { width, height, backgroundColor, text, fillStyle, fontStyle, fontSize, font },
+  } = style;
+
+  ctx.fillStyle = backgroundColor;
+  ctx.fillRect(x, y, width, height);
+
+  const textWidth = ctx.measureText(text).width;
+
+  const textX = x + (width - textWidth) / 2;
+  const textY = y - height / 4;
+
+  drawText(ctx, {
+    props: {
+      fillStyle: fillStyle,
+      fontStyle: fontStyle,
+      fontSize: fontSize,
+      font: font,
+      text: text,
+    },
+    x: textX,
+    y: textY,
+    blockWidth: width - textWidth,
+  });
+};
