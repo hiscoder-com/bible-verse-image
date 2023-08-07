@@ -1,14 +1,18 @@
-const imageCache = {
-  backgrounds: {},
-  images: {},
-};
+const imageCache = {};
 
-const loadImage = (src) => {
+const loadImageFromCache = (src) => {
   return new Promise((resolve, reject) => {
-    const pic = new Image();
-    pic.onload = () => resolve(pic);
-    pic.onerror = (error) => reject(error);
-    pic.src = src;
+    if (imageCache[src]) {
+      resolve(imageCache[src]);
+    } else {
+      const pic = new Image();
+      pic.onload = () => {
+        imageCache[src] = pic;
+        resolve(pic);
+      };
+      pic.onerror = (error) => reject(error);
+      pic.src = src;
+    }
   });
 };
 
@@ -20,14 +24,9 @@ const drawImageFromCache = async (pic, ctx, params) => {
 export const drawBackgroundAndLogo = async (ctx, style) => {
   switch (style.type) {
     case 'background':
-      if (style.props.url && imageCache.backgrounds[style.props.url]) {
-        let pic = imageCache.backgrounds[style.props.url];
-        const elementWithDimensions = calculateImageParameters(pic, ctx, style.props);
-        await drawImageFromCache(pic, ctx, elementWithDimensions);
-      } else if (style.props.url) {
+      if (style.props.url) {
         try {
-          const pic = await loadImage(style.props.url);
-          imageCache.backgrounds[style.props.url] = pic;
+          const pic = await loadImageFromCache(style.props.url);
           const elementWithDimensions = calculateImageParameters(pic, ctx, style.props);
           await drawImageFromCache(pic, ctx, elementWithDimensions);
         } catch (error) {
@@ -36,16 +35,9 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
       }
       break;
     case 'image':
-      if (style.props.url && imageCache.images[style.props.url]) {
-        const logo = imageCache.images[style.props.url];
-        const { x, y, props } = style;
-        const logoWidth = logo.width * props.zoom;
-        const logoHeight = logo.height * props.zoom;
-        ctx.drawImage(logo, x, y, logoWidth, logoHeight);
-      } else if (style.props.url) {
+      if (style.props.url) {
         try {
-          const logo = await loadImage(style.props.url);
-          imageCache.images[style.props.url] = logo; // Переносим сохранение в кеш в этот блок
+          const logo = await loadImageFromCache(style.props.url);
           const { x, y, props } = style;
           const logoWidth = logo.width * props.zoom;
           const logoHeight = logo.height * props.zoom;

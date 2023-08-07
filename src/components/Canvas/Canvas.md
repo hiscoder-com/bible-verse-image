@@ -32,6 +32,53 @@ const elements = [
       // offsetY: 0,
     },
   },
+
+  {
+    type: 'rectangle',
+    x: 0,
+    y: 0,
+    props: {
+      fillColor: 'blue',
+      width: 100,
+      height: 150,
+      strokeColor: 'black',
+      strokeWidth: 2,
+    },
+  },
+  {
+    type: 'line',
+    x1: 0,
+    y1: 0,
+    x2: 100,
+    y2: 100,
+    props: {
+      lineColor: 'red',
+      lineWidth: 3,
+    },
+  },
+  {
+    type: 'triangle',
+    props: {
+      vertex1: { x: 400, y: 50 },
+      vertex2: { x: 450, y: 100 },
+      vertex3: { x: 750, y: 100 },
+      fillColor: 'red',
+      strokeColor: 'blue',
+      strokeWidth: 2,
+    },
+  },
+  {
+    type: 'oval',
+    x: 150,
+    y: 200,
+    props: {
+      radiusX: 80,
+      radiusY: 80,
+      fillColor: '#ff00ff',
+      strokeColor: 'red',
+      strokeWidth: 5,
+    },
+  },
   {
     type: 'image',
     x: 50,
