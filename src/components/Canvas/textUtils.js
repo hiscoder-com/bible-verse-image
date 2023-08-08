@@ -26,12 +26,14 @@ const drawWrappedText = (
   fontHeight,
   alignment
 ) => {
-  const words = text.split(' ');
+  const parts = parseText(text);
+  console.log(parts);
   let line = '';
   blockWidth = blockWidth ?? ctx.canvas.width;
 
-  for (let i = 0; i < words.length; i++) {
-    let testLine = line + words[i];
+  for (let i = 0; i < parts.length; i++) {
+    const { text: partText, selected, attributes } = parts[i];
+    let testLine = line + partText;
     const metrics = ctx.measureText(testLine);
     const testWidth = metrics.width;
     testLine += ' ';
@@ -51,7 +53,7 @@ const drawWrappedText = (
       }
 
       ctx.fillText(line, x + offsetX, y + fontHeight);
-      line = words[i] + ' ';
+      line = partText + ' ';
       y += lineHeight;
     } else {
       line = testLine;
@@ -123,6 +125,7 @@ const parseText = (text) => {
       selectedAttributes = null;
     } else if (findAttribute) {
       parts.push({ text: tag, selected: true, attributes: selectedAttributes });
+      findAttribute = false;
     } else {
       parts.push({ text: tag, selected: false });
     }
