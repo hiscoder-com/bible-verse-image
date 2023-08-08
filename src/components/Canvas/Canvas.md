@@ -93,7 +93,7 @@ const elements = [
     x: 225,
     y: 225,
     props: {
-      text: 'God is love',
+      text: 'God is <selected font="Arial" fillStyle="white" backgroundColor="grey">love <selected/> and <selected font="Arial" fillStyle="white" backgroundColor="grey">peace <selected/>',
       fillStyle: 'blue',
       fontStyle: 'small-caps',
       fontSize: 120,

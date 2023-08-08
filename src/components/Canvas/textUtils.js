@@ -104,3 +104,42 @@ export const drawTextInRectangle = (ctx, style) => {
     blockWidth: width - 30,
   });
 };
+
+const parseText = (text) => {
+  const parts = [];
+  const regex = /<\/?selected(\s+[^>]+)?>|(\S+)/g;
+  const regexSelected = /<selected(?=\s|>)/g;
+  let match;
+
+  let selectedAttributes = null;
+  let findAttribute = false;
+
+  while ((match = regex.exec(text)) !== null) {
+    const [tag, attributes] = match;
+    if ((match = regexSelected.exec(tag)) !== null) {
+      selectedAttributes = parseAttributes(attributes);
+      findAttribute = true;
+    } else if (tag === '<selected/>') {
+      selectedAttributes = null;
+    } else if (findAttribute) {
+      parts.push({ text: tag, selected: true, attributes: selectedAttributes });
+    } else {
+      parts.push({ text: tag, selected: false });
+    }
+  }
+
+  return parts;
+};
+
+const parseAttributes = (attributeString) => {
+  const attributes = {};
+  const regex = /(\S+)\s*=\s*"([^"]*)"/g;
+  let match;
+
+  while ((match = regex.exec(attributeString)) !== null) {
+    const attributeName = match[1];
+    const attributeValue = match[2];
+    attributes[attributeName] = attributeValue;
+  }
+  return attributes;
+};
