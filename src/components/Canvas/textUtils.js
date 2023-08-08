@@ -17,7 +17,7 @@ export const drawText = (ctx, style) => {
   );
 };
 
-const drawWrappedText = (
+const drawWrappedText = async (
   ctx,
   style,
   text,
@@ -29,12 +29,13 @@ const drawWrappedText = (
   alignment
 ) => {
   const parts = parseText(text);
-  console.log(parts);
+
   let line = '';
   blockWidth = blockWidth ?? ctx.canvas.width;
 
   for (let i = 0; i < parts.length; i++) {
     const { text: partText, selected, attributes } = parts[i];
+
     let testLine = line + partText;
     const metrics = ctx.measureText(testLine);
     const testWidth = metrics.width;
@@ -54,9 +55,16 @@ const drawWrappedText = (
           break;
       }
       if (selected && attributes) {
-        drawWordInRectangle(ctx, partText, x, y, style);
+        await drawWordInRectangle(
+          ctx,
+          partText,
+          x + offsetX + 20,
+          y + fontHeight + style.props.fontSize,
+          attributes,
+          style
+        );
       } else {
-        ctx.fillText(line, x + offsetX, y + fontHeight);
+        await ctx.fillText(line, x + offsetX, y + fontHeight);
         line = partText + ' ';
         y += lineHeight;
       }
@@ -77,7 +85,7 @@ const drawWrappedText = (
     default:
       break;
   }
-  ctx.fillText(line, x + offsetX, y + lineHeight);
+  await ctx.fillText(line, x + offsetX, y + lineHeight);
 };
 
 export const drawTextInRectangle = (ctx, style) => {
@@ -152,31 +160,21 @@ const parseAttributes = (attributeString) => {
   return attributes;
 };
 
-export const drawWordInRectangle = (ctx, style) => {
+export const drawWordInRectangle = async (ctx, text, x, y, attributes, style) => {
+  const { backgroundColor, textColor, font, alignment, verticalAlignment } = attributes;
   const {
-    x,
-    y,
-    props: {
-      fillStyle,
-      fontSize,
-      font,
-      fontStyle,
-      text,
-      alignment,
-      verticalAlignment,
-      textColor,
-    },
+    props: { fontSize, fontStyle },
   } = style;
-  ctx.fillStyle = fillStyle;
+
+  ctx.fillStyle = backgroundColor;
   ctx.font = `${fontStyle} ${fontSize}px ${font}`;
 
   const metrics = ctx.measureText(text);
   const textWidth = metrics.width;
-  const textHeight = fontSize; // Assuming text height is roughly equal to font size
-  const padding = 10; // Padding around the text
+  const textHeight = fontSize;
+  const padding = 10;
   const rectWidth = textWidth + 2 * padding;
   const rectHeight = textHeight + 2 * padding;
-
   let rectX = x;
   switch (alignment) {
     case 'center':
@@ -201,10 +199,8 @@ export const drawWordInRectangle = (ctx, style) => {
       break;
   }
 
-  // Draw the rectangle
   ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
 
-  // Draw the text inside the rectangle
-  ctx.fillStyle = textColor; // Set the color for the text
-  ctx.fillText(text, rectX + padding, rectY + padding + textHeight);
+  ctx.fillStyle = textColor;
+  ctx.fillText(text, rectX + padding, rectY + padding + textHeight / 1.3);
 };

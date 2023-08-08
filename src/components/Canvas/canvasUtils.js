@@ -8,9 +8,9 @@ export const drawElementsOnCanvas = async (ctx, elements) => {
       case 'text':
         drawText(ctx, style);
         break;
-      case 'word selected':
-        drawWordInRectangle(ctx, style);
-        break;
+      // case 'word selected':
+      //   drawWordInRectangle(ctx, 'TEST', 225, 225, attributes, style);
+      //   break;
       // case 'selected':
       //   drawTextInRectangle(ctx, style);
       //   break;

@@ -93,7 +93,7 @@ const elements = [
     x: 225,
     y: 225,
     props: {
-      text: 'God is love',
+      text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/>',
       fillStyle: 'blue',
       fontStyle: 'small-caps',
       fontSize: 90,
@@ -114,8 +114,6 @@ const elements = [
       fontStyle: 'bold',
       fontSize: 24,
       font: 'Arial',
-      alignment: 'center',
-      verticalAlignment: 'middle',
     },
   },
   {
