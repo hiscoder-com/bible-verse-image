@@ -6,6 +6,7 @@ export const drawText = (ctx, style) => {
 
   drawWrappedText(
     ctx,
+    style,
     style.props.text,
     style.x,
     style.y,
@@ -18,6 +19,7 @@ export const drawText = (ctx, style) => {
 
 const drawWrappedText = (
   ctx,
+  style,
   text,
   x,
   y,
@@ -51,10 +53,13 @@ const drawWrappedText = (
         default:
           break;
       }
-
-      ctx.fillText(line, x + offsetX, y + fontHeight);
-      line = partText + ' ';
-      y += lineHeight;
+      if (selected && attributes) {
+        drawWordInRectangle(ctx, partText, x, y, style);
+      } else {
+        ctx.fillText(line, x + offsetX, y + fontHeight);
+        line = partText + ' ';
+        y += lineHeight;
+      }
     } else {
       line = testLine;
     }
@@ -145,4 +150,61 @@ const parseAttributes = (attributeString) => {
     attributes[attributeName] = attributeValue;
   }
   return attributes;
+};
+
+export const drawWordInRectangle = (ctx, style) => {
+  const {
+    x,
+    y,
+    props: {
+      fillStyle,
+      fontSize,
+      font,
+      fontStyle,
+      text,
+      alignment,
+      verticalAlignment,
+      textColor,
+    },
+  } = style;
+  ctx.fillStyle = fillStyle;
+  ctx.font = `${fontStyle} ${fontSize}px ${font}`;
+
+  const metrics = ctx.measureText(text);
+  const textWidth = metrics.width;
+  const textHeight = fontSize; // Assuming text height is roughly equal to font size
+  const padding = 10; // Padding around the text
+  const rectWidth = textWidth + 2 * padding;
+  const rectHeight = textHeight + 2 * padding;
+
+  let rectX = x;
+  switch (alignment) {
+    case 'center':
+      rectX = x - rectWidth / 2;
+      break;
+    case 'right':
+      rectX = x - rectWidth;
+      break;
+    default:
+      break;
+  }
+
+  let rectY = y;
+  switch (verticalAlignment) {
+    case 'middle':
+      rectY = y - rectHeight / 2;
+      break;
+    case 'bottom':
+      rectY = y - rectHeight;
+      break;
+    default:
+      break;
+  }
+
+  // Draw the rectangle
+  ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+
+  // Draw the text inside the rectangle
+  ctx.fillStyle = textColor; // Set the color for the text
+  ctx.fillText(text, rectX + padding, rectY + padding + textHeight);
 };

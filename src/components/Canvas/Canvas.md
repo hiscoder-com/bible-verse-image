@@ -93,14 +93,29 @@ const elements = [
     x: 225,
     y: 225,
     props: {
-      text: 'God is <selected font="Arial" fillStyle="white" backgroundColor="grey">love <selected/> and <selected font="Arial" fillStyle="white" backgroundColor="grey">peace <selected/>',
+      text: 'God is love',
       fillStyle: 'blue',
       fontStyle: 'small-caps',
-      fontSize: 120,
+      fontSize: 90,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
       blockWidth: 450,
       lineHeight: 144,
+    },
+  },
+  {
+    type: 'word selected',
+    x: 200,
+    y: 200,
+    props: {
+      text: 'LOVE',
+      fillStyle: '#FFC300', // Rectangle color
+      textColor: '#000', // Text color
+      fontStyle: 'bold',
+      fontSize: 24,
+      font: 'Arial',
+      alignment: 'center',
+      verticalAlignment: 'middle',
     },
   },
   {

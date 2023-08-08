@@ -1,12 +1,15 @@
 import { drawBackgroundAndLogo } from './imageUtils';
 import { drawRectangle, drawLine, drawTriangle, drawOval } from './figureUtils';
-import { drawText, drawTextInRectangle } from './textUtils';
+import { drawText, drawTextInRectangle, drawWordInRectangle } from './textUtils';
 
 export const drawElementsOnCanvas = async (ctx, elements) => {
   for (const style of elements) {
     switch (style.type) {
       case 'text':
         drawText(ctx, style);
+        break;
+      case 'word selected':
+        drawWordInRectangle(ctx, style);
         break;
       // case 'selected':
       //   drawTextInRectangle(ctx, style);
