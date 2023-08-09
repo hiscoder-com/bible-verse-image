@@ -6,7 +6,7 @@ export const drawElementsOnCanvas = async (ctx, elements) => {
   for (const style of elements) {
     switch (style.type) {
       case 'text':
-        drawText(ctx, style);
+        await drawText(ctx, style);
         break;
       // case 'word selected':
       //   drawWordInRectangle(ctx, 'TEST', 225, 225, attributes, style);

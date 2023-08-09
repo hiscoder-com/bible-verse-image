@@ -1,4 +1,4 @@
-export const drawText = (ctx, style) => {
+export const drawText = async (ctx, style) => {
   ctx.fillStyle = style.props.fillStyle;
   ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
   const fontHeight = style.props.fontSize;
@@ -25,99 +25,72 @@ const drawWrappedText = async (
   y,
   blockWidth,
   lineHeight,
-  fontHeight,
-  alignment
+  fontHeight
 ) => {
   const parts = parseText(text);
 
-  let line = '';
+  let currentX = x;
+  let currentY = y + fontHeight; // Учитываем высоту шрифта для первой строки
   blockWidth = blockWidth ?? ctx.canvas.width;
 
   for (let i = 0; i < parts.length; i++) {
     const { text: partText, selected, attributes } = parts[i];
+    const metrics = ctx.measureText(partText);
+    const wordWidth = metrics.width;
 
-    let testLine = line + partText;
-    const metrics = ctx.measureText(testLine);
-    const testWidth = metrics.width;
-    testLine += ' ';
-
-    if (testWidth > blockWidth) {
-      let offsetX = 0;
-
-      switch (alignment) {
-        case 'center':
-          offsetX = (blockWidth - ctx.measureText(line).width) / 2;
-          break;
-        case 'right':
-          offsetX = blockWidth - ctx.measureText(line).width;
-          break;
-        default:
-          break;
-      }
-      if (selected && attributes) {
-        await drawWordInRectangle(
-          ctx,
-          partText,
-          x + offsetX + 20,
-          y + fontHeight + style.props.fontSize,
-          attributes,
-          style
-        );
-      } else {
-        await ctx.fillText(line, x + offsetX, y + fontHeight);
-        line = partText + ' ';
-        y += lineHeight;
-      }
+    if (selected === true && attributes) {
+      const centerX = (x + blockWidth) / 2; // Центрирование x координаты для выделенного текста
+      const drawFinal = await drawWordInRectangle(
+        ctx,
+        partText,
+        centerX,
+        currentY,
+        attributes,
+        style
+      );
+      currentY = drawFinal.y + lineHeight + 50; // Переход на следующую строку после выделенного текста
+      currentX = x; // Сбрасываем текущую x координату для не выделенных слов
     } else {
-      line = testLine;
+      if (currentX + wordWidth <= x + blockWidth) {
+        // Проверяем, помещается ли слово в текущей строке
+        const offsetX = calculateOffsetX(ctx, style, partText, blockWidth);
+        await drawTextInBlock(
+          ctx,
+          style,
+          partText,
+          currentX + offsetX - 60,
+          currentY - 20,
+          blockWidth
+        );
+        currentX += wordWidth;
+      } else {
+        // Переход на следующую строку
+        currentX = x;
+        currentY += lineHeight;
+        currentY += selected ? lineHeight : fontHeight; // Учитываем высоту строки в зависимости от выделенности
+        const offsetX = calculateOffsetX(ctx, style, partText, blockWidth);
+        await drawTextInBlock(ctx, style, partText, x + offsetX, currentY, blockWidth);
+        currentX += wordWidth;
+      }
     }
   }
-
-  let offsetX = 0;
-
-  switch (alignment) {
-    case 'center':
-      offsetX = (blockWidth - ctx.measureText(line).width) / 2;
-      break;
-    case 'right':
-      offsetX = blockWidth - ctx.measureText(line).width;
-      break;
-    default:
-      break;
-  }
-  await ctx.fillText(line, x + offsetX, y + lineHeight);
 };
 
-export const drawTextInRectangle = (ctx, style) => {
-  const {
-    x,
-    y,
-    props: { backgroundColor, text, fillStyle, fontStyle, fontSize, font },
-  } = style;
+const calculateOffsetX = (ctx, style, text, blockWidth) => {
+  switch (style.props.alignment) {
+    case 'center':
+      return (blockWidth - ctx.measureText(text).width) / 2;
+    case 'right':
+      return blockWidth - ctx.measureText(text).width;
+    default:
+      return 0;
+  }
+};
 
-  const textWidth = ctx.measureText(text).width;
-
-  const height = 1.2 * fontSize;
-  const width = textWidth + 60;
-
-  ctx.fillStyle = backgroundColor;
-  ctx.fillRect(x, y, width, height);
-
-  const textX = x + 30;
-  const textY = y - height / 4;
-
-  drawText(ctx, {
-    props: {
-      fillStyle: fillStyle,
-      fontStyle: fontStyle,
-      fontSize: fontSize,
-      font: font,
-      text: text,
-    },
-    x: textX,
-    y: textY,
-    blockWidth: width - 30,
-  });
+const drawTextInBlock = async (ctx, style, text, x, y) => {
+  ctx.fillStyle = style.props.fillStyle;
+  ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
+  await ctx.fillText(text, x, y);
 };
 
 const parseText = (text) => {
@@ -199,8 +172,10 @@ export const drawWordInRectangle = async (ctx, text, x, y, attributes, style) =>
       break;
   }
 
-  ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
-
+  await ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
   ctx.fillStyle = textColor;
-  ctx.fillText(text, rectX + padding, rectY + padding + textHeight / 1.3);
+  await ctx.fillText(text, rectX + padding, rectY + padding + textHeight / 1.3);
+
+  // Возвращает координаты, где было закончено рисование
+  return { x: rectX, y: rectY, width: rectWidth, height: rectHeight };
 };
