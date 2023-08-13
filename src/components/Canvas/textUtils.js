@@ -38,6 +38,9 @@ const drawWrappedText = async (
   let selectedWidth;
   for (let i = 0; i < words.length; i++) {
     if (isWordSelected(words[i], parts)) {
+      // "Нарисовать точку, чтобы понять, где началось рисование":
+      drawBoldDot(ctx, x, y, 15, 'red');
+
       const selectedWord = parts[findWordIndex(words[i], parts)];
       const selectedMetrics = ctx.measureText(selectedWord.text);
       selectedWidth = selectedMetrics.width;
@@ -64,6 +67,9 @@ const drawWrappedText = async (
       // Обновляем координату x на основе ширины нарисованного прямоугольника
       x += selectedWidth;
     } else {
+      // "Нарисовать точку, чтобы понять, где началось рисование":
+      drawBoldDot(ctx, x, y, 15, 'black');
+
       x = style.x;
       let testLine = line + words[i] + ' ';
       const metrics = ctx.measureText(testLine) + selectedWidth;
@@ -241,4 +247,13 @@ export const drawWordInRectangle = async (ctx, text, x, y, attributes, style) =>
 
   // Возвращает координаты, где было закончено рисование
   return { x: rectX, y: rectY, width: rectWidth, height: rectHeight };
+};
+
+// Добавляем функцию для рисования жирной точки
+const drawBoldDot = (ctx, x, y, radius, color) => {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.closePath();
+  ctx.fill();
 };
