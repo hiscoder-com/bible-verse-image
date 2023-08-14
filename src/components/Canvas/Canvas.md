@@ -79,23 +79,23 @@ const elements = [
       strokeWidth: 5,
     },
   },
-  {
-    type: 'image',
-    x: 50,
-    y: 50,
-    props: {
-      url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
-      zoom: 0.5,
-    },
-  },
+  // {
+  //   type: 'image',
+  //   x: 50,
+  //   y: 50,
+  //   props: {
+  //     url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
+  //     zoom: 0.5,
+  //   },
+  // },
   {
     type: 'text',
     x: 225,
     y: 225,
     props: {
       // text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/> and  <selected font="Arial" textColor ="white" backgroundColor = "green">joy <selected/>',
-      // text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/>',
-      text: 'God <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/>',
+      text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/>',
+      // text: 'God <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/>',
       fillStyle: 'blue',
       fontStyle: 'small-caps',
       fontSize: 90,

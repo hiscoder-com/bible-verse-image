@@ -34,12 +34,17 @@ const drawWrappedText = async (
   let line = '';
   blockWidth = blockWidth ?? ctx.canvas.width;
   let offsetY = 0; // Отслеживает координату y для каждой строки
-  let drawFinal;
   let selectedWidth;
+  let offsetX = 0;
+  // console.log(parts);
   for (let i = 0; i < words.length; i++) {
+    // Тут рисование текста в прямогоульнике
     if (isWordSelected(words[i], parts)) {
+      // console.log(isWordSelected(words[i], parts), words[i]);
+
       // "Нарисовать точку, чтобы понять, где началось рисование":
-      drawBoldDot(ctx, x, y, 15, 'red');
+      drawBoldDot(ctx, x, y, 15, 'yellow');
+      // console.log(44, y);
 
       const selectedWord = parts[findWordIndex(words[i], parts)];
       const selectedMetrics = ctx.measureText(selectedWord.text);
@@ -54,30 +59,20 @@ const drawWrappedText = async (
       // }
 
       // Рисуем выделенное слово в прямоугольнике
-      drawFinal = await drawWordInRectangle(
-        ctx,
-        selectedWord.text,
-        x,
-        y,
-        selectedWord.attributes,
-        style
-      );
-      console.log(62, y);
+      drawWordInRectangle(ctx, selectedWord.text, x, y, selectedWord.attributes, style);
 
       // Обновляем координату x на основе ширины нарисованного прямоугольника
       x += selectedWidth;
+      y += lineHeight; // Переходим на следующую строку.
+      // Тут рисование обычного текста
     } else {
-      // "Нарисовать точку, чтобы понять, где началось рисование":
-      drawBoldDot(ctx, x, y, 15, 'black');
-
-      x = style.x;
+      // x = style.x;
       let testLine = line + words[i] + ' ';
-      const metrics = ctx.measureText(testLine) + selectedWidth;
-      const testWidth = metrics.width;
+      const metrics = ctx.measureText(testLine).width + selectedWidth;
 
-      if (testWidth > blockWidth) {
-        console.log(72);
-        let offsetX = 0;
+      if (metrics > blockWidth) {
+        drawBoldDot(ctx, x, y, 15, 'black');
+        offsetX = 0;
 
         switch (alignment) {
           case 'center':
@@ -91,42 +86,29 @@ const drawWrappedText = async (
         }
         ctx.fillStyle = style.props.fillStyle;
         ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
-        await ctx.fillText(line, x + offsetX, y);
+        ctx.fillText(words[i], x + offsetX, y);
         line = words[i] + ' ';
         y += lineHeight;
         offsetY += lineHeight;
-        console.log(91);
       } else {
-        line = testLine;
-        console.log(93);
+        switch (alignment) {
+          case 'center':
+            offsetX = (blockWidth - ctx.measureText(line).width) / 2;
+            break;
+          case 'right':
+            offsetX = blockWidth - ctx.measureText(line).width;
+            break;
+          default:
+            break;
+        }
+        drawBoldDot(ctx, x, y, 15, 'green');
+        ctx.fillStyle = style.props.fillStyle;
+        ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
+        ctx.fillText(words[i], x + offsetX, y);
+        x += ctx.measureText(words[i] + ' ').width;
       }
     }
   }
-
-  let offsetX = 0;
-
-  switch (alignment) {
-    case 'center':
-      offsetX = (blockWidth - ctx.measureText(line).width) / 2;
-      break;
-    case 'right':
-      offsetX = blockWidth - ctx.measureText(line).width;
-      break;
-    default:
-      break;
-  }
-  ctx.fillStyle = style.props.fillStyle;
-  ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
-  console.log(111);
-  console.log(115, y);
-
-  await ctx.fillText(line, x + offsetX, y + offsetY);
-};
-
-const drawTextInBlock = async (ctx, style, text, x, y) => {
-  ctx.fillStyle = style.props.fillStyle;
-  ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
-  await ctx.fillText(text, x, y);
 };
 
 const parseText = (text) => {
@@ -168,24 +150,6 @@ const findWordIndex = (word, parts) => {
     }
   }
   return -1; // Word not found
-};
-
-const findSelectedAttributes = (word, parts) => {
-  const selectedMatch = parts.find((part) => part.text === word && part.selected);
-
-  if (selectedMatch && selectedMatch.attributes) {
-    const attributesArray = selectedMatch.attributes.match(/(\S+)=['"]([^'"]*)['"]/g);
-    const attributesObject = {};
-
-    attributesArray.forEach((attribute) => {
-      const [name, value] = attribute.split('=');
-      attributesObject[name] = value.slice(1, -1); // Убираем кавычки в начале и конце значения
-    });
-
-    return attributesObject;
-  }
-
-  return null;
 };
 
 const parseAttributes = (attributeString) => {
@@ -241,9 +205,9 @@ export const drawWordInRectangle = async (ctx, text, x, y, attributes, style) =>
       break;
   }
 
-  await ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+  ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
   ctx.fillStyle = textColor;
-  await ctx.fillText(text, rectX + padding, rectY + padding + textHeight / 1.3);
+  ctx.fillText(text, rectX + padding, rectY + padding + textHeight / 1.3);
 
   // Возвращает координаты, где было закончено рисование
   return { x: rectX, y: rectY, width: rectWidth, height: rectHeight };
