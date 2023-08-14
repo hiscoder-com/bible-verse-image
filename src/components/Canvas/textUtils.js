@@ -25,7 +25,6 @@ const drawWrappedText = async (
   y,
   blockWidth,
   lineHeight,
-  fontHeight,
   alignment
 ) => {
   const cleanText = text.replace(/<[^>]*>/g, '');
@@ -34,40 +33,40 @@ const drawWrappedText = async (
   let line = '';
   blockWidth = blockWidth ?? ctx.canvas.width;
   let offsetY = 0; // Отслеживает координату y для каждой строки
-  let selectedWidth;
+  let selectedWidth = 0;
   let offsetX = 0;
-  // console.log(parts);
+  let testLine;
   for (let i = 0; i < words.length; i++) {
     // Тут рисование текста в прямогоульнике
     if (isWordSelected(words[i], parts)) {
-      // console.log(isWordSelected(words[i], parts), words[i]);
-
       // "Нарисовать точку, чтобы понять, где началось рисование":
-      drawBoldDot(ctx, x, y, 15, 'yellow');
-      // console.log(44, y);
+      // drawBoldDot(ctx, x, y, 15, 'yellow');
 
       const selectedWord = parts[findWordIndex(words[i], parts)];
       const selectedMetrics = ctx.measureText(selectedWord.text);
-      selectedWidth = selectedMetrics.width;
+      const metrics = ctx.measureText(selectedMetrics).width + selectedWidth;
 
       // Проверяем, помещается ли выделенное слово в текущей строке
-      // if (x + selectedWidth > blockWidth) {
-      //   // Переносим на следующую строку
-      //   x = style.x; // Сбрасываем координату x
-      //   y += lineHeight; // Переходим на следующую строку.
-      //   offsetY += lineHeight; // Обновляем offsetY
-      // }
+      if (metrics > blockWidth) {
+        // Переносим на следующую строку
+        x = style.x; // Сбрасываем координату x
+        y += lineHeight; // Переходим на следующую строку.
+        offsetY += lineHeight; //
+      }
 
       // Рисуем выделенное слово в прямоугольнике
-      drawWordInRectangle(ctx, selectedWord.text, x, y, selectedWord.attributes, style);
-
-      // Обновляем координату x на основе ширины нарисованного прямоугольника
-      x += selectedWidth;
-      y += lineHeight; // Переходим на следующую строку.
-      // Тут рисование обычного текста
+      drawWordInRectangle(
+        ctx,
+        selectedWord.text,
+        x,
+        y + offsetY + 40,
+        selectedWord.attributes,
+        style
+      );
+      // y += lineHeight; // Переходим на следующую строку.
     } else {
-      // x = style.x;
-      let testLine = line + words[i] + ' ';
+      testLine = line + words[i] + ' ';
+      selectedWidth = selectedWidth ?? 0;
       const metrics = ctx.measureText(testLine).width + selectedWidth;
 
       if (metrics > blockWidth) {
@@ -86,29 +85,31 @@ const drawWrappedText = async (
         }
         ctx.fillStyle = style.props.fillStyle;
         ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
-        ctx.fillText(words[i], x + offsetX, y);
+        ctx.fillText(line, x + offsetX, y + offsetY);
+
         line = words[i] + ' ';
-        y += lineHeight;
-        offsetY += lineHeight;
+        // offsetY += lineHeight; //
       } else {
-        switch (alignment) {
-          case 'center':
-            offsetX = (blockWidth - ctx.measureText(line).width) / 2;
-            break;
-          case 'right':
-            offsetX = blockWidth - ctx.measureText(line).width;
-            break;
-          default:
-            break;
-        }
         drawBoldDot(ctx, x, y, 15, 'green');
-        ctx.fillStyle = style.props.fillStyle;
-        ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
-        ctx.fillText(words[i], x + offsetX, y);
-        x += ctx.measureText(words[i] + ' ').width;
+        line = testLine;
       }
     }
   }
+  offsetX = 0;
+
+  switch (alignment) {
+    case 'center':
+      offsetX = (blockWidth - ctx.measureText(line).width) / 2;
+      break;
+    case 'right':
+      offsetX = blockWidth - ctx.measureText(line).width;
+      break;
+    default:
+      break;
+  }
+  ctx.fillStyle = style.props.fillStyle;
+  ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
+  ctx.fillText(line, x + offsetX, y + lineHeight);
 };
 
 const parseText = (text) => {
@@ -149,7 +150,7 @@ const findWordIndex = (word, parts) => {
       return i;
     }
   }
-  return -1; // Word not found
+  return -1;
 };
 
 const parseAttributes = (attributeString) => {
@@ -208,9 +209,6 @@ export const drawWordInRectangle = async (ctx, text, x, y, attributes, style) =>
   ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
   ctx.fillStyle = textColor;
   ctx.fillText(text, rectX + padding, rectY + padding + textHeight / 1.3);
-
-  // Возвращает координаты, где было закончено рисование
-  return { x: rectX, y: rectY, width: rectWidth, height: rectHeight };
 };
 
 // Добавляем функцию для рисования жирной точки
