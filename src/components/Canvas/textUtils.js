@@ -1,20 +1,25 @@
+// 1. Сформировать токеты
+// 2. Сформировать строку
+// 3. Нарисовать строку
+
 export const drawText = async (ctx, style) => {
   ctx.fillStyle = style.props.fillStyle;
   ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
   const fontHeight = style.props.fontSize;
   const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
-
-  drawWrappedText(
-    ctx,
-    style,
-    style.props.text,
-    style.x,
-    style.y,
-    style.props.blockWidth,
-    lineHeight,
-    fontHeight,
-    style.props.alignment
-  );
+  const parts = parseText(style.props.text);
+  console.log(parts);
+  // drawWrappedText(
+  //   ctx,
+  //   style,
+  //   style.props.text,
+  //   style.x,
+  //   style.y,
+  //   style.props.blockWidth,
+  //   lineHeight,
+  //   fontHeight,
+  //   style.props.alignment
+  // );
 };
 
 const drawWrappedText = async (
@@ -114,7 +119,7 @@ const drawWrappedText = async (
 
 const parseText = (text) => {
   const parts = [];
-  const regex = /<\/?selected(\s+[^>]+)?>|(\S+)/g;
+  const regex = /<\/?selected(\s+[^>]+)?>|\S+|\s+/g;
   const regexSelected = /<selected(?=\s|>)/g;
   let match;
 
@@ -139,6 +144,19 @@ const parseText = (text) => {
   return parts;
 };
 
+const parseAttributes = (attributeString) => {
+  const attributes = {};
+  const regex = /(\S+)\s*=\s*"([^"]*)"/g;
+  let match;
+
+  while ((match = regex.exec(attributeString)) !== null) {
+    const attributeName = match[1];
+    const attributeValue = match[2];
+    attributes[attributeName] = attributeValue;
+  }
+  return attributes;
+};
+
 const isWordSelected = (word, parts) => {
   const selectedMatch = parts.find((part) => part.selected && part.text === word);
   return !!selectedMatch;
@@ -151,19 +169,6 @@ const findWordIndex = (word, parts) => {
     }
   }
   return -1;
-};
-
-const parseAttributes = (attributeString) => {
-  const attributes = {};
-  const regex = /(\S+)\s*=\s*"([^"]*)"/g;
-  let match;
-
-  while ((match = regex.exec(attributeString)) !== null) {
-    const attributeName = match[1];
-    const attributeValue = match[2];
-    attributes[attributeName] = attributeValue;
-  }
-  return attributes;
 };
 
 export const drawWordInRectangle = async (ctx, text, x, y, attributes, style) => {
