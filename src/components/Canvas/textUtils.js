@@ -8,18 +8,7 @@ export const drawText = async (ctx, style) => {
   const fontHeight = style.props.fontSize;
   const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
   const parts = parseText(style.props.text);
-  console.log(parts);
-  // drawWrappedText(
-  //   ctx,
-  //   style,
-  //   style.props.text,
-  //   style.x,
-  //   style.y,
-  //   style.props.blockWidth,
-  //   lineHeight,
-  //   fontHeight,
-  //   style.props.alignment
-  // );
+  addWidthToParts(ctx, parts);
 };
 
 const drawWrappedText = async (
@@ -223,4 +212,11 @@ const drawBoldDot = (ctx, x, y, radius, color) => {
   ctx.arc(x, y, radius, 0, Math.PI * 2);
   ctx.closePath();
   ctx.fill();
+};
+
+const addWidthToParts = (ctx, parts) => {
+  for (const word of parts) {
+    word.width = ctx.measureText(word.text).width;
+  }
+  return;
 };
