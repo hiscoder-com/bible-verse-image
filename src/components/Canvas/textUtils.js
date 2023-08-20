@@ -27,7 +27,7 @@ const createLinesFromWords = (style, words) => {
   for (const word of words) {
     const wordWidth = word.width;
 
-    if (currentLineWidth + wordWidth <= blockWidth) {
+    if (currentLineWidth + wordWidth <= blockWidth && !word.selected) {
       currentLine.words.push(word);
       currentLineWidth += wordWidth;
     } else {
@@ -102,7 +102,7 @@ const drawLines = (ctx, lines, style) => {
   }
 };
 
-export const drawWordInRectangle = async (ctx, text, x, y, attributes, style) => {
+export const drawWordInRectangle = (ctx, text, x, y, attributes, style) => {
   const { backgroundColor, textColor, font, verticalAlignment } = attributes;
   const {
     props: { fontSize, fontStyle, alignment },
