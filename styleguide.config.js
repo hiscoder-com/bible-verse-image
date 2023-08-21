@@ -13,10 +13,6 @@ let sections = [
     components: ['src/components/useSearchPhotos/useSearchPhotos.jsx'],
   },
   {
-    name: 'Button Block',
-    components: ['src/components/Button/Button.js'],
-  },
-  {
     name: 'Canvas Block',
     components: ['src/components/Canvas/Canvas.js'],
   },
