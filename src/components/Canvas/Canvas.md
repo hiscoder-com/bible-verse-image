@@ -93,11 +93,11 @@ const elements = [
     x: 225,
     y: 225,
     props: {
-      // text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red"> <selected/> <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/> and <selected font="Arial" textColor ="white" backgroundColor = "green">joy <selected/>',
+      text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/> and <selected font="Arial" textColor ="white" backgroundColor = "green">joy <selected/>',
       // text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/>',
       // text: 'God is love',
       // text: 'God love',
-      text: 'God <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/>',
+      // text: 'God <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/>',
 
       fillStyle: 'blue',
       fontStyle: 'small-caps',
@@ -138,7 +138,7 @@ const elements = [
   {
     type: 'text',
     x: 225,
-    y: 565,
+    y: 595,
     props: {
       text: '1 Jon 4:8',
       fillStyle: 'blue',

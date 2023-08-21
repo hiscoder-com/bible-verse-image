@@ -81,23 +81,13 @@ const drawLines = (ctx, lines, style) => {
 
     for (const word of line.words) {
       if (word.selected) {
-        // Рисование выделенного слова
-        drawWordInRectangle(
-          ctx,
-          word.text,
-          x,
-          y + 40, // offsetY
-          word.attributes,
-          style
-        );
+        drawWordInRectangle(ctx, word.text, x, y, word.attributes, style);
       } else if (word.text !== ' ') {
-        // Рисование обычного слова
         ctx.fillStyle = style.props.fillStyle;
         ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
         ctx.fillText(word.text, x, y);
       }
-
-      x += word.width; // Смещение x на ширину слова
+      x += word.width;
     }
   }
 };
@@ -107,7 +97,8 @@ export const drawWordInRectangle = (ctx, text, x, y, attributes, style) => {
   const {
     props: { fontSize, fontStyle, alignment },
   } = style;
-
+  const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
+  y = y - lineHeight / 2;
   ctx.fillStyle = backgroundColor;
   ctx.font = `${fontStyle} ${fontSize}px ${font}`;
 
@@ -117,20 +108,20 @@ export const drawWordInRectangle = (ctx, text, x, y, attributes, style) => {
   const padding = 10;
   const rectWidth = textWidth + 2 * padding;
   const rectHeight = textHeight + 2 * padding;
-  let rectX = rectWidth - x;
+
+  let rectX = x;
   switch (alignment) {
     case 'center':
-      rectX = style.props.blockWidth - rectWidth / 2;
+      rectX = x - rectWidth / 2 + textWidth / 2;
       break;
     case 'right':
-      rectX = style.props.blockWidth + rectWidth + padding;
+      rectX = x - rectWidth + textWidth;
       break;
     default:
-      rectX = rectWidth - x;
       break;
   }
 
-  let rectY = y;
+  let rectY;
   switch (verticalAlignment) {
     case 'middle':
       rectY = y - rectHeight / 2;
@@ -139,6 +130,7 @@ export const drawWordInRectangle = (ctx, text, x, y, attributes, style) => {
       rectY = y - rectHeight;
       break;
     default:
+      rectY = y;
       break;
   }
 
