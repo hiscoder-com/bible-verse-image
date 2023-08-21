@@ -15,6 +15,20 @@ let sections = [
   {
     name: 'Canvas Block',
     components: ['src/components/Canvas/Canvas.js'],
+    sections: [
+      {
+        name: 'Canvas Figure',
+        content: 'src/components/Canvas/CanvasFigure.md',
+      },
+      {
+        name: 'Canvas Image',
+        content: 'src/components/Canvas/CanvasImage.md',
+      },
+      {
+        name: 'Canvas Text',
+        content: 'src/components/Canvas/CanvasText.md',
+      },
+    ],
   },
   {
     name: 'Search Block',
