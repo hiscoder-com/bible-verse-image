@@ -153,35 +153,3 @@ const elements = [
 
 <Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
 ```
-
-### Default example
-
-```jsx
-import React from 'react';
-
-import { Canvas } from '@texttree/bible-verse-image';
-const infocanvas = {
-  height: 900,
-  width: 900,
-};
-
-const elements = [
-  {
-    type: 'text',
-    x: 225,
-    y: 225,
-    props: {
-      text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/> and <selected font="Arial" textColor ="white" backgroundColor = "green">joy <selected/>',
-      fillStyle: 'blue',
-      fontStyle: 'small-caps',
-      fontSize: 90,
-      font: 'Helvetica, Arial, sans-serif',
-      alignment: 'center',
-      blockWidth: 450,
-      lineHeight: 144,
-    },
-  },
-];
-
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
-```
