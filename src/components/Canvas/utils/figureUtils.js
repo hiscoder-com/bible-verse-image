@@ -6,7 +6,9 @@ export const drawRectangle = (ctx, style) => {
   const {
     x,
     y,
-    props: { width, height, fillColor, strokeColor, strokeWidth },
+    width,
+    height,
+    props: { fillColor, strokeColor, strokeWidth },
   } = style;
 
   ctx.beginPath();
