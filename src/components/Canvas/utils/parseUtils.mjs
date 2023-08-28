@@ -31,9 +31,8 @@ const parseAttributes = (attributeString) => {
   let match;
 
   while ((match = regex.exec(attributeString)) !== null) {
-    const attributeName = match[1];
-    const attributeValue = match[2];
-    attributes[attributeName] = attributeValue;
+    const [, name, value] = match;
+    attributes[name] = value;
   }
   return attributes;
 };
