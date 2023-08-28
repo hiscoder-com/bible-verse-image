@@ -1,9 +1,11 @@
 import { addWidthToParts, parseText } from './parseUtils.mjs';
 
 export const drawText = async (ctx, style) => {
-  ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
+  ctx.font = `${style.props.fontStyle ?? 'small-caps'} ${style.props.fontSize ?? 15}px ${
+    style.props.font ?? 'Helvetica, Arial, sans-serif'
+  }`;
 
-  const parts = parseText(style.text);
+  const parts = parseText(style.text ?? '');
   addWidthToParts(ctx, parts);
 
   const lines = createLinesFromWords(style, parts);
@@ -17,8 +19,10 @@ const createLinesFromWords = (style, words) => {
     props: { blockWidth, alignment },
   } = style;
 
-  const fontHeight = style.props.fontSize;
+  const fontHeight = style.props.fontSize ?? 15;
   const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
+  blockWidth = blockWidth ?? 450;
+  alignment = alignment ?? 'left';
 
   let currentLine = { x, y, words: [] };
   let currentLineWidth = 0;
