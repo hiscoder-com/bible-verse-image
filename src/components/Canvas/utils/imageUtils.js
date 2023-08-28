@@ -35,9 +35,9 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
       }
       break;
     case 'image':
-      if (style.props.url) {
+      if (style.url) {
         try {
-          const logo = await loadImageFromCache(style.props.url);
+          const logo = await loadImageFromCache(style.url);
           const { x, y, props } = style;
           const logoWidth = logo.width * props.zoom;
           const logoHeight = logo.height * props.zoom;
