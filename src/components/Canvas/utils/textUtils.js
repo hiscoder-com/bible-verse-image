@@ -3,7 +3,7 @@ import { addWidthToParts, parseText } from './parseUtils.mjs';
 export const drawText = async (ctx, style) => {
   ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
 
-  const parts = parseText(style.props.text);
+  const parts = parseText(style.text);
   addWidthToParts(ctx, parts);
 
   const lines = createLinesFromWords(style, parts);
@@ -27,7 +27,7 @@ const createLinesFromWords = (style, words) => {
   for (const word of words) {
     const wordWidth = word.width;
 
-    if (currentLineWidth + wordWidth <= blockWidth && !word.selected) {
+    if (currentLineWidth + wordWidth <= blockWidth) {
       currentLine.words.push(word);
       currentLineWidth += wordWidth;
     } else {
