@@ -122,11 +122,9 @@ const CanvasWithBackground = () => {
             elements={elementsWithBackground}
             className={'w-full'}
           />
-          <p>Количество: {count}</p>
-          <button onClick={handleIncrement}>Увеличить</button>
         </>
       ) : (
-        <p className={'text-red-500'}>Пожалуйста, выберите изображение для фона</p>
+        <p className={'text-red-500'}>Please select an image for the background</p>
       )}
     </div>
   );
