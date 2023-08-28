@@ -7,7 +7,6 @@ To use the component, these parameters must be initialized:
 The `infocanvas` object contains properties that define the dimensions and characteristics of the canvas where the text elements will be drawn.
 
 - `height` (_number, required_): Specifies the height of the canvas in pixels.
-
 - `width` (_number, required_): Specifies the width of the canvas in pixels.
 
 ## `elements` Array
@@ -17,16 +16,13 @@ To draw a line on the canvas, you can include an object in the `elements` array 
 - `type` (_string, required_): Specifies the type of the element. In this case, it should be set to `'line'`.
 
 - `x1` (_number, required_): The x-coordinate of the starting point of the line.
-
 - `y1` (_number, required_): The y-coordinate of the starting point of the line.
-
 - `x2` (_number, required_): The x-coordinate of the ending point of the line.
-
 - `y2` (_number, required_): The y-coordinate of the ending point of the line.
 
 - `props` (_object, optional_): An object containing properties for configuring the line element.
-  - `lineColor` (_string_): The color of the line.
-  - `lineWidth` (_number_): The width of the line in pixels.
+  - `lineColor` (_string_, default: 'black'): The color of the line.
+  - `lineWidth` (_number_, default: 1): The width of the line in pixels.
 
 ```jsx
 import React from 'react';
@@ -63,7 +59,6 @@ To use the component, these parameters must be initialized:
 The `infocanvas` object contains properties that define the dimensions and characteristics of the canvas where the text elements will be drawn.
 
 - `height` (_number, required_): Specifies the height of the canvas in pixels.
-
 - `width` (_number, required_): Specifies the width of the canvas in pixels.
 
 ## `elements` Array
@@ -73,15 +68,14 @@ To draw a rectangle on the canvas, you can include an object in the `elements` a
 - `type` (_string, required_): Specifies the type of the element. In this case, it should be set to `'rectangle'`.
 
 - `x` (_number, required_): The x-coordinate of the top-left corner of the rectangle.
-
 - `y` (_number, required_): The y-coordinate of the top-left corner of the rectangle.
-
+- `width` (_number, required_): The width of the rectangle in pixels.
+- `height`(_number, required_): The height of the rectangle in pixels.
 - `props` (_object, required_): An object containing properties for configuring the rectangle element.
-  - `fillColor` (_string_): The fill color of the rectangle.
-  - `width` (_number_): The width of the rectangle in pixels.
-  - `height` (_number_): The height of the rectangle in pixels.
-  - `strokeColor` (_string_): The stroke color of the rectangle's border.
-  - `strokeWidth` (_number_): The width of the rectangle's border in pixels.
+
+  - `fillColor` (_string_, default: 'white'): The fill color of the rectangle.
+  - `strokeColor` (_string_, default: 'black'): The stroke color of the rectangle's border.
+  - `strokeWidth` (_number_, default: 1): The width of the rectangle's border in pixels.
 
 ```jsx
 import React from 'react';
@@ -97,10 +91,10 @@ const elements = [
     type: 'rectangle',
     x: 300,
     y: 400,
+    width: 300,
+    height: 450,
     props: {
       fillColor: 'blue',
-      width: 300,
-      height: 450,
       strokeColor: 'black',
       strokeWidth: 2,
     },
@@ -119,7 +113,6 @@ To use the component, these parameters must be initialized:
 The `infocanvas` object contains properties that define the dimensions and characteristics of the canvas where the text elements will be drawn.
 
 - `height` (_number, required_): Specifies the height of the canvas in pixels.
-
 - `width` (_number, required_): Specifies the width of the canvas in pixels.
 
 ## `elements` Array
@@ -128,13 +121,9 @@ To draw a triangle on the canvas, you can include an object in the `elements` ar
 
 - `type` (_string, required_): Specifies the type of the element. In this case, it should be set to `'triangle'`.
 
-- `props` (_object, required_): An object containing properties for configuring the triangle element.
-  - `vertex1` (_object, required_): An object specifying the coordinates of the first vertex of the triangle.
-  - `vertex2` (_object, required_): An object specifying the coordinates of the second vertex of the triangle.
-  - `vertex3` (_object, required_): An object specifying the coordinates of the third vertex of the triangle.
-  - `fillColor` (_string_): The fill color of the triangle.
-  - `strokeColor` (_string_): The stroke color of the triangle's border.
-  - `strokeWidth` (_number_): The width of the triangle's border in pixels.
+- `vertex1` (_object, required_): An object specifying the coordinates of the first vertex of the triangle.
+- `vertex2` (_object, required_): An object specifying the coordinates of the second vertex of the triangle.
+- `vertex3` (_object, required_): An object specifying the coordinates of the third vertex of the triangle.
 
 ### Vertex Properties
 
@@ -142,6 +131,12 @@ Each vertex of the triangle is defined using the following properties:
 
 - `x` (_number, required_): The x-coordinate of the vertex.
 - `y` (_number, required_): The y-coordinate of the vertex.
+
+- `props` (_object, required_): An object containing properties for configuring the triangle element.
+
+  - `fillColor` (_string_, default: 'white'): The fill color of the triangle.
+  - `strokeColor` (_string_, default: 'black'): The stroke color of the triangle's border.
+  - `strokeWidth` (_number_, default: 1): The width of the triangle's border in pixels.
 
 ```jsx
 import React from 'react';
@@ -178,7 +173,6 @@ To use the component, these parameters must be initialized:
 The `infocanvas` object contains properties that define the dimensions and characteristics of the canvas where the text elements will be drawn.
 
 - `height` (_number, required_): Specifies the height of the canvas in pixels.
-
 - `width` (_number, required_): Specifies the width of the canvas in pixels.
 
 ## `elements` Array
@@ -188,15 +182,14 @@ To draw an oval (ellipse) on the canvas, you can include an object in the `eleme
 - `type` (_string, required_): Specifies the type of the element. In this case, it should be set to `'oval'`.
 
 - `x` (_number, required_): The x-coordinate of the center of the oval.
-
 - `y` (_number, required_): The y-coordinate of the center of the oval.
-
+- `radiusX` (_number, required_): The horizontal radius of the oval (half of the width).
+- `radiusY` (_number, required_): The vertical radius of the oval (half of the height).
 - `props` (_object, required_): An object containing properties for configuring the oval element.
-  - `radiusX` (_number, required_): The horizontal radius of the oval (half of the width).
-  - `radiusY` (_number, required_): The vertical radius of the oval (half of the height).
-  - `fillColor` (_string_): The fill color of the oval.
-  - `strokeColor` (_string_): The stroke color of the oval's border.
-  - `strokeWidth` (_number_): The width of the oval's border in pixels.
+
+  - `fillColor` (_string_, default: 'white'): The fill color of the oval.
+  - `strokeColor` (_string_, default: 'black'): The stroke color of the oval's border.
+  - `strokeWidth` (_number_, default: 1): The width of the oval's border in pixels.
 
 ```jsx
 import React from 'react';

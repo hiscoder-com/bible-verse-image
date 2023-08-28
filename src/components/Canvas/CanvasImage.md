@@ -5,7 +5,6 @@
 The `infocanvas` object contains properties that define the dimensions and characteristics of the canvas where the text elements will be drawn.
 
 - `height` (_number, required_): Specifies the height of the canvas in pixels.
-
 - `width` (_number, required_): Specifies the width of the canvas in pixels.
 
 ## `elements` Array
@@ -15,7 +14,6 @@ To set a background image on the canvas, you can include an object in the `eleme
 - `type` (_string, required_): Specifies the type of the element. In this case, it should be set to `'background'`.
 
 - `x` (_number, required_): The x-coordinate of the top-left corner of the background image.
-
 - `y` (_number, required_): The y-coordinate of the top-left corner of the background image.
 
 - `url` (_string, required_): The URL of the image to be used as the background.
@@ -129,7 +127,6 @@ const CanvasWithBackground = () => {
 The `infocanvas` object contains properties that define the dimensions and characteristics of the canvas where the text elements will be drawn.
 
 - `height` (_number, required_): Specifies the height of the canvas in pixels.
-
 - `width` (_number, required_): Specifies the width of the canvas in pixels.
 
 ## `elements` Array
@@ -139,7 +136,6 @@ To display an image on the canvas, you can include an object in the `elements` a
 - `type` (_string, required_): Specifies the type of the element. In this case, it should be set to `'image'`.
 
 - `x` (_number, required_): The x-coordinate of the top-left corner of the image.
-
 - `y` (_number, required_): The y-coordinate of the top-left corner of the image.
 
 - `url` (_string, required_): The URL of the image to be displayed.
