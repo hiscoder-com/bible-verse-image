@@ -18,10 +18,9 @@ To set a background image on the canvas, you can include an object in the `eleme
 
 - `y` (_number, required_): The y-coordinate of the top-left corner of the background image.
 
+- `url` (_string, required_): The URL of the image to be used as the background.
+
 - `props` (_object, required_): An object containing properties for configuring the background image.
-  - `url` (_string, required_): The URL of the image to be used as the background.
-  - `width` (_number_): The width of the background image. It can be set to the `infocanvas.width` to match the canvas width.
-  - `height` (_number_): The height of the background image. It can be set to the `infocanvas.height` to match the canvas height.
   - `zoom` (_number_): The zoom factor to scale the background image.
   - `offsetX` (_number_): The horizontal offset of the background image.
   - `offsetY` (_number_): The vertical offset of the background image.
@@ -143,8 +142,9 @@ To display an image on the canvas, you can include an object in the `elements` a
 
 - `y` (_number, required_): The y-coordinate of the top-left corner of the image.
 
+- `url` (_string, required_): The URL of the image to be displayed.
+
 - `props` (_object, required_): An object containing properties for configuring the image element.
-  - `url` (_string, required_): The URL of the image to be displayed.
   - `zoom` (_number_): The zoom factor to scale the image.
 
 ```jsx
@@ -161,8 +161,8 @@ const elements = [
     type: 'image',
     x: 50,
     y: 50,
+    url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
     props: {
-      url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
       zoom: 0.5,
     },
   },
