@@ -35,7 +35,7 @@ const elements = [
     x: 225,
     y: 225,
     props: {
-      text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love <selected/> and <selected font="Arial" textColor ="white" backgroundColor = "green">joy <selected/>',
+      text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love </selected> and <selected font="Arial" textColor ="white" backgroundColor = "green">joy </selected>',
       fillStyle: 'blue',
       fontStyle: 'small-caps',
       fontSize: 90,

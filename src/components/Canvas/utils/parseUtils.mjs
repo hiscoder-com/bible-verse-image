@@ -12,7 +12,7 @@ export const parseText = (text) => {
     if ((match = regexSelected.exec(tag)) !== null) {
       selectedAttributes = parseAttributes(attributes);
       findAttribute = true;
-    } else if (tag === '<selected/>') {
+    } else if (tag === '</selected>') {
       selectedAttributes = null;
     } else if (findAttribute) {
       parts.push({ text: tag, selected: true, attributes: selectedAttributes });
