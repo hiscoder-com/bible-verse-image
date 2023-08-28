@@ -43,7 +43,12 @@ export const drawLine = (ctx, style) => {
 };
 
 export const drawTriangle = (ctx, style) => {
-  const { vertex1, vertex2, vertex3, fillColor, strokeColor, strokeWidth } = style.props;
+  const {
+    vertex1,
+    vertex2,
+    vertex3,
+    props: { fillColor, strokeColor, strokeWidth },
+  } = style;
 
   ctx.beginPath();
   ctx.moveTo(vertex1.x, vertex1.y);
@@ -69,7 +74,9 @@ export const drawOval = (ctx, style) => {
   const {
     x,
     y,
-    props: { radiusX, radiusY, fillColor, strokeColor, strokeWidth },
+    radiusX,
+    radiusY,
+    props: { fillColor, strokeColor, strokeWidth },
   } = style;
 
   ctx.beginPath();

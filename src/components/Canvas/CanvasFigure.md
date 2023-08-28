@@ -155,10 +155,10 @@ const infocanvas = {
 const elements = [
   {
     type: 'triangle',
+    vertex1: { x: 400, y: 10 },
+    vertex2: { x: 400, y: 500 },
+    vertex3: { x: 150, y: 500 },
     props: {
-      vertex1: { x: 400, y: 10 },
-      vertex2: { x: 400, y: 500 },
-      vertex3: { x: 150, y: 500 },
       fillColor: 'red',
       strokeColor: 'blue',
       strokeWidth: 2,
@@ -212,9 +212,9 @@ const elements = [
     type: 'oval',
     x: 450,
     y: 400,
+    radiusX: 180,
+    radiusY: 180,
     props: {
-      radiusX: 180,
-      radiusY: 180,
       fillColor: '#ff00ff',
       strokeColor: 'red',
       strokeWidth: 5,
