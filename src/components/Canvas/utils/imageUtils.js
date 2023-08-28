@@ -24,9 +24,9 @@ const drawImageFromCache = async (pic, ctx, params) => {
 export const drawBackgroundAndLogo = async (ctx, style) => {
   switch (style.type) {
     case 'background':
-      if (style.props.url) {
+      if (style.url) {
         try {
-          const pic = await loadImageFromCache(style.props.url);
+          const pic = await loadImageFromCache(style.url);
           const elementWithDimensions = calculateImageParameters(pic, ctx, style.props);
           await drawImageFromCache(pic, ctx, elementWithDimensions);
         } catch (error) {
