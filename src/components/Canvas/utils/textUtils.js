@@ -1,43 +1,44 @@
 import { addWidthToParts, parseText } from './parseUtils.mjs';
 
 export const drawText = async (ctx, style) => {
-  ctx.font = `${style.props.fontStyle ?? 'small-caps'} ${style.props.fontSize ?? 15}px ${
-    style.props.font ?? 'Helvetica, Arial, sans-serif'
-  }`;
+  style.props.fontStyle = style.props.fontStyle ?? 'normal';
+  style.props.fontSize = style.props.fontSize ?? 15;
+  style.props.font = style.props.font ?? 'Helvetica, Arial, sans-serif';
+  style.props.lineHeight = style.props.lineHeight ?? 1.2 * style.props.fontSize;
+
+  style.props.blockWidth = style.props.blockWidth ?? 450;
+  style.props.alignment = style.props.alignment ?? 'left';
 
   const parts = parseText(style.text ?? '');
-  addWidthToParts(ctx, parts);
-
-  const lines = createLinesFromWords(style, parts);
+  const lines = createLinesFromWords(ctx, style, parts);
   drawLines(ctx, lines, style);
 };
 
-const createLinesFromWords = (style, words) => {
-  const {
+const createLinesFromWords = (ctx, style, words) => {
+  let {
     x,
     y,
-    props: { blockWidth, alignment },
+    props: { blockWidth, lineHeight, alignment },
   } = style;
-
-  const fontHeight = style.props.fontSize ?? 15;
-  const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
-  blockWidth = blockWidth ?? 450;
-  alignment = alignment ?? 'left';
 
   let currentLine = { x, y, words: [] };
   let currentLineWidth = 0;
   const lines = [];
-
   for (const word of words) {
-    const wordWidth = word.width;
+    if (word.selected) {
+      ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${word.attributes.font}`;
+    } else {
+      ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
+    }
+    word.width = parseInt(ctx.measureText(word.text).width);
 
-    if (currentLineWidth + wordWidth <= blockWidth) {
+    if (currentLineWidth + word.width <= blockWidth) {
       currentLine.words.push(word);
-      currentLineWidth += wordWidth;
+      currentLineWidth += word.width;
     } else {
       lines.push(currentLine);
-      currentLine = { x: 0, y: currentLine.y + lineHeight, words: [word] };
-      currentLineWidth = wordWidth;
+      currentLine = { x, y: currentLine.y + lineHeight, words: [word] };
+      currentLineWidth = word.width;
     }
   }
 
@@ -58,7 +59,7 @@ const createLinesFromWords = (style, words) => {
       default:
         break;
     }
-    line.x = offsetX;
+    line.x += parseInt(offsetX);
   }
 
   return lines;
@@ -66,26 +67,13 @@ const createLinesFromWords = (style, words) => {
 
 const drawLines = (ctx, lines, style) => {
   for (const line of lines) {
-    const totalLineWidth = line.words.reduce((sum, word) => sum + word.width, 0);
-    let x;
-
-    switch (style.props.alignment) {
-      case 'center':
-        x = (ctx.canvas.width - totalLineWidth) / 2;
-        break;
-      case 'right':
-        x = ctx.canvas.width - totalLineWidth;
-        break;
-      default:
-        x = 0;
-        break;
-    }
+    let x = line.x;
 
     const y = line.y;
 
     for (const word of line.words) {
       if (word.selected) {
-        drawWordInRectangle(ctx, word.text, x, y, word.attributes, style);
+        drawWordInRectangle(ctx, word, x, y, word.attributes, style);
       } else if (word.text !== ' ') {
         ctx.fillStyle = style.props.fillStyle;
         ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
@@ -96,49 +84,16 @@ const drawLines = (ctx, lines, style) => {
   }
 };
 
-export const drawWordInRectangle = (ctx, text, x, y, attributes, style) => {
-  const { backgroundColor, textColor, font, verticalAlignment } = attributes;
+export const drawWordInRectangle = (ctx, word, x, y, attributes, style) => {
+  const { text, width } = word;
+
+  const { backgroundColor, textColor, font } = attributes;
   const {
-    props: { fontSize, fontStyle, alignment },
+    props: { fontSize, fontStyle },
   } = style;
-  const lineHeight = style.props.lineHeight ?? 1.2 * fontHeight;
-  y = y - lineHeight / 2;
   ctx.fillStyle = backgroundColor;
   ctx.font = `${fontStyle} ${fontSize}px ${font}`;
-
-  const metrics = ctx.measureText(text);
-  const textWidth = metrics.width;
-  const textHeight = fontSize;
-  const padding = 10;
-  const rectWidth = textWidth + 2 * padding;
-  const rectHeight = textHeight + 2 * padding;
-
-  let rectX = x;
-  switch (alignment) {
-    case 'center':
-      rectX = x - rectWidth / 2 + textWidth / 2;
-      break;
-    case 'right':
-      rectX = x - rectWidth + textWidth;
-      break;
-    default:
-      break;
-  }
-
-  let rectY;
-  switch (verticalAlignment) {
-    case 'middle':
-      rectY = y - rectHeight / 2;
-      break;
-    case 'bottom':
-      rectY = y - rectHeight;
-      break;
-    default:
-      rectY = y;
-      break;
-  }
-
-  ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+  ctx.fillRect(x, y - fontSize * 1.2, width, fontSize * 1.4);
   ctx.fillStyle = textColor;
-  ctx.fillText(text, rectX + padding, rectY + padding + textHeight / 1.3);
+  ctx.fillText(text, x, y);
 };
