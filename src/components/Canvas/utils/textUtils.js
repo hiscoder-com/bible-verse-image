@@ -1,4 +1,4 @@
-import { addWidthToParts, parseText } from './parseUtils.mjs';
+import { parseText } from './parseUtils.mjs';
 
 export const drawText = async (ctx, style) => {
   style.props.fontStyle = style.props.fontStyle ?? 'normal';
@@ -9,7 +9,10 @@ export const drawText = async (ctx, style) => {
   style.props.blockWidth = style.props.blockWidth ?? 450;
   style.props.alignment = style.props.alignment ?? 'left';
 
-  const parts = parseText(style.text ?? '');
+  style.text = style.text ?? '';
+  style.text = style.text.replace(/\t/g, '    ');
+
+  const parts = parseText(style.text);
   const lines = createLinesFromWords(ctx, style, parts);
   drawLines(ctx, lines, style);
 };
