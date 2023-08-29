@@ -1,6 +1,6 @@
 export const parseText = (text) => {
   const parts = [];
-  const regex = /<\/?selected(\s+[^>]+)?>|\S+|\s+/g;
+  const regex = /<\/?selected(\s+[^>]+)?>|\s+|\w+/g;
   const regexSelected = /<selected(?=\s|>)/g;
   let match;
 
@@ -8,17 +8,18 @@ export const parseText = (text) => {
   let findAttribute = false;
 
   while ((match = regex.exec(text)) !== null) {
-    const [tag, attributes] = match;
-    if ((match = regexSelected.exec(tag)) !== null) {
+    const [text, attributes] = match;
+
+    if (regexSelected.test(text)) {
       selectedAttributes = parseAttributes(attributes);
       findAttribute = true;
-    } else if (tag === '</selected>') {
+    } else if (text === '</selected>') {
       selectedAttributes = null;
-    } else if (findAttribute) {
-      parts.push({ text: tag, selected: true, attributes: selectedAttributes });
       findAttribute = false;
+    } else if (findAttribute) {
+      parts.push({ text: text, selected: true, attributes: selectedAttributes });
     } else {
-      parts.push({ text: tag, selected: false });
+      parts.push({ text: text, selected: false });
     }
   }
 
@@ -35,11 +36,4 @@ const parseAttributes = (attributeString) => {
     attributes[name] = value;
   }
   return attributes;
-};
-
-export const addWidthToParts = (ctx, parts) => {
-  for (const word of parts) {
-    word.width = ctx.measureText(word.text).width;
-  }
-  return;
 };
