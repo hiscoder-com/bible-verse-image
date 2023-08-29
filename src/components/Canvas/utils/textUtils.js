@@ -28,25 +28,45 @@ const createLinesFromWords = (ctx, style, words) => {
   let currentLine = { x, y, words: [] };
   let currentLineWidth = 0;
   const lines = [];
+
   for (const word of words) {
+    const newlineCount = (word.text.match(/\n/g) || []).length;
+
+    if (newlineCount > 0) {
+      for (let i = 0; i < newlineCount; i++) {
+        lines.push(currentLine);
+        currentLine = { x, y: currentLine.y + lineHeight, words: [] };
+        currentLineWidth = 0;
+      }
+    }
+
+    const wordText = word.text.replace(/\n/g, '');
+    if (wordText === '') {
+      continue;
+    }
+
     if (word.selected) {
       ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${word.attributes.font}`;
     } else {
       ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
     }
-    word.width = parseInt(ctx.measureText(word.text).width);
+    word.width = parseInt(ctx.measureText(wordText).width);
 
     if (currentLineWidth + word.width <= blockWidth) {
-      currentLine.words.push(word);
+      currentLine.words.push({ ...word, text: wordText });
       currentLineWidth += word.width;
     } else {
       lines.push(currentLine);
-      currentLine = { x, y: currentLine.y + lineHeight, words: [word] };
+      currentLine = {
+        x,
+        y: currentLine.y + lineHeight,
+        words: [{ ...word, text: wordText }],
+      };
       currentLineWidth = word.width;
     }
   }
 
-  if (currentLine.words.length > 0) {
+  if (currentLine.words.length > 0 || lines.length === 0) {
     lines.push(currentLine);
   }
 
