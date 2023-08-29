@@ -13,20 +13,24 @@ let sections = [
     components: ['src/components/useSearchPhotos/useSearchPhotos.jsx'],
   },
   {
-    name: 'Canvas Block',
-    components: ['src/components/Canvas/Canvas.js'],
+    name: 'Canvas component',
+    content: 'src/components/Canvas/CanvasDescription.md',
     sections: [
       {
-        name: 'Canvas Figure',
+        name: 'Drawing shapes',
         content: 'src/components/Canvas/CanvasFigure.md',
       },
       {
-        name: 'Canvas Image',
+        name: 'Drawing an image',
         content: 'src/components/Canvas/CanvasImage.md',
       },
       {
-        name: 'Canvas Text',
+        name: 'Drawing text',
         content: 'src/components/Canvas/CanvasText.md',
+      },
+      {
+        name: 'Drawing general',
+        content: 'src/components/Canvas/CanvasAll.md',
       },
     ],
   },

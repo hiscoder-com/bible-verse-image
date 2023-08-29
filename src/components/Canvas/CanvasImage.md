@@ -1,15 +1,6 @@
-### Draw background
+##### Draw background
 
-## `infocanvas` Object
-
-The `infocanvas` object contains properties that define the dimensions and characteristics of the canvas where the text elements will be drawn.
-
-- `height` (_number, required_): Specifies the height of the canvas in pixels.
-- `width` (_number, required_): Specifies the width of the canvas in pixels.
-
-## `elements` Array
-
-To set a background image on the canvas, you can include an object in the `elements` array with the following properties:
+To set a background image on the canvas, you need include an object in the `elements` array with the following properties:
 
 - `type` (_string, required_): Specifies the type of the element. In this case, it should be set to `'background'`.
 
@@ -19,9 +10,9 @@ To set a background image on the canvas, you can include an object in the `eleme
 - `url` (_string, required_): The URL of the image to be used as the background.
 
 - `props` (_object, required_): An object containing properties for configuring the background image.
-  - `zoom` (_number_): The zoom factor to scale the background image.
-  - `offsetX` (_number_): The horizontal offset of the background image.
-  - `offsetY` (_number_): The vertical offset of the background image.
+- `zoom` (_number_): The zoom factor to scale the background image.
+- `offsetX` (_number_): The horizontal offset of the background image.
+- `offsetY` (_number_): The vertical offset of the background image.
 
 ```jsx
 import React from 'react';
@@ -49,7 +40,7 @@ const elements = [
 <Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
 ```
 
-### This is an example that allows you to select a background image from the file system
+##### This is an example that allows you to select a background image from the file system
 
 ```jsx
 import React, { useState, useEffect } from 'react';
@@ -120,18 +111,9 @@ const CanvasWithBackground = () => {
 <CanvasWithBackground />;
 ```
 
-### Draw image
+##### Draw image
 
-## `infocanvas` Object
-
-The `infocanvas` object contains properties that define the dimensions and characteristics of the canvas where the text elements will be drawn.
-
-- `height` (_number, required_): Specifies the height of the canvas in pixels.
-- `width` (_number, required_): Specifies the width of the canvas in pixels.
-
-## `elements` Array
-
-To display an image on the canvas, you can include an object in the `elements` array with the following properties:
+To display an image on the canvas, you need include an object in the `elements` array with the following properties:
 
 - `type` (_string, required_): Specifies the type of the element. In this case, it should be set to `'image'`.
 
@@ -141,7 +123,7 @@ To display an image on the canvas, you can include an object in the `elements` a
 - `url` (_string, required_): The URL of the image to be displayed.
 
 - `props` (_object, required_): An object containing properties for configuring the image element.
-  - `zoom` (_number_): The zoom factor to scale the image.
+- `zoom` (_number_): The zoom factor to scale the image.
 
 ```jsx
 import React from 'react';

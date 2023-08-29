@@ -1,15 +1,4 @@
-### Basic example draw text
-
-To use the component, these parameters must be initialized:
-
-## `infocanvas` Object
-
-The `infocanvas` object contains properties that define the dimensions and characteristics of the canvas where the text elements will be drawn.
-
-- `height` (_number, required_): Specifies the height of the canvas in pixels.
-- `width` (_number, required_): Specifies the width of the canvas in pixels.
-
-## `elements` Array
+##### Basic example draw text
 
 The `elements` array contains objects representing the elements to be drawn on the canvas. To draw a basic text element, you need to define these properties:
 
@@ -19,13 +8,13 @@ The `elements` array contains objects representing the elements to be drawn on t
 - `text` (_string, required_): The actual text content to be displayed.
 
 - `props` (_object, required_): An object containing properties for configuring the text element.
-  - `fillStyle` (_string_, default: 'black'): The color of the text.
-  - `fontStyle` (_string_, default: 'small-caps'): The style of the font
-  - `fontSize` (_number_, default: 15): The size of the font in pixels.
-  - `font` (_string_, default: 'Helvetica, Arial, sans-serif'): The font family to be used for the text.
-  - `alignment` (_string_, default: 'left'): The alignment of the text
-  - `blockWidth` (_number_, default: 450): The maximum width of the text block. Text will wrap within this width.
-  - `lineHeight` (_number_, default: 1.2 \* fontSize): The height of each line of text.
+- `fillStyle` (_string_, default: 'black'): The color of the text.
+- `fontStyle` (_string_, default: 'small-caps'): The style of the font
+- `fontSize` (_number_, default: 15): The size of the font in pixels.
+- `font` (_string_, default: 'Helvetica, Arial, sans-serif'): The font family to be used for the text.
+- `alignment` (_string_, default: 'left'): The alignment of the text
+- `blockWidth` (_number_, default: 450): The maximum width of the text block. Text will wrap within this width.
+- `lineHeight` (_number_, default: 1.2 \* fontSize): The height of each line of text.
 
 ```jsx
 import React from 'react';
@@ -57,16 +46,7 @@ const elements = [
 <Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
 ```
 
-### Drawing selected text
-
-## `infocanvas` Object
-
-The `infocanvas` object contains properties that define the dimensions and characteristics of the canvas where the text elements will be drawn.
-
-- `height` (_number, required_): Specifies the height of the canvas in pixels.
-- `width` (_number, required_): Specifies the width of the canvas in pixels.
-
-## `elements` Array
+##### Drawing selected text
 
 The `elements` array contains objects representing the elements to be drawn on the canvas. In this example, a single text element with selected text styling is defined using the following properties:
 
@@ -120,7 +100,7 @@ const elements = [
 <Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
 ```
 
-### This example is drawing combinations of plain and highlighted text
+##### This example is drawing combinations of plain and highlighted text
 
 ```jsx
 import React from 'react';

@@ -1,4 +1,4 @@
-### This is an example of the complex use of various elements on one canvas
+##### This is an example of the complex use of various elements on one canvas
 
 ```jsx
 import React from 'react';
@@ -31,7 +31,7 @@ const elements = [
     type: 'text',
     x: 225,
     y: 225,
-    text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love </selected> and <selected font="Arial" textColor ="white" backgroundColor = "green">joy </selected>',
+    text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love</selected> and <selected font="Arial" textColor ="white" backgroundColor = "green">joy </selected>',
     props: {
       fillStyle: 'blue',
       fontStyle: 'normal',
