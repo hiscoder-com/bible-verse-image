@@ -10,6 +10,7 @@ export const drawText = async (ctx, style) => {
   style.props.alignment = style.props.alignment ?? 'left';
 
   style.text = style.text ?? '';
+  style.text = style.text.replace(/\r/g, '');
   style.text = style.text.replace(/\t/g, '    ');
 
   const parts = parseText(style.text);
