@@ -34,7 +34,7 @@ const elements = [
     text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love </selected> and <selected font="Arial" textColor ="white" backgroundColor = "green">joy </selected>',
     props: {
       fillStyle: 'blue',
-      fontStyle: 'small-caps',
+      fontStyle: 'normal',
       fontSize: 90,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
@@ -49,7 +49,7 @@ const elements = [
     text: '1 Jon 4:8',
     props: {
       fillStyle: 'blue',
-      fontStyle: 'small-caps',
+      fontStyle: 'normal',
       fontSize: 40,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
@@ -64,7 +64,7 @@ const elements = [
     text: 'ESV',
     props: {
       fillStyle: 'blue',
-      fontStyle: 'small-caps',
+      fontStyle: 'normal',
       fontSize: 80,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
