@@ -22,6 +22,10 @@ const drawImageFromCache = async (pic, ctx, params) => {
 };
 
 export const drawBackgroundAndLogo = async (ctx, style) => {
+  style.props.zoom = style.props.zoom ?? 1;
+  style.props.offsetX = style.props.offsetX ?? 0;
+  style.props.offsetY = style.props.offsetY ?? 0;
+
   switch (style.type) {
     case 'background':
       if (style.url) {
@@ -52,41 +56,27 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
 
 const calculateImageParameters = (pic, ctx, backgroundimage) => {
   let sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height;
-
-  sourceX = 0;
-  sourceY = 0;
-  sourceWidth = pic.width;
-  sourceHeight = pic.height;
   x = 0;
   y = 0;
   width = ctx.canvas.width;
   height = ctx.canvas.height;
 
-  if (backgroundimage.zoom === undefined) {
-    ({ sourceX, sourceY, sourceWidth, sourceHeight } = centerImage(
-      pic,
-      ctx.canvas.width,
-      ctx.canvas.height
-    ));
-  } else {
-    const zoom = backgroundimage.zoom;
-    width = pic.width * zoom;
-    height = pic.height * zoom;
-    x = (ctx.canvas.width - width) / 2;
-    y = (ctx.canvas.height - height) / 2;
-  }
+  ({ sourceX, sourceY, sourceWidth, sourceHeight } = centerImage(
+    pic,
+    ctx.canvas.width,
+    ctx.canvas.height,
+    backgroundimage.zoom
+  ));
 
-  if (backgroundimage.offsetX !== undefined && backgroundimage.offsetY !== undefined) {
-    x += backgroundimage.offsetX;
-    y += backgroundimage.offsetY;
-  }
+  x += backgroundimage.offsetX;
+  y += backgroundimage.offsetY;
 
   return { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height };
 };
 
-const centerImage = (pic, canvasWidth, canvasHeight) => {
-  const imageWidth = pic.width;
-  const imageHeight = pic.height;
+const centerImage = (pic, canvasWidth, canvasHeight, zoom) => {
+  const imageWidth = pic.width / zoom;
+  const imageHeight = pic.height / zoom;
 
   const canvasAspectRatio = canvasWidth / canvasHeight;
   const imageAspectRatio = imageWidth / imageHeight;

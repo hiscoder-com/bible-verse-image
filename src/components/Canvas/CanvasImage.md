@@ -10,9 +10,9 @@ To set a background image on the canvas, you need include an object in the `elem
 - `url` (_string, required_): The URL of the image to be used as the background.
 
 - `props` (_object, required_): An object containing properties for configuring the background image.
-- `zoom` (_number_): The zoom factor to scale the background image.
-- `offsetX` (_number_): The horizontal offset of the background image.
-- `offsetY` (_number_): The vertical offset of the background image.
+- `zoom` (_number_, default: 1): The zoom factor to scale the background image.
+- `offsetX` (_number_,default: 0): The horizontal offset of the background image.
+- `offsetY` (_number_, default: 1): The vertical offset of the background image.
 
 ```jsx
 import React from 'react';
@@ -29,11 +29,7 @@ const elements = [
     x: 0,
     y: 0,
     url: 'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjQwOTl8MHwxfHNlYXJjaHwxfHx3aGl0ZXxlbnwwfHx8fDE2ODczNDczNTZ8MA&ixlib=rb-4.0.3&q=80&w=1200',
-    props: {
-      // zoom: 2,
-      // offsetX: 100,
-      // offsetY: 0,
-    },
+    props: {},
   },
 ];
 
@@ -123,7 +119,7 @@ To display an image on the canvas, you need include an object in the `elements` 
 - `url` (_string, required_): The URL of the image to be displayed.
 
 - `props` (_object, required_): An object containing properties for configuring the image element.
-- `zoom` (_number_): The zoom factor to scale the image.
+- `zoom` (_number_, default: 1): The zoom factor to scale the image.
 
 ```jsx
 import React from 'react';
@@ -137,8 +133,8 @@ const infocanvas = {
 const elements = [
   {
     type: 'image',
-    x: 50,
-    y: 50,
+    x: 0,
+    y: 0,
     url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
     props: {
       zoom: 0.5,
