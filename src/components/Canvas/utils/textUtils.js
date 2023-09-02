@@ -2,7 +2,7 @@ import { parseText } from './parseUtils.mjs';
 
 export const drawText = async (ctx, style) => {
   style.props.fontStyle = style.props.fontStyle ?? 'normal';
-  style.props.fontSize = style.props.fontSize ?? 15;
+  style.props.fontSize = style.props.fontSize ?? 16;
   style.props.font = style.props.font ?? 'Helvetica, Arial, sans-serif';
   style.props.lineHeight = style.props.lineHeight ?? 1.2 * style.props.fontSize;
 

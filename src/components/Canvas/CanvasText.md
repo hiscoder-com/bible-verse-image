@@ -9,8 +9,8 @@ The `elements` array contains objects representing the elements to be drawn on t
 
 - `props` (_object, required_): An object containing properties for configuring the text element.
 - `fillStyle` (_string_, default: 'black'): The color of the text.
-- `fontStyle` (_string_, default: 'small-caps'): The style of the font
-- `fontSize` (_number_, default: 15): The size of the font in pixels.
+- `fontStyle` (_string_, default: 'normal'): The style of the font
+- `fontSize` (_number_, default: 16): The size of the font in pixels.
 - `font` (_string_, default: 'Helvetica, Arial, sans-serif'): The font family to be used for the text.
 - `alignment` (_string_, default: 'left'): The alignment of the text
 - `blockWidth` (_number_, default: 450): The maximum width of the text block. Text will wrap within this width.
@@ -33,7 +33,7 @@ const elements = [
     text: 'love love ',
     props: {
       fillStyle: 'blue',
-      fontStyle: 'small-caps',
+      fontStyle: 'normal',
       fontSize: 120,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
@@ -57,8 +57,8 @@ The `elements` array contains objects representing the elements to be drawn on t
 - `props` (_object, required_): An object containing properties for configuring the text element.
 
   - `fillStyle` (_string_, default: 'black'): The color of the text.
-  - `fontStyle` (_string_, default: 'small-caps'): The style of the font
-  - `fontSize` (_number_, default: 15): The size of the font in pixels.
+  - `fontStyle` (_string_, default: 'normal'): The style of the font
+  - `fontSize` (_number_, default: 16): The size of the font in pixels.
   - `font` (_string_, default: 'Helvetica, Arial, sans-serif'): The font family to be used for the text.
   - `alignment` (_string_, default: 'left'): The alignment of the text
   - `blockWidth` (_number_, default: 450): The maximum width of the text block. Text will wrap within this width.
@@ -87,7 +87,7 @@ const elements = [
     text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love</selected> ',
     props: {
       fillStyle: 'blue',
-      fontStyle: 'small-caps',
+      fontStyle: 'normal',
       fontSize: 90,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
