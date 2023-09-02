@@ -66,9 +66,9 @@ The `elements` array contains objects representing the elements to be drawn on t
 
   The `<selected>` tag supports the following attributes to customize the styling of the enclosed text:
 
-  - `font` (_string_): The font family to be used for the selected text.
-  - `textColor` (_string_): The color of the selected text.
-  - `backgroundColor` (_string_): The background color behind the selected text.
+  - `font` (_string_, default: props.font): The font family to be used for the selected text.
+  - `textColor` (_string_, default: props.fillStyle): The color of the selected text.
+  - `backgroundColor` (_string_, default: 'white'): The background color behind the selected text.
 
 ```jsx
 import React from 'react';

@@ -8,6 +8,7 @@ export const drawText = async (ctx, style) => {
 
   style.props.blockWidth = style.props.blockWidth ?? 450;
   style.props.alignment = style.props.alignment ?? 'left';
+  style.props.fillStyle = style.props.fillStyle ?? 'black';
 
   style.text = style.text ?? '';
   style.text = style.text.replace(/\r/g, '');
@@ -97,6 +98,10 @@ const drawLines = (ctx, lines, style) => {
 
     for (const word of line.words) {
       if (word.selected) {
+        word.attributes.backgroundColor = word.attributes.backgroundColor ?? 'white';
+        word.attributes.textColor = word.attributes.textColor ?? style.props.fillStyle;
+        word.attributes.font = word.attributes.font ?? style.props.font;
+
         drawWordInRectangle(ctx, word, x, y, word.attributes, style);
       } else if (word.text !== ' ') {
         ctx.fillStyle = style.props.fillStyle;
