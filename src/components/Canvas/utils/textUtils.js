@@ -1,4 +1,4 @@
-import { parseText } from './parseUtils.mjs';
+import { parseText } from './parseUtils.js';
 
 export const drawText = async (ctx, style) => {
   style.props.fontStyle = style.props.fontStyle ?? 'normal';

@@ -1,6 +1,6 @@
 export const parseText = (text) => {
   const parts = [];
-  const regex = /<\/?selected(\s+[^>]+)?>|\s+|[\p{L}-]+/gu;
+  const regex = /<\/?selected(\s+[^>]+)?>|\s+|[\p{L}-]+|[\p{P}]|\d+/gu;
   const regexSelected = /<selected(?=\s|>)/g;
   let match;
 
