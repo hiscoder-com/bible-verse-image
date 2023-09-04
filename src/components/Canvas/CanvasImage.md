@@ -12,7 +12,7 @@ To set a background image on the canvas, you need include an object in the `elem
 - `props` (_object, required_): An object containing properties for configuring the background image.
 - `zoom` (_number_, default: 1): The zoom factor to scale the background image.
 - `offsetX` (_number_,default: 0): The horizontal offset of the background image.
-- `offsetY` (_number_, default: 1): The vertical offset of the background image.
+- `offsetY` (_number_, default: 0): The vertical offset of the background image.
 
 ```jsx
 import React from 'react';
