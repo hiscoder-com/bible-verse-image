@@ -30,15 +30,11 @@ const infocanvas = {
 const elements = [
   {
     type: 'background',
-    x: 0,
-    y: 0,
     url: image.srcimage,
     props: {},
   },
   {
     type: 'image',
-    x: 0,
-    y: 0,
     url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
     props: {
       zoom: 0.5,

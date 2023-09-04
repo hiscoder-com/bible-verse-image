@@ -38,14 +38,14 @@
     "lint": "eslint --fix .",
     "precommit": "lint-staged",
     "prepare": "husky install",
-    "prepublishOnly": "shx rm -rf ./dist & babel ./src --out-dir ./dist -s inline",
     "prettier": "prettier --write .",
     "build:babel": "babel ./src --out-dir ./dist -s inline --ignore './src/components/**/*.jsx'",
     "release": "standard-version",
     "release:first": "standard-version --first-release",
     "release:major": "standard-version --release-as major",
     "release:minor": "standard-version --release-as minor",
-    "release:patch": "standard-version --release-as patch"
+    "release:patch": "standard-version --release-as patch",
+    "prepublishOnly": "shx rm -rf ./dist && npm run build:babel"
   },
   "peerDependencies": {
     "prop-types": ">=15",
@@ -75,8 +75,7 @@
     "react-styleguidist": "^13.1.1",
     "shx": "^0.3.4",
     "standard-version": "^9.5.0",
-    "dotenv-webpack": "^8.0.1",
-    "webpack": "^5.88.2"
+    "dotenv-webpack": "^8.0.1"
   },
   "dependencies": {
     "unsplash-js": "^7.0.18"

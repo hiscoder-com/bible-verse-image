@@ -42,10 +42,10 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
       if (style.url) {
         try {
           const logo = await loadImageFromCache(style.url);
-          const { x, y, props } = style;
-          const logoWidth = logo.width * props.zoom;
-          const logoHeight = logo.height * props.zoom;
-          ctx.drawImage(logo, x, y, logoWidth, logoHeight);
+          const { zoom, offsetX, offsetY } = style.props;
+          const logoWidth = logo.width * zoom;
+          const logoHeight = logo.height * zoom;
+          ctx.drawImage(logo, offsetX, offsetY, logoWidth, logoHeight);
         } catch (error) {
           console.error('Error loading logo image:', error);
         }
