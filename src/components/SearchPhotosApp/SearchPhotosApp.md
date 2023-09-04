@@ -14,6 +14,7 @@
 ```jsx
 import React, { useState } from 'react';
 import { SearchPhotosApp } from '@texttree/bible-verse-image';
+import UNSPLASH_KEY from '../../utils/unSplashKey.js';
 
 const styleClass = {
   appStyle: 'm-0 p-0',
@@ -43,6 +44,7 @@ function Component() {
         <h6 className={styleClass.urlStyle}>{`Current URL: ${url}`}</h6>
         <div className={styleClass.mainStyle}>
           <SearchPhotosApp
+            unSplashKey={UNSPLASH_KEY}
             handleChangeUrl={setUrl}
             styleClassComponets={styleClassComponets}
           />
