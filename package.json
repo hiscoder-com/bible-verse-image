@@ -79,6 +79,6 @@
     "webpack": "^5.88.2"
   },
   "dependencies": {
-    "unsplash-js": "^6.3.0"
+    "unsplash-js": "^7.0.18"
   }
 }
