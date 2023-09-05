@@ -75,7 +75,8 @@
     "react-styleguidist": "^13.1.1",
     "shx": "^0.3.4",
     "standard-version": "^9.5.0",
-    "dotenv-webpack": "^8.0.1"
+    "dotenv-webpack": "^8.0.1",
+    "webpack": "^5.88.2"
   },
   "dependencies": {
     "unsplash-js": "^7.0.18"
