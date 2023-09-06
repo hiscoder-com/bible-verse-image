@@ -5,6 +5,7 @@ __tests__/
 images/
 node_modules/
 src/
+dist/utils/unSplashKey.js
 styleguide/
 .editorconfig
 .gitignore
@@ -19,8 +20,6 @@ styleguide/
 .prettierignore
 .versionrc.json
 babel.config.json
-package.json
-unSplashKey.js
 styleguide.config.js
 styleguide.styles.js
 yalc.lock
