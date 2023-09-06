@@ -45,7 +45,7 @@
     "release:major": "standard-version --release-as major",
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
-    "prepublishOnly": "shx rm -rf ./dist && npm run build:babel"
+    "prepublishOnly": "shx rm -rf ./dist && yarn run build:babel"
   },
   "peerDependencies": {
     "prop-types": ">=15",
