@@ -1,16 +1,23 @@
-import Unsplash, { toJson } from 'unsplash-js';
+import { createApi } from 'unsplash-js';
 
 async function searchPhotosApi(key, query) {
-  const unsplash = new Unsplash({
+  const unsplash = createApi({
     accessKey: key,
   });
 
-  return unsplash.search
-    .photos(query)
-    .then(toJson)
-    .then((json) => {
-      return json.results;
+  try {
+    const response = await unsplash.search.getPhotos({
+      query,
     });
+
+    if (response.type === 'success') {
+      return response.response.results;
+    } else {
+      throw new Error('Search failed');
+    }
+  } catch (error) {
+    throw error;
+  }
 }
 
 export default searchPhotosApi;

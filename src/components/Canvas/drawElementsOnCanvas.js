@@ -1,6 +1,6 @@
-import { drawBackgroundAndLogo } from './imageUtils';
-import { drawRectangle, drawLine, drawTriangle, drawOval } from './figureUtils';
-import { drawText } from './textUtils';
+import { drawBackgroundAndLogo } from './utils/imageUtils';
+import { drawRectangle, drawLine, drawTriangle, drawOval } from './utils/figureUtils';
+import { drawText } from './utils/textUtils';
 
 export const drawElementsOnCanvas = async (ctx, elements) => {
   for (const style of elements) {

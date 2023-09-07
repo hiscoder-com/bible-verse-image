@@ -1,4 +1,4 @@
-### Default example
+##### Default example
 
 ```jsx
 import React, { useState, useEffect } from 'react';
@@ -16,10 +16,7 @@ const [image, setImage] = useState({});
 useEffect(() => {
   if (arrayQuery.length >= 4) {
     const image = {
-      srcimage: arrayQuery[4].urls.full,
-      // zoom: 0.6,
-      // offsetX: 100,
-      // offsetY: 80,
+      srcimage: arrayQuery[2].urls.full,
     };
     setImage(image);
   }
@@ -32,22 +29,14 @@ const infocanvas = {
 
 const elements = [
   {
-    type: 'background', // Change the type to 'image'
-    x: 0,
-    y: 0,
-    props: {
-      url: image.srcimage, // Use the srcimage from the state
-      // zoom: 0.5,
-      // offsetX: 0,
-      // offsetY: 0,
-    },
+    type: 'background',
+    url: image.srcimage,
+    props: {},
   },
   {
     type: 'image',
-    x: 50,
-    y: 50,
+    url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
     props: {
-      url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
       zoom: 0.5,
     },
   },
@@ -55,10 +44,10 @@ const elements = [
     type: 'text',
     x: 225,
     y: 225,
+    text: 'Привет!',
     props: {
-      text: 'God is love',
       fillStyle: 'blue',
-      fontStyle: 'small-caps',
+      fontStyle: 'normal',
       fontSize: 120,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
@@ -66,42 +55,11 @@ const elements = [
       lineHeight: 144,
     },
   },
-
-  {
-    type: 'text',
-    x: 225,
-    y: 565,
-    props: {
-      text: '1 Jon 4:8',
-      fillStyle: 'blue',
-      fontStyle: 'small-caps',
-      fontSize: 40,
-      font: 'Helvetica, Arial, sans-serif',
-      alignment: 'center',
-      blockWidth: 450,
-    },
-  },
-
-  {
-    type: 'text',
-    x: 225,
-    y: 750,
-    props: {
-      text: 'ESV',
-      fillStyle: 'blue',
-      fontStyle: 'small-caps',
-      fontSize: 80,
-      font: 'Helvetica, Arial, sans-serif',
-      alignment: 'center',
-      blockWidth: 450,
-    },
-  },
 ];
 
 function Component() {
   return (
     <Canvas
-      organization="OBT"
       infocanvas={infocanvas}
       backgroundimage={image}
       elements={elements}

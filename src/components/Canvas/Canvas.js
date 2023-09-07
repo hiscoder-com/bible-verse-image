@@ -1,6 +1,6 @@
 import React, { useEffect, memo } from 'react';
 import { useCanvasContext } from './useCanvasContext';
-import { drawElementsOnCanvas } from './canvasUtils';
+import { drawElementsOnCanvas } from './drawElementsOnCanvas';
 
 // eslint-disable-next-line react/display-name
 const Canvas = memo(({ infocanvas, elements, ...props }) => {
@@ -11,7 +11,6 @@ const Canvas = memo(({ infocanvas, elements, ...props }) => {
 
   useEffect(() => {
     const draw = async () => {
-      console.log('Drawing...');
       const ctx = contextRef?.current;
       if (!ctx) {
         return;

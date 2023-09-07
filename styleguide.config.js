@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const { name, version, url } = require('./package.json');
 
@@ -13,12 +12,26 @@ let sections = [
     components: ['src/components/useSearchPhotos/useSearchPhotos.jsx'],
   },
   {
-    name: 'Button Block',
-    components: ['src/components/Button/Button.js'],
-  },
-  {
-    name: 'Canvas Block',
-    components: ['src/components/Canvas/Canvas.js'],
+    name: 'Canvas component',
+    content: 'src/components/Canvas/CanvasDescription.md',
+    sections: [
+      {
+        name: 'Drawing shapes',
+        content: 'src/components/Canvas/CanvasFigure.md',
+      },
+      {
+        name: 'Drawing an image',
+        content: 'src/components/Canvas/CanvasImage.md',
+      },
+      {
+        name: 'Drawing text',
+        content: 'src/components/Canvas/CanvasText.md',
+      },
+      {
+        name: 'Drawing general',
+        content: 'src/components/Canvas/CanvasAll.md',
+      },
+    ],
   },
   {
     name: 'Search Block',

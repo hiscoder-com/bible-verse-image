@@ -1,26 +1,26 @@
 <div id="top"></div>
 
-[![Contributors](https://img.shields.io/github/contributors/texttree/template-rcl.svg?style=for-the-badge)](https://github.com/texttree/template-rcl/graphs/contributors)
-[![Forks](https://img.shields.io/github/forks/texttree/template-rcl.svg?style=for-the-badge)](https://github.com/texttree/template-rcl/network/members)
+[![Contributors](https://img.shields.io/github/contributors/texttree/bible-verse-image.svg?style=for-the-badge)](https://github.com/texttree/bible-verse-image/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/texttree/bible-verse-image.svg?style=for-the-badge)](https://github.com/texttree/template-rcl/network/members)
 [![Stargazers](https://img.shields.io/github/stars/texttree/template-rcl.svg?style=for-the-badge)](https://github.com/texttree/template-rcl/stargazers)
 [![Issues](https://img.shields.io/github/issues/texttree/template-rcl.svg?style=for-the-badge)](https://github.com/texttree/template-rcl/issues)
 [![MIT License](https://img.shields.io/github/license/texttree/template-rcl.svg?style=for-the-badge)](https://github.com/texttree/template-rcl/blob/master/LICENSE)
 
 <div align="center">
-  <a href="https://github.com/texttree/template-rcl">
-    <img src="https://github.com/texttree/template-rcl/raw/master/images/logo.svg" alt="Logo" width="256" height="256">
+  <a href="https://github.com/texttree/bible-verse-image">
+    <img src="https://github.com/texttree/bible-verse-image/raw/master/images/logo.svg" alt="Logo" width="256" height="256">
   </a>
 </div>
 
-<h2><div align="center">project_title</div></h2>
+<h2><div align="center">Canvas</div></h2>
 <br />
 
 <center><strong><a href="https://bible-verse-image.netlify.app/">Explore the docs and code playground »</a></strong></center>
 <br />
 <br />
 <center>
-  <a href="https://github.com/texttree/template-rcl/issues">Report Bug · </a>
-  <a href="https://github.com/texttree/template-rcl/issues">Request Feature</a>
+  <a href="https://github.com/texttree/bible-verse-image/issues">Report Bug · </a>
+  <a href="https://github.com/texttree/bible-verse-image/issues">Request Feature</a>
 </center>
 
 <br />
@@ -52,7 +52,7 @@
 
 ## About The Project
 
-<img src="https://github.com/texttree/template-rcl/raw/master/images/screenshot.png" alt="Projector Mode RCL Shot" width="100%">
+<img src="https://github.com/texttree/bible-verse-image/raw/master/images/screenshot.png" alt="Projector Mode RCL Shot" width="100%">
 
 Description
 
@@ -86,13 +86,13 @@ Add the library to your React app
 - yarn
 
 ```bash
-yarn add @texttree/template-rcl
+yarn add @texttree/bible-verse-image
 ```
 
 - npm
 
 ```bash
-npm install @texttree/template-rcl
+npm install @texttree/bible-verse-image
 ```
 
 <a style="text-align: right; display: block" href="#top">(back to top)</a>
@@ -111,7 +111,7 @@ _For more examples, please refer to the [Styleguidist link](https://template-rcl
 
 ## Roadmap
 
-See the [open issues](https://github.com/texttree/template-rcl/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/texttree/bible-verse-image/issues) for a full list of proposed features (and known issues).
 
 <a style="text-align: right; display: block" href="#top">(back to top)</a>
 
@@ -138,7 +138,7 @@ If you would like to fork the repo and create a pull request.
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/texttree/template-rcl/blob/master/LICENSE) for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/texttree/bible-verse-image/blob/master/LICENSE) for more information.
 
 <a style="text-align: right; display: block" href="#top">(back to top)</a>
 
@@ -146,6 +146,6 @@ Distributed under the MIT License. See [LICENSE](https://github.com/texttree/tem
 
 ## Contact
 
-Project Link: [https://github.com/texttree/template-rcl](https://github.com/texttree/template-rcl)
+Project Link: [https://github.com/texttree/bible-verse-image](https://github.com/texttree/bible-verse-image)
 
 <a style="text-align: right; display: block" href="#top">(back to top)</a>
