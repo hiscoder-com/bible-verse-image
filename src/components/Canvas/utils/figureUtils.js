@@ -14,6 +14,9 @@ export const drawRectangle = (ctx, style) => {
   ctx.beginPath();
   ctx.rect(x, y, width, height);
 
+  style.props.filter = style.props.filter ?? 'none';
+  ctx.filter = style.props.filter;
+
   ctx.fillStyle = fillColor === undefined ? defaultFillColor : fillColor;
   ctx.fill();
 
@@ -52,6 +55,9 @@ export const drawTriangle = (ctx, style) => {
     props: { fillColor, strokeColor, strokeWidth },
   } = style;
 
+  style.props.filter = style.props.filter ?? 'none';
+  ctx.filter = style.props.filter;
+
   ctx.beginPath();
   ctx.moveTo(vertex1.x, vertex1.y);
   ctx.lineTo(vertex2.x, vertex2.y);
@@ -80,6 +86,9 @@ export const drawOval = (ctx, style) => {
     radiusY,
     props: { fillColor, strokeColor, strokeWidth },
   } = style;
+
+  style.props.filter = style.props.filter ?? 'none';
+  ctx.filter = style.props.filter;
 
   ctx.beginPath();
   ctx.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
