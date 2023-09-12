@@ -17,7 +17,7 @@ The `elements` array contains objects representing the elements to be drawn on t
 - `lineHeight` (_number_, default: 1.2 \* fontSize): The height of each line of text.
 - `letterSpacing`(_number_, default: 0): The letterSpacing specifies the spacing between letters when drawing text.This corresponds to the CSS letter-spacing. The default is 0px. The property can be used to get or set the spacing. The property value will remain unchanged if set to an invalid/unparsable value.
 - `rotate`(_number_, default: 0): The rotate adds a rotation for elements. The default is 0 degree.
-- `filter` (fuction, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
+- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
   - `url()`: Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
   - `blur()`: Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
   - `brightness()`: Applies a linear multiplier to the drawing, making it appear brighter or darker. A value under 100% darkens the image, while a value over 100% brightens it. A value of 0% will create an image that is completely black, while a value of 100% leaves the input unchanged.

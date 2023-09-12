@@ -10,7 +10,7 @@ To set a background image on the canvas, you need include an object in the `elem
 - `offsetX` (_number_,default: 0): The horizontal offset of the background image.
 - `offsetY` (_number_, default: 0): The vertical offset of the background image.
 - `rotate`(_number_, default: 0): The rotate adds a rotation for elements. The default is 0 degree.
-- `filter` (fuction, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
+- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
   - `url()`: A CSS url(). Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
   - `blur()`: A CSS `<length>`. Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
   - `brightness()`: A CSS `<percentage>`. Applies a linear multiplier to the drawing, making it appear brighter or darker. A value under 100% darkens the image, while a value over 100% brightens it. A value of 0% will create an image that is completely black, while a value of 100% leaves the input unchanged.
@@ -131,7 +131,7 @@ To display an image on the canvas, you need include an object in the `elements` 
 - `offsetX` (_number_,default: 0): The horizontal offset of the image.
 - `offsetY` (_number_, default: 0): The vertical offset of the image.
 - `rotate`(_number_, default: 0): The rotate adds a rotation for elements. The default is 0 degree.
-- `filter` (fuction, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
+- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
   - `url()`: A CSS url(). Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
   - `blur()`: A CSS `<length>`. Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
   - `brightness()`: Applies a linear multiplier to the drawing, making it appear brighter or darker. A value under 100% darkens the image, while a value over 100% brightens it. A value of 0% will create an image that is completely black, while a value of 100% leaves the input unchanged.

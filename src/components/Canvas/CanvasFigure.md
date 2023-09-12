@@ -54,7 +54,7 @@ To draw a rectangle on the canvas, you need include an object in the `elements` 
 - `fillColor` (_string_, default: 'white'): The fill color of the rectangle.
 - `strokeColor` (_string_, default: 'black'): The stroke color of the rectangle's border.
 - `strokeWidth` (_number_, default: 1): The width of the rectangle's border in pixels.
-- `filter` (fuction, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
+- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
   - `url()`: A CSS url(). Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
   - `blur()`: A CSS <length>. Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
   - `brightness()`: A CSS <percentage>. Applies a linear multiplier to the drawing, making it appear brighter or darker. A value under 100% darkens the image, while a value over 100% brightens it. A value of 0% will create an image that is completely black, while a value of 100% leaves the input unchanged.
@@ -121,7 +121,7 @@ Each vertex of the triangle is defined using the following properties:
 - `fillColor` (_string_, default: 'white'): The fill color of the triangle.
 - `strokeColor` (_string_, default: 'black'): The stroke color of the triangle's border.
 - `strokeWidth` (_number_, default: 1): The width of the triangle's border in pixels.
-- `filter` (fuction, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
+- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
   - `url()`: A CSS url(). Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
   - `blur()`: A CSS <length>. Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
   - `brightness()`: A CSS <percentage>. Applies a linear multiplier to the drawing, making it appear brighter or darker. A value under 100% darkens the image, while a value over 100% brightens it. A value of 0% will create an image that is completely black, while a value of 100% leaves the input unchanged.
@@ -179,7 +179,7 @@ To draw an oval (ellipse) on the canvas, you need include an object in the `elem
 - `fillColor` (_string_, default: 'white'): The fill color of the oval.
 - `strokeColor` (_string_, default: 'black'): The stroke color of the oval's border.
 - `strokeWidth` (_number_, default: 1): The width of the oval's border in pixels.
-- `filter` (fuction, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
+- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
   - `url()`: Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
   - `blur()`: Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
   - `brightness()`: Applies a linear multiplier to the drawing, making it appear brighter or darker. A value under 100% darkens the image, while a value over 100% brightens it. A value of 0% will create an image that is completely black, while a value of 100% leaves the input unchanged.
