@@ -39,7 +39,7 @@ const elements = [
       blockWidth: 450,
       lineHeight: 144,
       letterSpacing: 25,
-      rotation: 1,
+      rotate: 1,
     },
   },
   {

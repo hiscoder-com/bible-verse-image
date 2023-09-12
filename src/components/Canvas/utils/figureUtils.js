@@ -36,6 +36,9 @@ export const drawLine = (ctx, style) => {
     props: { lineColor, lineWidth },
   } = style;
 
+  style.props.filter = style.props.filter ?? 'none';
+  ctx.filter = style.props.filter;
+
   ctx.beginPath();
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);

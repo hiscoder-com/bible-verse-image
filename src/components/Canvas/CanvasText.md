@@ -16,7 +16,7 @@ The `elements` array contains objects representing the elements to be drawn on t
 - `blockWidth` (_number_, default: 450): The maximum width of the text block. Text will wrap within this width.
 - `lineHeight` (_number_, default: 1.2 \* fontSize): The height of each line of text.
 - `letterSpacing`(_number_, default: 0): The letterSpacing specifies the spacing between letters when drawing text.This corresponds to the CSS letter-spacing. The default is 0px. The property can be used to get or set the spacing. The property value will remain unchanged if set to an invalid/unparsable value.
-- `rotate`(_number_, default: 0): The rotate adds a rotation for elements. The default is 0 degree.
+- `rotate`(_number_, default: 0): The rotate adds a rotate for elements. The default is 0 degree.
 - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
   - `url()`: Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
   - `blur()`: Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
@@ -28,7 +28,7 @@ The `elements` array contains objects representing the elements to be drawn on t
   - `<blur-radius>`: The larger this value, the bigger the blur, so the shadow becomes bigger and lighter. Negative values are not allowed.
   - `<color>`: See `<color>` values for possible keywords and notations.
   - `grayscale()`: Converts the drawing to grayscale. A value of 100% is completely grayscale. A value of 0% leaves the drawing unchanged.
-  - `hue-rotate()`: Applies a hue rotation on the drawing. A value of 0deg leaves the input unchanged.
+  - `hue-rotate()`: Applies a hue rotate on the drawing. A value of 0deg leaves the input unchanged.
   - `invert()`: Inverts the drawing. A value of 100% means complete inversion. A value of 0% leaves the drawing unchanged.
   - `opacity()`: Applies transparency to the drawing. A value of 0% means completely transparent. A value of 100% leaves the drawing unchanged.
   - `saturate()`: Saturates the drawing. A value of 0% means completely un-saturated. A value of 100% leaves the drawing unchanged.
