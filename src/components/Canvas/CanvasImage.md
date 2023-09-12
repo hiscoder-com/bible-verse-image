@@ -25,7 +25,9 @@ To set a background image on the canvas, you need include an object in the `elem
   - `opacity()`: Applies transparency to the drawing. A value of 0% means completely transparent. A value of 100% leaves the drawing unchanged.
   - `saturate()`: Saturates the drawing. A value of 0% means completely un-saturated. A value of 100% leaves the drawing unchanged.
   - `sepia()`: Converts the drawing to sepia. A value of 100% means completely sepia. A value of 0% leaves the drawing unchanged.
-    By default, the background will be drawn starting from the upper left corner.
+    See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+
+By default, the background will be drawn starting from the upper left corner.
 
 ```jsx
 import React from 'react';
@@ -145,7 +147,9 @@ To display an image on the canvas, you need include an object in the `elements` 
   - `opacity()`: Applies transparency to the drawing. A value of 0% means completely transparent. A value of 100% leaves the drawing unchanged.
   - `saturate()`: Saturates the drawing. A value of 0% means completely un-saturated. A value of 100% leaves the drawing unchanged.
   - `sepia()`: Converts the drawing to sepia. A value of 100% means completely sepia. A value of 0% leaves the drawing unchanged.
-    By default, the image will be drawn starting from the upper left corner.
+    See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+
+By default, the image will be drawn starting from the upper left corner.
 
 ```jsx
 import React from 'react';
@@ -165,6 +169,40 @@ const elements = [
       offsetX: 0,
       offsetY: 0,
       filter: 'blur(1px)',
+    },
+  },
+];
+
+<Canvas
+  organization="OBT"
+  infocanvas={infocanvas}
+  elements={elements}
+  className={'w-full'}
+/>;
+```
+
+##### Applying multiple filters
+
+You can combine as many filters as you like using spaces between filters. In this example, brightness, contrast, and shadow casting filters are applied to a dog photo.
+
+```jsx
+import React from 'react';
+
+import { Canvas } from '@texttree/bible-verse-image';
+const infocanvas = {
+  height: 900,
+  width: 900,
+};
+
+const elements = [
+  {
+    type: 'image',
+    url: 'https://images.unsplash.com/photo-1694191864312-ab0171f598c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+    props: {
+      zoom: 1,
+      offsetX: 0,
+      offsetY: 0,
+      filter: 'brightness(90%) contrast(1) drop-shadow(-9px 9px 3px #e81)',
     },
   },
 ];
