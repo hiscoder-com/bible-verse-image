@@ -39,7 +39,6 @@ const elements = [
       blockWidth: 450,
       lineHeight: 144,
       letterSpacing: 25,
-      filter: '',
       rotation: 1,
     },
   },
