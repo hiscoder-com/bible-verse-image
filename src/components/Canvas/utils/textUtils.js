@@ -12,8 +12,6 @@ export const drawText = async (ctx, style) => {
 
   style.props.letterSpacing = style.props.letterSpacing ?? 0;
   style.props.filter = style.props.filter ?? 'none';
-  style.props.rotate = style.props.rotate ?? 0;
-  ctx.setTransform(1, 0, 0, 1, 0, 0); //reset rotate
 
   style.text = style.text ?? '';
   style.text = style.text.replace(/\r/g, '');
@@ -113,7 +111,6 @@ const drawLines = (ctx, lines, style) => {
       } else if (word.text !== ' ') {
         ctx.fillStyle = style.props.fillStyle;
         ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
-        ctx.rotate((style.props.rotate * Math.PI) / 180);
         ctx.filter = style.props.filter;
         ctx.fillText(word.text, x, y);
       }

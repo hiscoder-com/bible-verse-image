@@ -26,8 +26,6 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
   style.props.offsetX = style?.props?.offsetX ?? 0;
   style.props.offsetY = style?.props?.offsetY ?? 0;
   style.props.filter = style.props.filter ?? 'none';
-  style.props.rotate = style.props.rotate ?? 0;
-  ctx.setTransform(1, 0, 0, 1, 0, 0); //reset rotate
 
   switch (style.type) {
     case 'background':
@@ -37,12 +35,7 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
           const elementWithDimensions = calculateImageParameters(pic, ctx, style.props);
 
           ctx.filter = style.props.filter;
-          console.log(style.props.rotate, 38);
-          ctx.rotate((style.props.rotate * Math.PI) / 180);
-          ctx.translate(elementWithDimensions.sourceX, elementWithDimensions.sourceY);
-
           await drawImageFromCache(pic, ctx, elementWithDimensions);
-          ctx.rotate((-style.props.rotate * Math.PI) / 180);
         } catch (error) {
           console.error('Error loading background image:', error);
         }
@@ -56,7 +49,6 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
           const logoWidth = logo.width * zoom;
           const logoHeight = logo.height * zoom;
 
-          ctx.rotate((style.props.rotate * Math.PI) / 180);
           ctx.filter = style.props.filter;
           ctx.drawImage(logo, offsetX, offsetY, logoWidth, logoHeight);
         } catch (error) {

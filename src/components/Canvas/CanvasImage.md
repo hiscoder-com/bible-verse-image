@@ -9,7 +9,6 @@ To set a background image on the canvas, you need include an object in the `elem
 - `zoom` (_number_, default: 1): The zoom factor to scale the background image.
 - `offsetX` (_number_,default: 0): The horizontal offset of the background image.
 - `offsetY` (_number_, default: 0): The vertical offset of the background image.
-- `rotate`(_number_, default: 0): The rotate adds a rotate for elements. The default is 0 degree.
 - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
   - `url()`: Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
   - `blur()`: Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
@@ -42,7 +41,6 @@ const elements = [
     type: 'background',
     url: 'https://images.unsplash.com/photo-1546587348-d12660c30c50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bmF0dXJhbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=80&w=1200',
     props: {
-      rotate: 90,
       filter: 'sepia(1)',
     },
   },
@@ -65,9 +63,7 @@ const infocanvas = {
 const initialBackgroundElement = {
   type: 'background',
   url: '',
-  props: {
-    rotate: 1,
-  },
+  props: {},
 };
 
 const CanvasWithBackground = () => {
@@ -133,7 +129,6 @@ To display an image on the canvas, you need include an object in the `elements` 
 - `zoom` (_number_, default: 1): The zoom factor to scale the image.
 - `offsetX` (_number_,default: 0): The horizontal offset of the image.
 - `offsetY` (_number_, default: 0): The vertical offset of the image.
-- `rotate`(_number_, default: 0): The rotate adds a rotate for elements. The default is 0 degree.
 - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
   - `url()`: A CSS url(). Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
   - `blur()`: A CSS `<length>`. Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
