@@ -17,11 +17,11 @@ export const drawRectangle = (ctx, style) => {
   style.props.filter = style.props.filter ?? 'none';
   ctx.filter = style.props.filter;
 
-  ctx.fillStyle = fillColor === undefined ? defaultFillColor : fillColor;
+  ctx.fillStyle = fillColor ?? defaultFillColor;
   ctx.fill();
 
-  ctx.strokeStyle = strokeColor === undefined ? defaultStrokeColor : strokeColor;
-  ctx.lineWidth = strokeWidth === undefined ? defaultWidth : strokeWidth;
+  ctx.strokeStyle = strokeColor ?? defaultStrokeColor;
+  ctx.lineWidth = strokeWidth ?? defaultWidth;
 
   ctx.stroke();
   ctx.closePath();
@@ -40,8 +40,8 @@ export const drawLine = (ctx, style) => {
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
 
-  ctx.strokeStyle = lineColor === undefined ? defaultStrokeColor : lineColor;
-  ctx.lineWidth = lineWidth === undefined ? defaultWidth : lineWidth;
+  ctx.strokeStyle = lineColor ?? defaultStrokeColor;
+  ctx.lineWidth = lineWidth ?? defaultWidth;
 
   ctx.stroke();
   ctx.closePath();
@@ -64,11 +64,11 @@ export const drawTriangle = (ctx, style) => {
   ctx.lineTo(vertex3.x, vertex3.y);
   ctx.closePath();
 
-  ctx.fillStyle = fillColor === undefined ? defaultFillColor : fillColor;
+  ctx.fillStyle = fillColor ?? defaultFillColor;
   ctx.fill();
 
-  ctx.strokeStyle = strokeColor === undefined ? defaultStrokeColor : strokeColor;
-  ctx.lineWidth = strokeWidth === undefined ? defaultWidth : strokeWidth;
+  ctx.strokeStyle = strokeColor ?? defaultStrokeColor;
+  ctx.lineWidth = strokeWidth ?? defaultWidth;
   ctx.moveTo(vertex1.x, vertex1.y);
   ctx.lineTo(vertex2.x, vertex2.y);
   ctx.moveTo(vertex2.x, vertex2.y);
@@ -93,11 +93,11 @@ export const drawOval = (ctx, style) => {
   ctx.beginPath();
   ctx.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
 
-  ctx.fillStyle = fillColor === undefined ? defaultFillColor : fillColor;
+  ctx.fillStyle = fillColor ?? defaultFillColor;
   ctx.fill();
 
-  ctx.strokeStyle = strokeColor === undefined ? defaultStrokeColor : strokeColor;
-  ctx.lineWidth = strokeWidth === undefined ? defaultWidth : strokeWidth;
+  ctx.strokeStyle = strokeColor ?? defaultStrokeColor;
+  ctx.lineWidth = strokeWidth ?? defaultWidth;
 
   ctx.stroke();
   ctx.closePath();
