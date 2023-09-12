@@ -43,6 +43,10 @@ const elements = [
     type: 'background',
     url: 'https://images.unsplash.com/photo-1546587348-d12660c30c50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bmF0dXJhbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=80&w=1200',
     props: {
+      zoom: 2,
+      offsetX: -100,
+      offsetY: -100,
+
       filter: 'sepia(1)',
     },
   },
