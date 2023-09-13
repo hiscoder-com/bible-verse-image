@@ -2,8 +2,34 @@ const defaultStrokeColor = 'black';
 const defaultFillColor = 'white';
 const defaultWidth = 1;
 
-export const drawRectangle = (ctx, style) => {
+export const drawLine = (ctx, style) => {
   const {
+    x1,
+    y1,
+    x2,
+    y2,
+    props: { lineColor, lineWidth },
+  } = style;
+  if (lineWidth === 0) {
+    return;
+  }
+
+  style.props.filter = style.props.filter ?? 'none';
+  ctx.filter = style.props.filter;
+
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+
+  ctx.strokeStyle = lineColor ?? defaultStrokeColor;
+  ctx.lineWidth = lineWidth ?? defaultWidth;
+
+  ctx.stroke();
+  ctx.closePath();
+};
+
+export const drawRectangle = (ctx, style) => {
+  let {
     x,
     y,
     width,
@@ -11,6 +37,10 @@ export const drawRectangle = (ctx, style) => {
     props: { fillColor, strokeColor, strokeWidth },
   } = style;
 
+  if (strokeWidth === 0) {
+    strokeWidth = 1;
+    strokeColor = 'transparent';
+  }
   ctx.beginPath();
   ctx.rect(x, y, width, height);
 
@@ -27,37 +57,18 @@ export const drawRectangle = (ctx, style) => {
   ctx.closePath();
 };
 
-export const drawLine = (ctx, style) => {
-  const {
-    x1,
-    y1,
-    x2,
-    y2,
-    props: { lineColor, lineWidth },
-  } = style;
-
-  style.props.filter = style.props.filter ?? 'none';
-  ctx.filter = style.props.filter;
-
-  ctx.beginPath();
-  ctx.moveTo(x1, y1);
-  ctx.lineTo(x2, y2);
-
-  ctx.strokeStyle = lineColor ?? defaultStrokeColor;
-  ctx.lineWidth = lineWidth ?? defaultWidth;
-
-  ctx.stroke();
-  ctx.closePath();
-};
-
 export const drawTriangle = (ctx, style) => {
-  const {
+  let {
     vertex1,
     vertex2,
     vertex3,
     props: { fillColor, strokeColor, strokeWidth },
   } = style;
 
+  if (strokeWidth === 0) {
+    strokeWidth = 1;
+    strokeColor = 'transparent';
+  }
   style.props.filter = style.props.filter ?? 'none';
   ctx.filter = style.props.filter;
 
@@ -72,6 +83,9 @@ export const drawTriangle = (ctx, style) => {
 
   ctx.strokeStyle = strokeColor ?? defaultStrokeColor;
   ctx.lineWidth = strokeWidth ?? defaultWidth;
+  console.log(ctx.strokeStyle, 82);
+  console.log(ctx.lineWidth, 83);
+
   ctx.moveTo(vertex1.x, vertex1.y);
   ctx.lineTo(vertex2.x, vertex2.y);
   ctx.moveTo(vertex2.x, vertex2.y);
@@ -82,13 +96,18 @@ export const drawTriangle = (ctx, style) => {
 };
 
 export const drawOval = (ctx, style) => {
-  const {
+  let {
     x,
     y,
     radiusX,
     radiusY,
     props: { fillColor, strokeColor, strokeWidth },
   } = style;
+
+  if (strokeWidth === 0) {
+    strokeWidth = 1;
+    strokeColor = 'transparent';
+  }
 
   style.props.filter = style.props.filter ?? 'none';
   ctx.filter = style.props.filter;
