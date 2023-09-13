@@ -34,7 +34,7 @@
   },
   "scripts": {
     "build": "styleguidist build",
-    "start": "styleguidist server",
+    "dev": "styleguidist server",
     "lint": "eslint --fix .",
     "precommit": "lint-staged",
     "prepare": "husky install",
