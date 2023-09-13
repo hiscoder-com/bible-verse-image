@@ -115,6 +115,7 @@ module.exports = {
     }
     return props;
   },
+  assetsDir: 'images',
   webpackConfig: {
     module: {
       rules: [
