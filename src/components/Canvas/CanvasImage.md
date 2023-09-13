@@ -9,23 +9,8 @@ To set a background image on the canvas, you need include an object in the `elem
 - `zoom` (_number_, default: 1): The zoom factor to scale the background image.
 - `offsetX` (_number_,default: 0): The horizontal offset of the background image.
 - `offsetY` (_number_, default: 0): The vertical offset of the background image.
-- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
-  - `url()`: Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
-  - `blur()`: Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
-  - `brightness()`: Applies a linear multiplier to the drawing, making it appear brighter or darker. A value under 100% darkens the image, while a value over 100% brightens it. A value of 0% will create an image that is completely black, while a value of 100% leaves the input unchanged.
-  - `contrast()`: Adjusts the contrast of the drawing. A value of 0% will create a drawing that is completely black. A value of 100% leaves the drawing unchanged.
-  - `drop-shadow()`:Applies a drop shadow effect to the drawing. A drop shadow is effectively a blurred, offset version of the drawing's alpha mask drawn in a particular color, composited below the drawing. This function takes up to five arguments:
-  - `<offset-x>`: See `<length>` for possible units. Specifies the horizontal distance of the shadow.
-  - `<offset-y>`:See `<length>` for possible units. Specifies the vertical distance of the shadow.
-  - `<blur-radius>`: The larger this value, the bigger the blur, so the shadow becomes bigger and lighter. Negative values are not allowed.
-  - `<color>`: See `<color>` values for possible keywords and notations.
-  - `grayscale()`: Converts the drawing to grayscale. A value of 100% is completely grayscale. A value of 0% leaves the drawing unchanged.
-  - `hue-rotate()`: Applies a hue rotate on the drawing. A value of 0deg leaves the input unchanged.
-  - `invert()`: Inverts the drawing. A value of 100% means complete inversion. A value of 0% leaves the drawing unchanged.
-  - `opacity()`: Applies transparency to the drawing. A value of 0% means completely transparent. A value of 100% leaves the drawing unchanged.
-  - `saturate()`: Saturates the drawing. A value of 0% means completely un-saturated. A value of 100% leaves the drawing unchanged.
-  - `sepia()`: Converts the drawing to sepia. A value of 100% means completely sepia. A value of 0% leaves the drawing unchanged.
-    See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+  See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 By default, the background will be drawn starting from the upper left corner.
 
@@ -44,9 +29,8 @@ const elements = [
     url: 'https://images.unsplash.com/photo-1546587348-d12660c30c50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bmF0dXJhbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=80&w=1200',
     props: {
       zoom: 2,
-      offsetX: -100,
-      offsetY: -100,
-
+      offsetX: -10,
+      offsetY: 0,
       filter: 'sepia(1)',
     },
   },
@@ -135,23 +119,8 @@ To display an image on the canvas, you need include an object in the `elements` 
 - `zoom` (_number_, default: 1): The zoom factor to scale the image.
 - `offsetX` (_number_,default: 0): The horizontal offset of the image.
 - `offsetY` (_number_, default: 0): The vertical offset of the image.
-- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string.
-  - `url()`: Takes an IRI pointing to an SVG filter element, which may be embedded in an external XML file.
-  - `blur()`: A CSS `<length>`. Applies a Gaussian blur to the drawing. It defines the value of the standard deviation to the Gaussian function, i.e., how many pixels on the screen blend into each other; thus, a larger value will create more blur. A value of 0 leaves the input unchanged.
-  - `brightness()`: Applies a linear multiplier to the drawing, making it appear brighter or darker. A value under 100% darkens the image, while a value over 100% brightens it. A value of 0% will create an image that is completely black, while a value of 100% leaves the input unchanged.
-  - `contrast()`: Adjusts the contrast of the drawing. A value of 0% will create a drawing that is completely black. A value of 100% leaves the drawing unchanged.
-  - `drop-shadow()`: Applies a drop shadow effect to the drawing. A drop shadow is effectively a blurred, offset version of the drawing's alpha mask drawn in a particular color, composited below the drawing. This function takes up to five arguments:
-  - `<offset-x>`: See `<length>` for possible units. Specifies the horizontal distance of the shadow.
-  - `<offset-y>`: See `<length>` for possible units. Specifies the vertical distance of the shadow.
-  - `<blur-radius>`: The larger this value, the bigger the blur, so the shadow becomes bigger and lighter. Negative values are not allowed.
-  - `<color>`: See `<color>` values for possible keywords and notations.
-  - `grayscale()`: Converts the drawing to grayscale. A value of 100% is completely grayscale. A value of 0% leaves the drawing unchanged.
-  - `hue-rotate()`: Applies a hue rotate on the drawing. A value of 0deg leaves the input unchanged.
-  - `invert()`: Inverts the drawing. A value of 100% means complete inversion. A value of 0% leaves the drawing unchanged.
-  - `opacity()`: Applies transparency to the drawing. A value of 0% means completely transparent. A value of 100% leaves the drawing unchanged.
-  - `saturate()`: Saturates the drawing. A value of 0% means completely un-saturated. A value of 100% leaves the drawing unchanged.
-  - `sepia()`: Converts the drawing to sepia. A value of 100% means completely sepia. A value of 0% leaves the drawing unchanged.
-    See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+  See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 By default, the image will be drawn starting from the upper left corner.
 
@@ -206,7 +175,7 @@ const elements = [
       zoom: 1,
       offsetX: 0,
       offsetY: 0,
-      filter: 'brightness(90%) contrast(1) drop-shadow(-9px 9px 3px #e81)',
+      filter: 'brightness(90%) contrast(1.4) drop-shadow(-9px 9px 3px #e81)',
     },
   },
 ];
