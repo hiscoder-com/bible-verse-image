@@ -10,10 +10,6 @@ export const drawLine = (ctx, style) => {
     y2,
     props: { lineColor, lineWidth },
   } = style;
-  if (lineWidth === 0) {
-    return;
-  }
-
   style.props.filter = style.props.filter ?? 'none';
   ctx.filter = style.props.filter;
 
@@ -24,7 +20,9 @@ export const drawLine = (ctx, style) => {
   ctx.strokeStyle = lineColor ?? defaultStrokeColor;
   ctx.lineWidth = lineWidth ?? defaultWidth;
 
-  ctx.stroke();
+  if (lineWidth !== 0) {
+    ctx.stroke();
+  }
   ctx.closePath();
 };
 
@@ -37,10 +35,6 @@ export const drawRectangle = (ctx, style) => {
     props: { fillColor, strokeColor, strokeWidth },
   } = style;
 
-  if (strokeWidth === 0) {
-    strokeWidth = 1;
-    strokeColor = 'transparent';
-  }
   ctx.beginPath();
   ctx.rect(x, y, width, height);
 
@@ -53,7 +47,9 @@ export const drawRectangle = (ctx, style) => {
   ctx.strokeStyle = strokeColor ?? defaultStrokeColor;
   ctx.lineWidth = strokeWidth ?? defaultWidth;
 
-  ctx.stroke();
+  if (strokeWidth !== 0) {
+    ctx.stroke();
+  }
   ctx.closePath();
 };
 
@@ -65,10 +61,6 @@ export const drawTriangle = (ctx, style) => {
     props: { fillColor, strokeColor, strokeWidth },
   } = style;
 
-  if (strokeWidth === 0) {
-    strokeWidth = 1;
-    strokeColor = 'transparent';
-  }
   style.props.filter = style.props.filter ?? 'none';
   ctx.filter = style.props.filter;
 
@@ -90,7 +82,9 @@ export const drawTriangle = (ctx, style) => {
   ctx.lineTo(vertex3.x, vertex3.y);
   ctx.moveTo(vertex3.x, vertex3.y);
   ctx.lineTo(vertex1.x, vertex1.y);
-  ctx.stroke();
+  if (strokeWidth !== 0) {
+    ctx.stroke();
+  }
 };
 
 export const drawOval = (ctx, style) => {
@@ -101,11 +95,6 @@ export const drawOval = (ctx, style) => {
     radiusY,
     props: { fillColor, strokeColor, strokeWidth },
   } = style;
-
-  if (strokeWidth === 0) {
-    strokeWidth = 1;
-    strokeColor = 'transparent';
-  }
 
   style.props.filter = style.props.filter ?? 'none';
   ctx.filter = style.props.filter;
@@ -119,6 +108,8 @@ export const drawOval = (ctx, style) => {
   ctx.strokeStyle = strokeColor ?? defaultStrokeColor;
   ctx.lineWidth = strokeWidth ?? defaultWidth;
 
-  ctx.stroke();
+  if (strokeWidth !== 0) {
+    ctx.stroke();
+  }
   ctx.closePath();
 };
