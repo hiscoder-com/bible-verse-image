@@ -6,10 +6,12 @@ To set a background image on the canvas, you need include an object in the `elem
 - `url` (_string, required_): The URL of the image to be used as the background.
 
 - `props` (_object, required_): An object containing properties for configuring the background image.
-- `zoom` (_number_, default: 1): The zoom factor to scale the background image.
-- `offsetX` (_number_,default: 0): The horizontal offset of the background image.
-- `offsetY` (_number_, default: 0): The vertical offset of the background image.
-- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
+  - `zoom` (_number_, default: 1): The zoom factor to scale the background image.
+  - `offsetX` (_number_,default: 0): The horizontal offset of the background image.
+  - `offsetY` (_number_, default: 0): The vertical offset of the background image.
+  - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
   See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 By default, the background will be drawn starting from the upper left corner.
@@ -116,10 +118,12 @@ To display an image on the canvas, you need include an object in the `elements` 
 - `url` (_string, required_): The URL of the image to be displayed.
 
 - `props` (_object, required_): An object containing properties for configuring the image element.
-- `zoom` (_number_, default: 1): The zoom factor to scale the image.
-- `offsetX` (_number_,default: 0): The horizontal offset of the image.
-- `offsetY` (_number_, default: 0): The vertical offset of the image.
-- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
+  - `zoom` (_number_, default: 1): The zoom factor to scale the image.
+  - `offsetX` (_number_,default: 0): The horizontal offset of the image.
+  - `offsetY` (_number_, default: 0): The vertical offset of the image.
+  - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
   See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 By default, the image will be drawn starting from the upper left corner.

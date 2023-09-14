@@ -10,10 +10,12 @@ To draw a line on the canvas, you need include an object in the `elements` array
 - `y2` (_number, required_): The y-coordinate of the ending point of the line.
 
 - `props` (_object, optional_): An object containing properties for configuring the line element.
-- `lineColor` (_string_, default: 'black'): The color of the line.
-- `lineWidth` (_number_, default: 1): The width of the line in pixels.
-- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
-  See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+
+  - `lineColor` (_string_, default: 'black'): The color of the line.
+  - `lineWidth` (_number_, default: 1): The width of the line in pixels.
+  - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
+    See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 ```jsx
 import React from 'react';
@@ -53,10 +55,11 @@ To draw a rectangle on the canvas, you need include an object in the `elements` 
 - `height`(_number, required_): The height of the rectangle in pixels.
 - `props` (_object, required_): An object containing properties for configuring the rectangle element.
 
-- `fillColor` (_string_, default: 'white'): The fill color of the rectangle.
-- `strokeColor` (_string_, default: 'black'): The stroke color of the rectangle's border.
-- `strokeWidth` (_number_, default: 1): The width of the rectangle's border in pixels.
-- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+  - `fillColor` (_string_, default: 'white'): The fill color of the rectangle.
+  - `strokeColor` (_string_, default: 'black'): The stroke color of the rectangle's border.
+  - `strokeWidth` (_number_, default: 1): The width of the rectangle's border in pixels.
+  - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
   See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 ```jsx
@@ -106,10 +109,11 @@ Each vertex of the triangle is defined using the following properties:
 
 - `props` (_object, required_): An object containing properties for configuring the triangle element.
 
-- `fillColor` (_string_, default: 'white'): The fill color of the triangle.
-- `strokeColor` (_string_, default: 'black'): The stroke color of the triangle's border.
-- `strokeWidth` (_number_, default: 1): The width of the triangle's border in pixels.
-- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+  - `fillColor` (_string_, default: 'white'): The fill color of the triangle.
+  - `strokeColor` (_string_, default: 'black'): The stroke color of the triangle's border.
+  - `strokeWidth` (_number_, default: 1): The width of the triangle's border in pixels.
+  - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
   See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 ```jsx
@@ -150,10 +154,11 @@ To draw an oval (ellipse) on the canvas, you need include an object in the `elem
 - `radiusY` (_number, required_): The vertical radius of the oval (half of the height).
 - `props` (_object, required_): An object containing properties for configuring the oval element.
 
-- `fillColor` (_string_, default: 'white'): The fill color of the oval.
-- `strokeColor` (_string_, default: 'black'): The stroke color of the oval's border.
-- `strokeWidth` (_number_, default: 1): The width of the oval's border in pixels.
-- `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+  - `fillColor` (_string_, default: 'white'): The fill color of the oval.
+  - `strokeColor` (_string_, default: 'black'): The stroke color of the oval's border.
+  - `strokeWidth` (_number_, default: 1): The width of the oval's border in pixels.
+  - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
   See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 ```jsx
