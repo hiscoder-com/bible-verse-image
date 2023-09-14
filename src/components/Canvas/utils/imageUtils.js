@@ -73,8 +73,8 @@ const calculateImageParameters = (pic, ctx, backgroundimage) => {
     backgroundimage.zoom
   ));
 
-  sourceX += backgroundimage.offsetX;
-  sourceY += backgroundimage.offsetY;
+  sourceX += (backgroundimage.offsetX / width) * sourceWidth;
+  sourceY += (backgroundimage.offsetY / height) * sourceHeight;
 
   return { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height };
 };
