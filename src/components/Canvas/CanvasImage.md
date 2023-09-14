@@ -172,7 +172,7 @@ const elements = [
     type: 'image',
     url: 'https://images.unsplash.com/photo-1694191864312-ab0171f598c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
     props: {
-      zoom: 1,
+      zoom: 0.6,
       offsetX: 0,
       offsetY: 0,
       filter: 'brightness(90%) contrast(1.4) drop-shadow(-9px 9px 3px #e81)',
