@@ -5,7 +5,7 @@ export function useCanvasContext(height = 1200, width = 1200) {
   const contextRef = useRef(null);
 
   function setCanvasRef(ref) {
-    if (ref) {
+    if (ref && !canvasRef.current) {
       canvasRef.current = ref;
       canvasRef.current.height = height;
       canvasRef.current.width = width;

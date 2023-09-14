@@ -8,13 +8,18 @@ The `elements` array contains objects representing the elements to be drawn on t
 - `text` (_string, required_): The actual text content to be displayed.
 
 - `props` (_object, required_): An object containing properties for configuring the text element.
-- `fillStyle` (_string_, default: 'black'): The color of the text.
-- `fontStyle` (_string_, default: 'normal'): The style of the font
-- `fontSize` (_number_, default: 16): The size of the font in pixels.
-- `font` (_string_, default: 'Helvetica, Arial, sans-serif'): The font family to be used for the text.
-- `alignment` (_string_, default: 'left'): The alignment of the text
-- `blockWidth` (_number_, default: 450): The maximum width of the text block. Text will wrap within this width.
-- `lineHeight` (_number_, default: 1.2 \* fontSize): The height of each line of text.
+
+  - `fillStyle` (_string_, default: 'black'): The color of the text.
+  - `fontStyle` (_string_, default: 'normal'): The style of the font
+  - `fontSize` (_number_, default: 16): The size of the font in pixels.
+  - `font` (_string_, default: 'Helvetica, Arial, sans-serif'): The font family to be used for the text.
+  - `alignment` (_string_, default: 'left'): The alignment of the text
+  - `blockWidth` (_number_, default: 450): The maximum width of the text block. Text will wrap within this width.
+  - `lineHeight` (_number_, default: 1.2 \* fontSize): The height of each line of text.
+  - `letterSpacing`(_number_, default: 0): The letterSpacing specifies the spacing between letters when drawing text.This corresponds to the CSS letter-spacing. The default is 0px. The property can be used to get or set the spacing. The property value will remain unchanged if set to an invalid/unparsable value.
+  - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
+  See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 ```jsx
 import React from 'react';

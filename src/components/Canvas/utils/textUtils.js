@@ -10,6 +10,9 @@ export const drawText = async (ctx, style) => {
   style.props.alignment = style.props.alignment ?? 'left';
   style.props.fillStyle = style.props.fillStyle ?? 'black';
 
+  style.props.letterSpacing = style.props.letterSpacing ?? 0;
+  style.props.filter = style.props.filter ?? 'none';
+
   style.text = style.text ?? '';
   style.text = style.text.replace(/\r/g, '');
   style.text = style.text.replace(/\t/g, '    ');
@@ -28,6 +31,8 @@ const createLinesFromWords = (ctx, style, words) => {
 
   let currentLine = { x, y, words: [] };
   let currentLineWidth = 0;
+  ctx.letterSpacing = `${style.props.letterSpacing}px`;
+
   const lines = [];
 
   for (const word of words) {
@@ -106,6 +111,7 @@ const drawLines = (ctx, lines, style) => {
       } else if (word.text !== ' ') {
         ctx.fillStyle = style.props.fillStyle;
         ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
+        ctx.filter = style.props.filter;
         ctx.fillText(word.text, x, y);
       }
       x += word.width;
@@ -124,5 +130,6 @@ export const drawWordInRectangle = (ctx, word, x, y, attributes, style) => {
   ctx.font = `${fontStyle} ${fontSize}px ${font}`;
   ctx.fillRect(x, y - fontSize * 1.2, width, fontSize * 1.4);
   ctx.fillStyle = textColor;
+  ctx.filter = style.props.filter;
   ctx.fillText(text, x, y);
 };

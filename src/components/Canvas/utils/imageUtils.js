@@ -25,6 +25,7 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
   style.props.zoom = style?.props?.zoom ?? 1;
   style.props.offsetX = style?.props?.offsetX ?? 0;
   style.props.offsetY = style?.props?.offsetY ?? 0;
+  style.props.filter = style.props.filter ?? 'none';
 
   switch (style.type) {
     case 'background':
@@ -32,6 +33,8 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
         try {
           const pic = await loadImageFromCache(style.url);
           const elementWithDimensions = calculateImageParameters(pic, ctx, style.props);
+
+          ctx.filter = style.props.filter;
           await drawImageFromCache(pic, ctx, elementWithDimensions);
         } catch (error) {
           console.error('Error loading background image:', error);
@@ -45,6 +48,8 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
           const { zoom, offsetX, offsetY } = style.props;
           const logoWidth = logo.width * zoom;
           const logoHeight = logo.height * zoom;
+
+          ctx.filter = style.props.filter;
           ctx.drawImage(logo, offsetX, offsetY, logoWidth, logoHeight);
         } catch (error) {
           console.error('Error loading logo image:', error);
@@ -68,8 +73,8 @@ const calculateImageParameters = (pic, ctx, backgroundimage) => {
     backgroundimage.zoom
   ));
 
-  x += backgroundimage.offsetX;
-  y += backgroundimage.offsetY;
+  sourceX += (backgroundimage.offsetX / width) * sourceWidth;
+  sourceY += (backgroundimage.offsetY / height) * sourceHeight;
 
   return { sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height };
 };

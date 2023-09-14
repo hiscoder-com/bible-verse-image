@@ -5,71 +5,127 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 1600,
+  width: 1600,
 };
 
 const elements = [
   {
     type: 'background',
-    url: 'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjQwOTl8MHwxfHNlYXJjaHwxfHx3aGl0ZXxlbnwwfHx8fDE2ODczNDczNTZ8MA&ixlib=rb-4.0.3&q=80&w=1200',
-    props: {},
-  },
-
-  {
-    type: 'image',
-    url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
+    url: 'https://unsplash.com/photos/V4sIHm-OSDk/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjk0NTUwNjc3fA&force=true&w=1920',
     props: {
-      zoom: 0.5,
-      offsetX: 50,
-      offsetY: 50,
+      zoom: 1.2,
+      offsetX: 0,
+      offsetY: -310,
+      filter: 'opacity(.9)',
+    },
+  },
+  {
+    type: 'rectangle',
+    x: 120,
+    y: 120,
+    width: 1360,
+    height: 1360,
+    props: {
+      fillColor: '#0000',
+      strokeColor: 'black',
+      strokeWidth: 10,
+    },
+  },
+  {
+    type: 'rectangle',
+    x: 160,
+    y: 160,
+    width: 1280,
+    height: 1280,
+    props: {
+      fillColor: '#0000',
+      strokeColor: 'black',
+      strokeWidth: 4,
+    },
+  },
+  {
+    type: 'rectangle',
+    x: 380,
+    y: 560,
+    width: 840,
+    height: 180,
+    props: {
+      fillColor: '#0002',
+      strokeColor: '#0002',
+    },
+  },
+  {
+    type: 'rectangle',
+    x: 580,
+    y: 1260,
+    width: 440,
+    height: 100,
+    props: {
+      fillColor: '#0002',
+      strokeColor: '#0002',
     },
   },
   {
     type: 'text',
-    x: 225,
-    y: 225,
-    text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love</selected> and <selected font="Arial" textColor ="white" backgroundColor = "green">joy </selected>',
+    x: 0,
+    y: 420,
+    text: 'Be still,',
     props: {
-      fillStyle: 'blue',
+      fillStyle: '#204675',
       fontStyle: 'normal',
-      fontSize: 90,
+      fontSize: 220,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
-      blockWidth: 450,
-      lineHeight: 144,
+      blockWidth: 1600,
     },
   },
   {
     type: 'text',
-    x: 225,
-    y: 595,
-    text: '1 Jon 4:8',
+    x: 0,
+    y: 690,
+    text: 'and know that',
     props: {
-      fillStyle: 'blue',
+      fillStyle: '#204675',
       fontStyle: 'normal',
-      fontSize: 40,
+      fontSize: 126,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
-      blockWidth: 450,
+      blockWidth: 1600,
     },
   },
-
   {
     type: 'text',
-    x: 225,
-    y: 750,
-    text: 'ESV',
+    x: 0,
+    y: 960,
+    text: 'I am God',
     props: {
-      fillStyle: 'blue',
+      fillStyle: '#204675',
       fontStyle: 'normal',
-      fontSize: 80,
+      fontSize: 220,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
-      blockWidth: 450,
+      blockWidth: 1600,
+    },
+  },
+  {
+    type: 'text',
+    x: 0,
+    y: 1330,
+    text: 'PSALM 46:10',
+    props: {
+      fillStyle: '#fffc',
+      fontStyle: 'normal',
+      fontSize: 50,
+      font: 'Helvetica, Arial, sans-serif',
+      alignment: 'center',
+      blockWidth: 1600,
     },
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<div className="flex flex-row">
+  <Canvas infocanvas={infocanvas} elements={elements} className={'w-1/2'} />
+  <img src="/ex1.jpg" alt="Example1" className={'w-1/2'} />
+</div>;
 ```

@@ -6,9 +6,13 @@ To set a background image on the canvas, you need include an object in the `elem
 - `url` (_string, required_): The URL of the image to be used as the background.
 
 - `props` (_object, required_): An object containing properties for configuring the background image.
-- `zoom` (_number_, default: 1): The zoom factor to scale the background image.
-- `offsetX` (_number_,default: 0): The horizontal offset of the background image.
-- `offsetY` (_number_, default: 0): The vertical offset of the background image.
+
+  - `zoom` (_number_, default: 1): The zoom factor to scale the background image.
+  - `offsetX` (_number_,default: 0): The horizontal offset of the background image.
+  - `offsetY` (_number_, default: 0): The vertical offset of the background image.
+  - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
+  See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 By default, the background will be drawn starting from the upper left corner.
 
@@ -24,8 +28,13 @@ const infocanvas = {
 const elements = [
   {
     type: 'background',
-    url: 'https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NjQwOTl8MHwxfHNlYXJjaHwxfHx3aGl0ZXxlbnwwfHx8fDE2ODczNDczNTZ8MA&ixlib=rb-4.0.3&q=80&w=1200',
-    props: {},
+    url: 'https://images.unsplash.com/photo-1546587348-d12660c30c50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bmF0dXJhbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=80&w=1200',
+    props: {
+      zoom: 2,
+      offsetX: -10,
+      offsetY: 0,
+      filter: 'sepia(1)',
+    },
   },
 ];
 
@@ -109,9 +118,13 @@ To display an image on the canvas, you need include an object in the `elements` 
 - `url` (_string, required_): The URL of the image to be displayed.
 
 - `props` (_object, required_): An object containing properties for configuring the image element.
-- `zoom` (_number_, default: 1): The zoom factor to scale the image.
-- `offsetX` (_number_,default: 0): The horizontal offset of the image.
-- `offsetY` (_number_, default: 0): The vertical offset of the image.
+
+  - `zoom` (_number_, default: 1): The zoom factor to scale the image.
+  - `offsetX` (_number_,default: 0): The horizontal offset of the image.
+  - `offsetY` (_number_, default: 0): The vertical offset of the image.
+  - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
+
+  See more information: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
 
 By default, the image will be drawn starting from the upper left corner.
 
@@ -132,6 +145,41 @@ const elements = [
       zoom: 0.5,
       offsetX: 0,
       offsetY: 0,
+      filter: 'blur(1px)',
+    },
+  },
+];
+
+<Canvas
+  organization="OBT"
+  infocanvas={infocanvas}
+  elements={elements}
+  className={'w-full'}
+/>;
+```
+
+##### Applying multiple filters
+
+You can combine as many filters as you like using spaces between filters. In this example, brightness, contrast, and shadow casting filters are applied to a dog photo.
+
+```jsx
+import React from 'react';
+
+import { Canvas } from '@texttree/bible-verse-image';
+const infocanvas = {
+  height: 900,
+  width: 900,
+};
+
+const elements = [
+  {
+    type: 'image',
+    url: 'https://images.unsplash.com/photo-1694191864312-ab0171f598c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+    props: {
+      zoom: 0.6,
+      offsetX: 0,
+      offsetY: 0,
+      filter: 'brightness(90%) contrast(1.4) drop-shadow(-9px 9px 3px #e81)',
     },
   },
 ];
