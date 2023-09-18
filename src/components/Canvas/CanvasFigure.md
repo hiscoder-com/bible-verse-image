@@ -45,7 +45,7 @@ const elements = [
 
 ##### Drawing lines with gradients
 
-To draw a line with a gradient fill, you need to redefine the lineColor property property as an array with the following parameters::
+To draw a line with a linear gradient fill, you need to redefine the `lineColor` property property as an array with the following parameters::
 
 - `x1, y1, x2, y2` (_object property_, default: equal to the coordinates of the line): The start and end points of the gradient line.
 
@@ -136,7 +136,7 @@ const elements = [
 
 ##### Drawing a rectangle with a gradient fill
 
-To draw a rectangle with a gradient fill, you need to redefine the fillColor property as an array with the following parameters:
+To draw a rectangle with a linear gradient fill, you need to redefine the `fillColor` property as an array with the following parameters:
 
 - `x1, y1, x2, y2` (_object property_, default: `x1` and `x2` are equal to the `x` coordinate, `y1` are equal to the `y` coordinate, `y2` are equal to the `y + height` coordinate): The start and end points of the gradient line.
 
@@ -234,7 +234,7 @@ const elements = [
 
 ##### Drawing a triangle with a gradient fill
 
-To draw a triangle with a gradient fill, you need to redefine the fillColor property as an array with the following parameters:
+To draw a triangle with a linear gradient fill, you need to redefine the `fillColor` property as an array with the following parameters:
 
 - `x1, y1, x2, y2` (_object property_, default: `x1` are equal to the `vertex1.x` coordinate, `y1` are equal to the `vertex1.y` coordinate,`x2` are equal to the `vertex3.x` coordinate, `y2` are equal to the `vertex3.y` coordinate): The start and end points of the gradient line.
 
@@ -324,7 +324,7 @@ const elements = [
 
 ##### Drawing a oval with a gradient fill
 
-To draw a oval (ellipse) with a gradient fill, you need to redefine the fillColor property as an array with the following parameters:
+To draw a oval (ellipse) with a linear gradient fill, you need to redefine the `fillColor` property as an array with the following parameters:
 
 - `x1, y1, x2, y2` (_object property_, default: `x1` and `x2` are equal to the `x` coordinate, `y1` are equal to the `y - radiusX` coordinate, `y2` are equal to the `y + radiusX` coordinate): The start and end points of the gradient line.
 
