@@ -15,7 +15,7 @@ The `elements` array contains objects representing the elements to be drawn on t
   - `font` (_string_, default: 'Helvetica, Arial, sans-serif'): The font family to be used for the text.
   - `alignment` (_string_, default: 'left'): The alignment of the text
   - `blockWidth` (_number_, default: 450): The maximum width of the text block. Text will wrap within this width.
-  - `lineHeight` (_number_, default: 1.2 \* fontSize): The height of each line of text.
+  - `lineHeight` (_number_, default: 1.2): The height of each line of text in relative units depends on the font.
   - `letterSpacing`(_number_, default: 0): The letterSpacing specifies the spacing between letters when drawing text.This corresponds to the CSS letter-spacing. The default is 0px. The property can be used to get or set the spacing. The property value will remain unchanged if set to an invalid/unparsable value.
   - `filter` (_string_, default: none): The filter property accepts a value of "none" or one or more of the following filter functions in a string. You can use standard filter values, for example opacity(0.3), blur(10px), contrast(120%)
 
@@ -43,7 +43,7 @@ const elements = [
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
       blockWidth: 450,
-      lineHeight: 144,
+      lineHeight: 1.6,
     },
   },
 ];
@@ -91,7 +91,7 @@ const elements = [
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
       blockWidth: 450,
-      lineHeight: 144,
+      lineHeight: 1.2,
     },
   },
 ];
@@ -115,7 +115,7 @@ The `elements` array contains objects representing the elements to be drawn on t
   - `font` (_string_, default: 'Helvetica, Arial, sans-serif'): The font family to be used for the text.
   - `alignment` (_string_, default: 'left'): The alignment of the text
   - `blockWidth` (_number_, default: 450): The maximum width of the text block. Text will wrap within this width.
-  - `lineHeight` (_number_, default: 1.2 \* fontSize): The height of each line of text.
+  - `lineHeight` (_number_, default: 1.2 ): The height of each line of text in relative units depends on the font.
 
   The `<selected>` tag supports the following attributes to customize the styling of the enclosed text:
 
@@ -145,7 +145,7 @@ const elements = [
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
       blockWidth: 450,
-      lineHeight: 144,
+      lineHeight: 1.2,
     },
   },
 ];
@@ -177,7 +177,7 @@ const elements = [
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
       blockWidth: 450,
-      lineHeight: 144,
+      lineHeight: 1.5,
     },
   },
 ];

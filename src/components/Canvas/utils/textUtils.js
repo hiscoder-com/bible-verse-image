@@ -4,7 +4,7 @@ export const drawText = async (ctx, style) => {
   style.props.fontStyle = style.props.fontStyle ?? 'normal';
   style.props.fontSize = style.props.fontSize ?? 16;
   style.props.font = style.props.font ?? 'Helvetica, Arial, sans-serif';
-  style.props.lineHeight = style.props.lineHeight ?? 1.2 * style.props.fontSize;
+  style.props.lineHeight = (style.props.lineHeight ?? 1.2) * style.props.fontSize;
 
   style.props.blockWidth = style.props.blockWidth ?? 450;
   style.props.alignment = style.props.alignment ?? 'left';
