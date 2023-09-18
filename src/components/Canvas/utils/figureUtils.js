@@ -17,7 +17,27 @@ export const drawLine = (ctx, style) => {
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
 
-  ctx.strokeStyle = lineColor ?? defaultStrokeColor;
+  if (style.props.lineColor instanceof Array) {
+    style.props.lineColor[0].x1 = style.props.lineColor[0].x1 ?? x1;
+    style.props.lineColor[0].y1 = style.props.lineColor[0].y1 ?? y1;
+    style.props.lineColor[0].x2 = style.props.lineColor[0].x2 ?? x2;
+    style.props.lineColor[0].y2 = style.props.lineColor[0].y2 ?? y2;
+
+    const gradient = ctx.createLinearGradient(
+      style.props.lineColor[0].x1,
+      style.props.lineColor[0].y1,
+      style.props.lineColor[0].x2,
+      style.props.lineColor[0].y2
+    );
+
+    style.props.lineColor[1].forEach((stop) => {
+      gradient.addColorStop(stop.position, stop.color);
+    });
+
+    ctx.strokeStyle = gradient;
+  } else {
+    ctx.strokeStyle = lineColor ?? defaultStrokeColor;
+  }
   ctx.lineWidth = lineWidth ?? defaultWidth;
 
   if (lineWidth !== 0) {
@@ -41,7 +61,27 @@ export const drawRectangle = (ctx, style) => {
   style.props.filter = style.props.filter ?? 'none';
   ctx.filter = style.props.filter;
 
-  ctx.fillStyle = fillColor ?? defaultFillColor;
+  if (style.props.fillColor instanceof Array) {
+    style.props.fillColor[0].x1 = style.props.fillColor[0].x1 ?? x;
+    style.props.fillColor[0].y1 = style.props.fillColor[0].y1 ?? y;
+    style.props.fillColor[0].x2 = style.props.fillColor[0].x2 ?? x;
+    style.props.fillColor[0].y2 = style.props.fillColor[0].y2 ?? y + height;
+
+    const gradient = ctx.createLinearGradient(
+      style.props.fillColor[0].x1,
+      style.props.fillColor[0].y1,
+      style.props.fillColor[0].x2,
+      style.props.fillColor[0].y2
+    );
+
+    style.props.fillColor[1].forEach((stop) => {
+      gradient.addColorStop(stop.position, stop.color);
+    });
+
+    ctx.fillStyle = gradient;
+  } else {
+    ctx.fillStyle = fillColor ?? defaultFillColor;
+  }
   ctx.fill();
 
   ctx.strokeStyle = strokeColor ?? defaultStrokeColor;
@@ -70,7 +110,27 @@ export const drawTriangle = (ctx, style) => {
   ctx.lineTo(vertex3.x, vertex3.y);
   ctx.closePath();
 
-  ctx.fillStyle = fillColor ?? defaultFillColor;
+  if (style.props.fillColor instanceof Array) {
+    style.props.fillColor[0].x1 = style.props.fillColor[0].x1 ?? vertex1.x;
+    style.props.fillColor[0].y1 = style.props.fillColor[0].y1 ?? vertex1.y;
+    style.props.fillColor[0].x2 = style.props.fillColor[0].x2 ?? vertex3.x;
+    style.props.fillColor[0].y2 = style.props.fillColor[0].y2 ?? vertex3.y;
+
+    const gradient = ctx.createLinearGradient(
+      style.props.fillColor[0].x1,
+      style.props.fillColor[0].y1,
+      style.props.fillColor[0].x2,
+      style.props.fillColor[0].y2
+    );
+
+    style.props.fillColor[1].forEach((stop) => {
+      gradient.addColorStop(stop.position, stop.color);
+    });
+
+    ctx.fillStyle = gradient;
+  } else {
+    ctx.fillStyle = fillColor ?? defaultFillColor;
+  }
   ctx.fill();
 
   ctx.strokeStyle = strokeColor ?? defaultStrokeColor;
@@ -102,7 +162,30 @@ export const drawOval = (ctx, style) => {
   ctx.beginPath();
   ctx.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
 
-  ctx.fillStyle = fillColor ?? defaultFillColor;
+  if (style.props.fillColor instanceof Array) {
+    //Линейный
+    style.props.fillColor[0].x1 = style.props.fillColor[0].x1 ?? x;
+    style.props.fillColor[0].y1 = style.props.fillColor[0].y1 ?? y - radiusX;
+    style.props.fillColor[0].x2 = style.props.fillColor[0].x2 ?? x;
+    style.props.fillColor[0].y2 = style.props.fillColor[0].y2 ?? y + radiusX;
+
+    //Радиальный
+    // const gradient = ctx.createRadialGradient(x, y, 0, x, y, radiusX);
+
+    const gradient = ctx.createLinearGradient(
+      style.props.fillColor[0].x1,
+      style.props.fillColor[0].y1,
+      style.props.fillColor[0].x2,
+      style.props.fillColor[0].y2
+    );
+    style.props.fillColor[1].forEach((stop) => {
+      gradient.addColorStop(stop.position, stop.color);
+    });
+
+    ctx.fillStyle = gradient;
+  } else {
+    ctx.fillStyle = fillColor ?? defaultFillColor;
+  }
   ctx.fill();
 
   ctx.strokeStyle = strokeColor ?? defaultStrokeColor;

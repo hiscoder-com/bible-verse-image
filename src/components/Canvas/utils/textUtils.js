@@ -109,7 +109,16 @@ const drawLines = (ctx, lines, style) => {
 
         drawWordInRectangle(ctx, word, x, y, word.attributes, style);
       } else if (word.text !== ' ') {
-        ctx.fillStyle = style.props.fillStyle;
+        if (style.props.fillStyle instanceof Array) {
+          const gradient = ctx.createLinearGradient(x, 0, x, y + style.props.lineHeight);
+          style.props.fillStyle[1].forEach((stop) => {
+            gradient.addColorStop(stop.position, stop.color);
+          });
+
+          ctx.fillStyle = gradient;
+        } else {
+          ctx.fillStyle = style.props.fillStyle;
+        }
         ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
         ctx.filter = style.props.filter;
         ctx.fillText(word.text, x, y);
