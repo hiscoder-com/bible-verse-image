@@ -37,7 +37,55 @@ const elements = [
     y: 225,
     text: 'love love ',
     props: {
-      fillStyle: 'blue',
+      fillStyle: 'grey',
+      fontStyle: 'normal',
+      fontSize: 120,
+      font: 'Helvetica, Arial, sans-serif',
+      alignment: 'center',
+      blockWidth: 450,
+      lineHeight: 144,
+    },
+  },
+];
+
+<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+```
+
+##### Draw text with a gradient fill
+
+To draw a text with a linear gradient fill, you need to redefine the `fillStyle` property as an array with the following parameters:
+
+- `x1, y1, x2, y2` (_object property_, default: `x1` are equal to the `x` coordinate, `y1` are equal to the `0` coordinate,`x2` are equal to the `x` coordinate, `y2` are equal to the `y + style.props.lineHeight` coordinate): The start and end points of the gradient line.
+
+The gradient is formed from the breakpoints (from 0 to 1) and the name of the color. These properties are formed in an array of objects:
+
+- `position` (_number,required_): The position of the stop point.
+- `color` (_string, required_): The color of the stop point.
+
+```jsx
+import React from 'react';
+
+import { Canvas } from '@texttree/bible-verse-image';
+const infocanvas = {
+  height: 900,
+  width: 900,
+};
+
+const elements = [
+  {
+    type: 'text',
+    x: 225,
+    y: 225,
+    text: 'love love ',
+    props: {
+      fillStyle: [
+        {},
+        [
+          { position: 0, color: 'red' },
+          { position: 0.5, color: 'pink' },
+          { position: 1, color: 'orange' },
+        ],
+      ],
       fontStyle: 'normal',
       fontSize: 120,
       font: 'Helvetica, Arial, sans-serif',
