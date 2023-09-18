@@ -45,7 +45,7 @@ const elements = [
 
 ##### Drawing lines with gradients
 
-To draw a line with a linear gradient fill, you need to redefine the `lineColor` property property as an array with the following parameters::
+To draw a line with a linear gradient fill, you need to redefine the `lineColor` property property as an array with the following parameters:
 
 - `x1, y1, x2, y2` (_object property_, default: equal to the coordinates of the line): The start and end points of the gradient line.
 
