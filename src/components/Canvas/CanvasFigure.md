@@ -345,7 +345,7 @@ To draw a oval (ellipse) with a linear gradient fill, you need to redefine the `
 
   - `x1` (_number_, default: coordinate `x - radiusX` of the oval ): The X-axis starting coordinate for a linear gradient.
   - `y1` (_number_, default: coordinate `y` of the oval ): The Y-axis starting coordinate for a linear gradient.
-  - `x2` (_number_, default: coordinate `x + radiusY` of the oval ): The final X-axis coordinate for a linear gradient
+  - `x2` (_number_, default: coordinate `x + radiusX` of the oval ): The final X-axis coordinate for a linear gradient
   - `y2` (_number_, default: coordinate `y` of the oval ): The final Y-axis coordinate for a linear gradient
 
 - `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:

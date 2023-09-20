@@ -59,7 +59,7 @@ To draw a text with a linear gradient fill, you need to redefine the `fillStyle`
 
   - `x1` (_number_, default: coordinate `x` of the text ): The X-axis starting coordinate for a linear gradient.
   - `y1` (_number_, default: coordinate `y` of the text ): The Y-axis starting coordinate for a linear gradient.
-  - `x2` (_number_, default: coordinate `x + word.width` of the text ): The final X-axis coordinate for a linear gradient
+  - `x2` (_number_, default: coordinate `x + blockWidth` of the text ): The final X-axis coordinate for a linear gradient
   - `y2` (_number_, default: coordinate `y` of the text ): The final Y-axis coordinate for a linear gradient
 
 - `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:
