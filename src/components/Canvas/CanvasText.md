@@ -53,14 +53,19 @@ const elements = [
 
 ##### Draw text with a gradient fill
 
-To draw a text with a linear gradient fill, you need to redefine the `fillStyle` property as an array with the following parameters:
+To draw a text with a linear gradient fill, you need to redefine the `fillStyle` property as an object with the following parameters:
 
-- `x1, y1, x2, y2` (_object property_, default: `x1` are equal to the `x` coordinate, `y1` are equal to the `0` coordinate,`x2` are equal to the `x` coordinate, `y2` are equal to the `y + style.props.lineHeight` coordinate): The start and end points of the gradient line.
+- `points`(_object, required_): Gradient drawing points.
 
-The gradient is formed from the breakpoints (from 0 to 1) and the name of the color. These properties are formed in an array of objects:
+  - `x1` (_number_, default: coordinate `x` of the text ): The X-axis starting coordinate for a linear gradient.
+  - `y1` (_number_, default: coordinate `y` of the text ): The Y-axis starting coordinate for a linear gradient.
+  - `x2` (_number_, default: coordinate `x + word.width` of the text ): The final X-axis coordinate for a linear gradient
+  - `y2` (_number_, default: coordinate `y` of the text ): The final Y-axis coordinate for a linear gradient
 
-- `position` (_number,required_): The position of the stop point.
-- `color` (_string, required_): The color of the stop point.
+- `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:
+
+  - `position` (_number,required_): The position of the stop point.
+  - `color` (_string, required_): The color of the stop point.
 
 ```jsx
 import React from 'react';

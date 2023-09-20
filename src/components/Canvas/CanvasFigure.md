@@ -45,14 +45,19 @@ const elements = [
 
 ##### Drawing lines with gradients
 
-To draw a line with a linear gradient fill, you need to redefine the `lineColor` property as an array with the following parameters:
+To draw a line with a linear gradient fill, you need to redefine the `lineColor` property as an object with the following parameters:
 
-- `x1, y1, x2, y2` (_object property_, default: equal to the coordinates of the line): The start and end points of the gradient line.
+- `points`(_object, required_): Gradient drawing points.
 
-The gradient is formed from the breakpoints (from 0 to 1) and the name of the color. These properties are formed in an array of objects:
+  - `x1` (_number_, default: coordinate `x1` of the line ): The X-axis starting coordinate for a linear gradient.
+  - `y1` (_number_, default: coordinate `y1` of the line ): The Y-axis starting coordinate for a linear gradient.
+  - `x2` (_number_, default: coordinate `x2` of the line ): The final X-axis coordinate for a linear gradient
+  - `y2` (_number_, default: coordinate `y2` of the line ): The final Y-axis coordinate for a linear gradient
 
-- `position` (_number,required_): The position of the stop point.
-- `color` (_string, required_): The color of the stop point.
+- `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:
+
+  - `position` (_number,required_): The position of the stop point.
+  - `color` (_string, required_): The color of the stop point.
 
 ```jsx
 import React from 'react';
@@ -136,14 +141,19 @@ const elements = [
 
 ##### Drawing a rectangle with a gradient fill
 
-To draw a rectangle with a linear gradient fill, you need to redefine the `fillColor` property as an array with the following parameters:
+To draw a rectangle with a linear gradient fill, you need to redefine the `fillColor` property as an object with the following parameters:
 
-- `x1, y1, x2, y2` (_object property_, default: `x1` and `x2` are equal to the `x` coordinate, `y1` are equal to the `y` coordinate, `y2` are equal to the `y + height` coordinate): The start and end points of the gradient line.
+- `points`(_object, required_): Gradient drawing points.
 
-The gradient is formed from the breakpoints (from 0 to 1) and the name of the color. These properties are formed in an array of objects:
+  - `x1` (_number_, default: coordinate `x` of the rectangle ): The X-axis starting coordinate for a linear gradient.
+  - `y1` (_number_, default: coordinate `y` of the rectangle ): The Y-axis starting coordinate for a linear gradient.
+  - `x2` (_number_, default: coordinate `x + width` of the rectangle ): The final X-axis coordinate for a linear gradient
+  - `y2` (_number_, default: coordinate `y` of the rectangle ): The final Y-axis coordinate for a linear gradient
 
-- `position` (_number,required_): The position of the stop point.
-- `color` (_string, required_): The color of the stop point.
+- `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:
+
+  - `position` (_number,required_): The position of the stop point.
+  - `color` (_string, required_): The color of the stop point.
 
 ```jsx
 import React from 'react';
@@ -234,14 +244,19 @@ const elements = [
 
 ##### Drawing a triangle with a gradient fill
 
-To draw a triangle with a linear gradient fill, you need to redefine the `fillColor` property as an array with the following parameters:
+To draw a triangle with a linear gradient fill, you need to redefine the `fillColor` property as an object with the following parameters:
 
-- `x1, y1, x2, y2` (_object property_, default: `x1` are equal to the `vertex1.x` coordinate, `y1` are equal to the `vertex1.y` coordinate,`x2` are equal to the `vertex3.x` coordinate, `y2` are equal to the `vertex3.y` coordinate): The start and end points of the gradient line.
+- `points`(_object, required_): Gradient drawing points.
 
-The gradient is formed from the breakpoints (from 0 to 1) and the name of the color. These properties are formed in an array of objects:
+  - `x1` (_number_, default: minimum value from `vertex 1.x`, `vertex 2.x`, `vertex 3.x` of the triangle ): The X-axis starting coordinate for a linear gradient.
+  - `y1` (_number_, default: coordinate `vertex1.y` of the triangle ): The Y-axis starting coordinate for a linear gradient.
+  - `x2` (_number_, default: maximum value from `vertex 1.x`, `vertex 2.x`, `vertex 3.x` of the triangle ): The final X-axis coordinate for a linear gradient
+  - `y2` (_number_, default: coordinate `vertex1.y` of the triangle ): The final Y-axis coordinate for a linear gradient
 
-- `position` (_number,required_): The position of the stop point.
-- `color` (_string, required_): The color of the stop point.
+- `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:
+
+  - `position` (_number,required_): The position of the stop point.
+  - `color` (_string, required_): The color of the stop point.
 
 ```jsx
 import React from 'react';
@@ -324,14 +339,19 @@ const elements = [
 
 ##### Drawing a oval with a gradient fill
 
-To draw a oval (ellipse) with a linear gradient fill, you need to redefine the `fillColor` property as an array with the following parameters:
+To draw a oval (ellipse) with a linear gradient fill, you need to redefine the `fillColor` property as an object with the following parameters:
 
-- `x1, y1, x2, y2` (_object property_, default: `x1` and `x2` are equal to the `x` coordinate, `y1` are equal to the `y - radiusX` coordinate, `y2` are equal to the `y + radiusX` coordinate): The start and end points of the gradient line.
+- `points`(_object, required_): Gradient drawing points.
 
-The gradient is formed from the breakpoints (from 0 to 1) and the name of the color. These properties are formed in an array of objects:
+  - `x1` (_number_, default: coordinate `x - radiusX` of the oval ): The X-axis starting coordinate for a linear gradient.
+  - `y1` (_number_, default: coordinate `y` of the oval ): The Y-axis starting coordinate for a linear gradient.
+  - `x2` (_number_, default: coordinate `x + radiusY` of the oval ): The final X-axis coordinate for a linear gradient
+  - `y2` (_number_, default: coordinate `y` of the oval ): The final Y-axis coordinate for a linear gradient
 
-- `position` (_number,required_): The position of the stop point.
-- `color` (_string, required_): The color of the stop point.
+- `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:
+
+  - `position` (_number,required_): The position of the stop point.
+  - `color` (_string, required_): The color of the stop point.
 
 ```jsx
 import React from 'react';
