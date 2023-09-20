@@ -110,10 +110,17 @@ const drawLines = (ctx, lines, style) => {
         drawWordInRectangle(ctx, word, x, y, word.attributes, style);
       } else if (word.text !== ' ') {
         if (style.props.fillStyle instanceof Object) {
-          style.props.fillStyle.points.x1 ??= x;
-          style.props.fillStyle.points.y1 ??= y;
-          style.props.fillStyle.points.x2 ??= x + word.width;
-          style.props.fillStyle.points.y2 ??= y;
+          if (!style.props.fillStyle.points) {
+            style.props.fillStyle.points.x1 = x;
+            style.props.fillStyle.points.y1 = y;
+            style.props.fillStyle.points.x2 = x + style.props.blockWidth;
+            style.props.fillStyle.points.y2 = y;
+          } else {
+            style.props.fillStyle.points.x1 ??= x;
+            style.props.fillStyle.points.y1 ??= y;
+            style.props.fillStyle.points.x2 ??= x + style.props.blockWidth;
+            style.props.fillStyle.points.y2 ??= y;
+          }
 
           const gradient = ctx.createLinearGradient(
             style.props.fillStyle.points.x1,

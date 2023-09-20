@@ -18,10 +18,14 @@ export const drawLine = (ctx, style) => {
   ctx.lineTo(x2, y2);
 
   if (style.props.lineColor instanceof Object) {
-    style.props.lineColor.points.x1 ??= x1;
-    style.props.lineColor.points.y1 ??= y1;
-    style.props.lineColor.points.x2 ??= x2;
-    style.props.lineColor.points.y2 ??= y2;
+    if (!style.props.lineColor.points) {
+      style.props.lineColor.points = { x1, y1, x2, y2 };
+    } else {
+      style.props.lineColor.points.x1 ??= x1;
+      style.props.lineColor.points.y1 ??= y1;
+      style.props.lineColor.points.x2 ??= x2;
+      style.props.lineColor.points.y2 ??= y2;
+    }
 
     const gradient = ctx.createLinearGradient(
       style.props.lineColor.points.x1,
@@ -62,10 +66,17 @@ export const drawRectangle = (ctx, style) => {
   ctx.filter = style.props.filter;
 
   if (style.props.fillColor instanceof Object) {
-    style.props.fillColor.points.x1 ??= x;
-    style.props.fillColor.points.y1 ??= y;
-    style.props.fillColor.points.x2 ??= x + width;
-    style.props.fillColor.points.y2 ??= y;
+    if (!style.props.fillColor.points) {
+      style.props.fillColor.points.x1 = x;
+      style.props.fillColor.points.y1 = y;
+      style.props.fillColor.points.x2 = x + width;
+      style.props.fillColor.points.y2 = y;
+    } else {
+      style.props.fillColor.points.x1 ??= x;
+      style.props.fillColor.points.y1 ??= y;
+      style.props.fillColor.points.x2 ??= x + width;
+      style.props.fillColor.points.y2 ??= y;
+    }
 
     const gradient = ctx.createLinearGradient(
       style.props.fillColor.points.x1,
@@ -111,10 +122,17 @@ export const drawTriangle = (ctx, style) => {
   ctx.closePath();
 
   if (style.props.fillColor instanceof Object) {
-    style.props.fillColor.points.x1 ??= Math.min(vertex1.x, vertex2.x, vertex3.x);
-    style.props.fillColor.points.y1 ??= vertex1.y;
-    style.props.fillColor.points.x2 ??= Math.max(vertex1.x, vertex2.x, vertex3.x);
-    style.props.fillColor.points.y2 ??= vertex1.y;
+    if (!style.props.fillColor.points) {
+      style.props.fillColor.points.x1 = Math.min(vertex1.x, vertex2.x, vertex3.x);
+      style.props.fillColor.points.y1 = vertex1.y;
+      style.props.fillColor.points.x2 = Math.max(vertex1.x, vertex2.x, vertex3.x);
+      style.props.fillColor.points.y2 = vertex1.y;
+    } else {
+      style.props.fillColor.points.x1 ??= Math.min(vertex1.x, vertex2.x, vertex3.x);
+      style.props.fillColor.points.y1 ??= vertex1.y;
+      style.props.fillColor.points.x2 ??= Math.max(vertex1.x, vertex2.x, vertex3.x);
+      style.props.fillColor.points.y2 ??= vertex1.y;
+    }
 
     const gradient = ctx.createLinearGradient(
       style.props.fillColor.points.x1,
@@ -163,10 +181,17 @@ export const drawOval = (ctx, style) => {
   ctx.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
 
   if (style.props.fillColor instanceof Object) {
-    style.props.fillColor.points.x1 ??= x - radiusX;
-    style.props.fillColor.points.y1 ??= y;
-    style.props.fillColor.points.x2 ??= x + radiusY;
-    style.props.fillColor.points.y2 ??= y;
+    if (!style.props.fillColor.points) {
+      style.props.fillColor.points.x1 = x - radiusX;
+      style.props.fillColor.points.y1 = y;
+      style.props.fillColor.points.x2 = x + radiusX;
+      style.props.fillColor.points.y2 = y;
+    } else {
+      style.props.fillColor.points.x1 ??= x - radiusX;
+      style.props.fillColor.points.y1 ??= y;
+      style.props.fillColor.points.x2 ??= x + radiusX;
+      style.props.fillColor.points.y2 ??= y;
+    }
 
     const gradient = ctx.createLinearGradient(
       style.props.fillColor.points.x1,
