@@ -22,25 +22,25 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'line',
-    x1: 110,
-    y1: 140,
-    x2: 500,
-    y2: 600,
+    x1: 125,
+    y1: 40,
+    x2: 125,
+    y2: 200,
     props: {
       lineColor: 'green',
-      lineWidth: 15,
+      lineWidth: 8,
     },
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Drawing lines with gradients
@@ -64,20 +64,20 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'line',
-    x1: 110,
+    x1: 50,
     y1: 140,
-    x2: 500,
-    y2: 600,
+    x2: 200,
+    y2: 140,
     props: {
       lineColor: {
-        points: { x1: 110, y1: 140, x2: 500, y2: 600 },
+        points: { x1: 50, y1: 140, x2: 200, y2: 140 },
         colorStop: [
           { position: 0, color: 'red' },
           { position: 0.5, color: 'pink' },
@@ -89,7 +89,7 @@ const elements = [
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Draw rectangle
@@ -116,17 +116,17 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'rectangle',
-    x: 300,
-    y: 400,
-    width: 300,
-    height: 450,
+    x: 75,
+    y: 75,
+    width: 100,
+    height: 150,
     props: {
       fillColor: 'yellow',
       strokeColor: 'black',
@@ -136,7 +136,7 @@ const elements = [
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Drawing a rectangle with a gradient fill
@@ -160,17 +160,17 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'rectangle',
-    x: 300,
-    y: 400,
-    width: 300,
-    height: 450,
+    x: 75,
+    y: 75,
+    width: 100,
+    height: 150,
     props: {
       fillColor: {
         points: {},
@@ -187,7 +187,7 @@ const elements = [
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Draw triangle
@@ -221,16 +221,16 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'triangle',
-    vertex1: { x: 400, y: 10 },
-    vertex2: { x: 400, y: 500 },
-    vertex3: { x: 150, y: 500 },
+    vertex1: { x: 125, y: 50 },
+    vertex2: { x: 150, y: 240 },
+    vertex3: { x: 50, y: 240 },
     props: {
       fillColor: 'brown',
       strokeColor: 'blue',
@@ -239,7 +239,7 @@ const elements = [
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Drawing a triangle with a gradient fill
@@ -263,16 +263,16 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'triangle',
-    vertex1: { x: 400, y: 10 },
-    vertex2: { x: 400, y: 500 },
-    vertex3: { x: 150, y: 500 },
+    vertex1: { x: 100, y: 10 },
+    vertex2: { x: 150, y: 240 },
+    vertex3: { x: 75, y: 240 },
     props: {
       fillColor: {
         points: {},
@@ -288,7 +288,7 @@ const elements = [
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Draw oval
@@ -315,17 +315,17 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'oval',
-    x: 450,
-    y: 400,
-    radiusX: 180,
-    radiusY: 180,
+    x: 124,
+    y: 110,
+    radiusX: 75,
+    radiusY: 75,
     props: {
       fillColor: 'pink',
       strokeColor: 'red',
@@ -334,7 +334,7 @@ const elements = [
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Drawing a oval with a gradient fill
@@ -358,17 +358,17 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'oval',
-    x: 450,
-    y: 400,
-    radiusX: 180,
-    radiusY: 180,
+    x: 125,
+    y: 125,
+    radiusX: 75,
+    radiusY: 75,
     props: {
       fillColor: {
         points: {},
@@ -384,5 +384,5 @@ const elements = [
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```

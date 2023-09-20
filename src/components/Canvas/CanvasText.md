@@ -26,29 +26,29 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'text',
-    x: 225,
-    y: 225,
+    x: 80,
+    y: 100,
     text: 'love love ',
     props: {
       fillStyle: 'grey',
       fontStyle: 'normal',
-      fontSize: 120,
+      fontSize: 25,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
-      blockWidth: 450,
+      blockWidth: 80,
       lineHeight: 1.6,
     },
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Draw text with a gradient fill
@@ -72,15 +72,15 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'text',
-    x: 225,
-    y: 225,
+    x: 80,
+    y: 100,
     text: 'love love ',
     props: {
       fillStyle: {
@@ -92,16 +92,16 @@ const elements = [
         ],
       },
       fontStyle: 'normal',
-      fontSize: 120,
+      fontSize: 25,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
-      blockWidth: 450,
+      blockWidth: 80,
       lineHeight: 1.2,
     },
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Drawing selected text
@@ -133,29 +133,29 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'text',
-    x: 225,
-    y: 225,
+    x: 80,
+    y: 100,
     text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love</selected> ',
     props: {
       fillStyle: 'blue',
       fontStyle: 'normal',
-      fontSize: 90,
+      fontSize: 25,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
-      blockWidth: 450,
-      lineHeight: 1.2,
+      blockWidth: 80,
+      lineHeight: 1.5,
     },
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### This example is drawing combinations of plain and highlighted text
@@ -165,27 +165,27 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'text',
-    x: 225,
-    y: 225,
+    x: 80,
+    y: 100,
     text: 'God is <selected font="Arial" textColor ="white" backgroundColor = "red">love</selected> and <selected font="Arial" textColor ="white" backgroundColor = "green">joy</selected>',
     props: {
       fillStyle: 'blue',
       fontStyle: 'small-caps',
-      fontSize: 90,
+      fontSize: 25,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
-      blockWidth: 450,
+      blockWidth: 90,
       lineHeight: 1.5,
     },
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
