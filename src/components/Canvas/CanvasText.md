@@ -78,14 +78,14 @@ const elements = [
     y: 225,
     text: 'love love ',
     props: {
-      fillStyle: [
-        {},
-        [
+      fillStyle: {
+        points: {},
+        colorStop: [
           { position: 0, color: 'red' },
           { position: 0.5, color: 'pink' },
           { position: 1, color: 'orange' },
         ],
-      ],
+      },
       fontStyle: 'normal',
       fontSize: 120,
       font: 'Helvetica, Arial, sans-serif',

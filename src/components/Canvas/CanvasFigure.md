@@ -45,7 +45,7 @@ const elements = [
 
 ##### Drawing lines with gradients
 
-To draw a line with a linear gradient fill, you need to redefine the `lineColor` property property as an array with the following parameters:
+To draw a line with a linear gradient fill, you need to redefine the `lineColor` property as an array with the following parameters:
 
 - `x1, y1, x2, y2` (_object property_, default: equal to the coordinates of the line): The start and end points of the gradient line.
 
@@ -71,14 +71,14 @@ const elements = [
     x2: 500,
     y2: 600,
     props: {
-      lineColor: [
-        {},
-        [
+      lineColor: {
+        points: { x1: 110, y1: 140, x2: 500, y2: 600 },
+        colorStop: [
           { position: 0, color: 'red' },
           { position: 0.5, color: 'pink' },
           { position: 1, color: 'orange' },
         ],
-      ],
+      },
       lineWidth: 15,
     },
   },
@@ -162,14 +162,14 @@ const elements = [
     width: 300,
     height: 450,
     props: {
-      fillColor: [
-        {},
-        [
+      fillColor: {
+        points: {},
+        colorStop: [
           { position: 0, color: 'red' },
           { position: 0.5, color: 'pink' },
           { position: 1, color: 'orange' },
         ],
-      ],
+      },
       strokeColor: 'black',
       strokeWidth: 2,
       filter: 'opacity(.5)',
@@ -259,14 +259,14 @@ const elements = [
     vertex2: { x: 400, y: 500 },
     vertex3: { x: 150, y: 500 },
     props: {
-      fillColor: [
-        {},
-        [
+      fillColor: {
+        points: {},
+        colorStop: [
           { position: 0, color: 'red' },
           { position: 0.5, color: 'pink' },
           { position: 1, color: 'orange' },
         ],
-      ],
+      },
       strokeColor: 'blue',
       strokeWidth: 2,
     },
@@ -350,14 +350,14 @@ const elements = [
     radiusX: 180,
     radiusY: 180,
     props: {
-      fillColor: [
-        {},
-        [
+      fillColor: {
+        points: {},
+        colorStop: [
           { position: 0, color: 'red' },
           { position: 0.5, color: 'pink' },
           { position: 1, color: 'orange' },
         ],
-      ],
+      },
       strokeColor: 'red',
       strokeWidth: 5,
     },
