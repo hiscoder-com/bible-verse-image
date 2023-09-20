@@ -1,19 +1,19 @@
 import { parseText } from './parseUtils.js';
 
 export const drawText = async (ctx, style) => {
-  style.props.fontStyle = style.props.fontStyle ?? 'normal';
-  style.props.fontSize = style.props.fontSize ?? 16;
-  style.props.font = style.props.font ?? 'Helvetica, Arial, sans-serif';
+  style.props.fontStyle ??= 'normal';
+  style.props.fontSize ??= 16;
+  style.props.font ??= 'Helvetica, Arial, sans-serif';
   style.props.lineHeight = (style.props.lineHeight ?? 1.2) * style.props.fontSize;
 
-  style.props.blockWidth = style.props.blockWidth ?? 450;
-  style.props.alignment = style.props.alignment ?? 'left';
-  style.props.fillStyle = style.props.fillStyle ?? 'black';
+  style.props.blockWidth ??= 450;
+  style.props.alignment ??= 'left';
+  style.props.fillStyle ??= 'black';
 
-  style.props.letterSpacing = style.props.letterSpacing ?? 0;
-  style.props.filter = style.props.filter ?? 'none';
+  style.props.letterSpacing ??= 0;
+  style.props.filter ??= 'none';
 
-  style.text = style.text ?? '';
+  style.text ??= '';
   style.text = style.text.replace(/\r/g, '');
   style.text = style.text.replace(/\t/g, '    ');
 
@@ -109,20 +109,20 @@ const drawLines = (ctx, lines, style) => {
 
         drawWordInRectangle(ctx, word, x, y, word.attributes, style);
       } else if (word.text !== ' ') {
-        if (style.props.fillStyle instanceof Array) {
-          style.props.fillStyle[0].x1 = style.props.fillStyle[0].x1 ?? x;
-          style.props.fillStyle[0].y1 = style.props.fillStyle[0].y1 ?? 0;
-          style.props.fillStyle[0].x2 = style.props.fillStyle[0].x2 ?? x;
-          style.props.fillStyle[0].y2 =
-            style.props.fillStyle[0].y2 ?? y + style.props.lineHeight;
+        if (style.props.fillStyle instanceof Object) {
+          style.props.fillStyle.points.x1 ??= x;
+          style.props.fillStyle.points.y1 ??= y;
+          style.props.fillStyle.points.x2 ??= x + word.width;
+          style.props.fillStyle.points.y2 ??= y;
 
           const gradient = ctx.createLinearGradient(
-            style.props.fillStyle[0].x1,
-            style.props.fillStyle[0].y1,
-            style.props.fillStyle[0].x2,
-            style.props.fillStyle[0].y2
+            style.props.fillStyle.points.x1,
+            style.props.fillStyle.points.y1,
+            style.props.fillStyle.points.x2,
+            style.props.fillStyle.points.y2
           );
-          style.props.fillStyle[1].forEach((stop) => {
+
+          style.props.fillStyle.colorStop.forEach((stop) => {
             gradient.addColorStop(stop.position, stop.color);
           });
 
