@@ -95,7 +95,7 @@ const elements = [
       fontSize: 25,
       font: 'Helvetica, Arial, sans-serif',
       alignment: 'center',
-      blockWidth: 80,
+      blockWidth: 50,
       lineHeight: 1.2,
     },
   },
