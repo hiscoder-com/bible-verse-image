@@ -22,25 +22,74 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'line',
-    x1: 110,
-    y1: 140,
-    x2: 500,
-    y2: 600,
+    x1: 125,
+    y1: 40,
+    x2: 125,
+    y2: 200,
     props: {
-      lineColor: 'red',
+      lineColor: 'green',
+      lineWidth: 8,
+    },
+  },
+];
+
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
+```
+
+##### Drawing lines with gradients
+
+To draw a line with a linear gradient fill, you need to redefine the `lineColor` property as an object with the following parameters:
+
+- `points`(_object, required_): Gradient drawing points.
+
+  - `x1` (_number_, default: coordinate `x1` of the line ): The X-axis starting coordinate for a linear gradient.
+  - `y1` (_number_, default: coordinate `y1` of the line ): The Y-axis starting coordinate for a linear gradient.
+  - `x2` (_number_, default: coordinate `x2` of the line ): The final X-axis coordinate for a linear gradient
+  - `y2` (_number_, default: coordinate `y2` of the line ): The final Y-axis coordinate for a linear gradient
+
+- `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:
+
+  - `position` (_number,required_): The position of the stop point.
+  - `color` (_string, required_): The color of the stop point.
+
+```jsx
+import React from 'react';
+
+import { Canvas } from '@texttree/bible-verse-image';
+const infocanvas = {
+  height: 250,
+  width: 250,
+};
+
+const elements = [
+  {
+    type: 'line',
+    x1: 50,
+    y1: 140,
+    x2: 200,
+    y2: 140,
+    props: {
+      lineColor: {
+        points: { x1: 50, y1: 140, x2: 200, y2: 140 },
+        colorStop: [
+          { position: 0, color: 'red' },
+          { position: 0.5, color: 'pink' },
+          { position: 1, color: 'orange' },
+        ],
+      },
       lineWidth: 15,
     },
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Draw rectangle
@@ -67,19 +116,19 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'rectangle',
-    x: 300,
-    y: 400,
-    width: 300,
-    height: 450,
+    x: 75,
+    y: 75,
+    width: 100,
+    height: 150,
     props: {
-      fillColor: 'blue',
+      fillColor: 'yellow',
       strokeColor: 'black',
       strokeWidth: 2,
       filter: 'opacity(.5)',
@@ -87,7 +136,58 @@ const elements = [
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
+```
+
+##### Drawing a rectangle with a gradient fill
+
+To draw a rectangle with a linear gradient fill, you need to redefine the `fillColor` property as an object with the following parameters:
+
+- `points`(_object, required_): Gradient drawing points.
+
+  - `x1` (_number_, default: coordinate `x` of the rectangle ): The X-axis starting coordinate for a linear gradient.
+  - `y1` (_number_, default: coordinate `y` of the rectangle ): The Y-axis starting coordinate for a linear gradient.
+  - `x2` (_number_, default: coordinate `x + width` of the rectangle ): The final X-axis coordinate for a linear gradient
+  - `y2` (_number_, default: coordinate `y` of the rectangle ): The final Y-axis coordinate for a linear gradient
+
+- `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:
+
+  - `position` (_number,required_): The position of the stop point.
+  - `color` (_string, required_): The color of the stop point.
+
+```jsx
+import React from 'react';
+
+import { Canvas } from '@texttree/bible-verse-image';
+const infocanvas = {
+  height: 250,
+  width: 250,
+};
+
+const elements = [
+  {
+    type: 'rectangle',
+    x: 75,
+    y: 75,
+    width: 100,
+    height: 150,
+    props: {
+      fillColor: {
+        points: {},
+        colorStop: [
+          { position: 0, color: 'red' },
+          { position: 0.5, color: 'pink' },
+          { position: 1, color: 'orange' },
+        ],
+      },
+      strokeColor: 'black',
+      strokeWidth: 2,
+      filter: 'opacity(.5)',
+    },
+  },
+];
+
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Draw triangle
@@ -121,25 +221,74 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'triangle',
-    vertex1: { x: 400, y: 10 },
-    vertex2: { x: 400, y: 500 },
-    vertex3: { x: 150, y: 500 },
+    vertex1: { x: 125, y: 50 },
+    vertex2: { x: 150, y: 240 },
+    vertex3: { x: 50, y: 240 },
     props: {
-      fillColor: 'red',
+      fillColor: 'brown',
       strokeColor: 'blue',
       strokeWidth: 2,
     },
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
+```
+
+##### Drawing a triangle with a gradient fill
+
+To draw a triangle with a linear gradient fill, you need to redefine the `fillColor` property as an object with the following parameters:
+
+- `points`(_object, required_): Gradient drawing points.
+
+  - `x1` (_number_, default: minimum value from `vertex 1.x`, `vertex 2.x`, `vertex 3.x` of the triangle ): The X-axis starting coordinate for a linear gradient.
+  - `y1` (_number_, default: coordinate `vertex1.y` of the triangle ): The Y-axis starting coordinate for a linear gradient.
+  - `x2` (_number_, default: maximum value from `vertex 1.x`, `vertex 2.x`, `vertex 3.x` of the triangle ): The final X-axis coordinate for a linear gradient
+  - `y2` (_number_, default: coordinate `vertex1.y` of the triangle ): The final Y-axis coordinate for a linear gradient
+
+- `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:
+
+  - `position` (_number,required_): The position of the stop point.
+  - `color` (_string, required_): The color of the stop point.
+
+```jsx
+import React from 'react';
+
+import { Canvas } from '@texttree/bible-verse-image';
+const infocanvas = {
+  height: 250,
+  width: 250,
+};
+
+const elements = [
+  {
+    type: 'triangle',
+    vertex1: { x: 100, y: 10 },
+    vertex2: { x: 150, y: 240 },
+    vertex3: { x: 75, y: 240 },
+    props: {
+      fillColor: {
+        points: {},
+        colorStop: [
+          { position: 0, color: 'red' },
+          { position: 0.5, color: 'pink' },
+          { position: 1, color: 'orange' },
+        ],
+      },
+      strokeColor: 'blue',
+      strokeWidth: 2,
+    },
+  },
+];
+
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### Draw oval
@@ -166,24 +315,74 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
   {
     type: 'oval',
-    x: 450,
-    y: 400,
-    radiusX: 180,
-    radiusY: 180,
+    x: 124,
+    y: 110,
+    radiusX: 75,
+    radiusY: 75,
     props: {
-      fillColor: '#ff00ff',
+      fillColor: 'pink',
       strokeColor: 'red',
       strokeWidth: 5,
     },
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
+```
+
+##### Drawing a oval with a gradient fill
+
+To draw a oval (ellipse) with a linear gradient fill, you need to redefine the `fillColor` property as an object with the following parameters:
+
+- `points`(_object, required_): Gradient drawing points.
+
+  - `x1` (_number_, default: coordinate `x - radiusX` of the oval ): The X-axis starting coordinate for a linear gradient.
+  - `y1` (_number_, default: coordinate `y` of the oval ): The Y-axis starting coordinate for a linear gradient.
+  - `x2` (_number_, default: coordinate `x + radiusX` of the oval ): The final X-axis coordinate for a linear gradient
+  - `y2` (_number_, default: coordinate `y` of the oval ): The final Y-axis coordinate for a linear gradient
+
+- `colorStop`(_array, required_): Color breakpoints. These points (from 0 to 1) form the colors of the gradient.This properties are formed in an array of objects:
+
+  - `position` (_number,required_): The position of the stop point.
+  - `color` (_string, required_): The color of the stop point.
+
+```jsx
+import React from 'react';
+
+import { Canvas } from '@texttree/bible-verse-image';
+const infocanvas = {
+  height: 250,
+  width: 250,
+};
+
+const elements = [
+  {
+    type: 'oval',
+    x: 125,
+    y: 125,
+    radiusX: 75,
+    radiusY: 75,
+    props: {
+      fillColor: {
+        points: {},
+        colorStop: [
+          { position: 0, color: 'red' },
+          { position: 0.5, color: 'pink' },
+          { position: 1, color: 'orange' },
+        ],
+      },
+      strokeColor: 'red',
+      strokeWidth: 5,
+    },
+  },
+];
+
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```

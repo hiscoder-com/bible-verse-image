@@ -25,7 +25,7 @@ export const drawBackgroundAndLogo = async (ctx, style) => {
   style.props.zoom = style?.props?.zoom ?? 1;
   style.props.offsetX = style?.props?.offsetX ?? 0;
   style.props.offsetY = style?.props?.offsetY ?? 0;
-  style.props.filter = style.props.filter ?? 'none';
+  style.props.filter ??= 'none';
 
   switch (style.type) {
     case 'background':

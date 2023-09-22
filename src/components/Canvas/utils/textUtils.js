@@ -1,19 +1,19 @@
 import { parseText } from './parseUtils.js';
 
 export const drawText = async (ctx, style) => {
-  style.props.fontStyle = style.props.fontStyle ?? 'normal';
-  style.props.fontSize = style.props.fontSize ?? 16;
-  style.props.font = style.props.font ?? 'Helvetica, Arial, sans-serif';
-  style.props.lineHeight = style.props.lineHeight ?? 1.2 * style.props.fontSize;
+  style.props.fontStyle ??= 'normal';
+  style.props.fontSize ??= 16;
+  style.props.font ??= 'Helvetica, Arial, sans-serif';
+  style.props.lineHeight = (style.props.lineHeight ?? 1.2) * style.props.fontSize;
 
-  style.props.blockWidth = style.props.blockWidth ?? 450;
-  style.props.alignment = style.props.alignment ?? 'left';
-  style.props.fillStyle = style.props.fillStyle ?? 'black';
+  style.props.blockWidth ??= 450;
+  style.props.alignment ??= 'left';
+  style.props.fillStyle ??= 'black';
 
-  style.props.letterSpacing = style.props.letterSpacing ?? 0;
-  style.props.filter = style.props.filter ?? 'none';
+  style.props.letterSpacing ??= 0;
+  style.props.filter ??= 'none';
 
-  style.text = style.text ?? '';
+  style.text ??= '';
   style.text = style.text.replace(/\r/g, '');
   style.text = style.text.replace(/\t/g, '    ');
 
@@ -99,7 +99,7 @@ const drawLines = (ctx, lines, style) => {
   for (const line of lines) {
     let x = line.x;
 
-    const y = line.y;
+    const y = line.y + style.props.lineHeight;
 
     for (const word of line.words) {
       if (word.selected) {
@@ -109,7 +109,34 @@ const drawLines = (ctx, lines, style) => {
 
         drawWordInRectangle(ctx, word, x, y, word.attributes, style);
       } else if (word.text !== ' ') {
-        ctx.fillStyle = style.props.fillStyle;
+        if (style.props.fillStyle instanceof Object) {
+          if (!style.props.fillStyle.points) {
+            style.props.fillStyle.points.x1 = x;
+            style.props.fillStyle.points.y1 = y;
+            style.props.fillStyle.points.x2 = x + style.props.blockWidth;
+            style.props.fillStyle.points.y2 = y;
+          } else {
+            style.props.fillStyle.points.x1 ??= x;
+            style.props.fillStyle.points.y1 ??= y;
+            style.props.fillStyle.points.x2 ??= x + style.props.blockWidth;
+            style.props.fillStyle.points.y2 ??= y;
+          }
+
+          const gradient = ctx.createLinearGradient(
+            style.props.fillStyle.points.x1,
+            style.props.fillStyle.points.y1,
+            style.props.fillStyle.points.x2,
+            style.props.fillStyle.points.y2
+          );
+
+          style.props.fillStyle.colorStop.forEach((stop) => {
+            gradient.addColorStop(stop.position, stop.color);
+          });
+
+          ctx.fillStyle = gradient;
+        } else {
+          ctx.fillStyle = style.props.fillStyle;
+        }
         ctx.font = `${style.props.fontStyle} ${style.props.fontSize}px ${style.props.font}`;
         ctx.filter = style.props.filter;
         ctx.fillText(word.text, x, y);

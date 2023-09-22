@@ -17,7 +17,31 @@ export const drawLine = (ctx, style) => {
   ctx.moveTo(x1, y1);
   ctx.lineTo(x2, y2);
 
-  ctx.strokeStyle = lineColor ?? defaultStrokeColor;
+  if (style.props.lineColor instanceof Object) {
+    if (!style.props.lineColor.points) {
+      style.props.lineColor.points = { x1, y1, x2, y2 };
+    } else {
+      style.props.lineColor.points.x1 ??= x1;
+      style.props.lineColor.points.y1 ??= y1;
+      style.props.lineColor.points.x2 ??= x2;
+      style.props.lineColor.points.y2 ??= y2;
+    }
+
+    const gradient = ctx.createLinearGradient(
+      style.props.lineColor.points.x1,
+      style.props.lineColor.points.y1,
+      style.props.lineColor.points.x2,
+      style.props.lineColor.points.y2
+    );
+
+    style.props.lineColor.colorStop.forEach((stop) => {
+      gradient.addColorStop(stop.position, stop.color);
+    });
+
+    ctx.strokeStyle = gradient;
+  } else {
+    ctx.strokeStyle = lineColor ?? defaultStrokeColor;
+  }
   ctx.lineWidth = lineWidth ?? defaultWidth;
 
   if (lineWidth !== 0) {
@@ -38,10 +62,37 @@ export const drawRectangle = (ctx, style) => {
   ctx.beginPath();
   ctx.rect(x, y, width, height);
 
-  style.props.filter = style.props.filter ?? 'none';
+  style.props.filter ??= 'none';
   ctx.filter = style.props.filter;
 
-  ctx.fillStyle = fillColor ?? defaultFillColor;
+  if (style.props.fillColor instanceof Object) {
+    if (!style.props.fillColor.points) {
+      style.props.fillColor.points.x1 = x;
+      style.props.fillColor.points.y1 = y;
+      style.props.fillColor.points.x2 = x + width;
+      style.props.fillColor.points.y2 = y;
+    } else {
+      style.props.fillColor.points.x1 ??= x;
+      style.props.fillColor.points.y1 ??= y;
+      style.props.fillColor.points.x2 ??= x + width;
+      style.props.fillColor.points.y2 ??= y;
+    }
+
+    const gradient = ctx.createLinearGradient(
+      style.props.fillColor.points.x1,
+      style.props.fillColor.points.y1,
+      style.props.fillColor.points.x2,
+      style.props.fillColor.points.y2
+    );
+
+    style.props.fillColor.colorStop.forEach((stop) => {
+      gradient.addColorStop(stop.position, stop.color);
+    });
+
+    ctx.fillStyle = gradient;
+  } else {
+    ctx.fillStyle = fillColor ?? defaultFillColor;
+  }
   ctx.fill();
 
   ctx.strokeStyle = strokeColor ?? defaultStrokeColor;
@@ -61,7 +112,7 @@ export const drawTriangle = (ctx, style) => {
     props: { fillColor, strokeColor, strokeWidth },
   } = style;
 
-  style.props.filter = style.props.filter ?? 'none';
+  style.props.filter ??= 'none';
   ctx.filter = style.props.filter;
 
   ctx.beginPath();
@@ -70,7 +121,34 @@ export const drawTriangle = (ctx, style) => {
   ctx.lineTo(vertex3.x, vertex3.y);
   ctx.closePath();
 
-  ctx.fillStyle = fillColor ?? defaultFillColor;
+  if (style.props.fillColor instanceof Object) {
+    if (!style.props.fillColor.points) {
+      style.props.fillColor.points.x1 = Math.min(vertex1.x, vertex2.x, vertex3.x);
+      style.props.fillColor.points.y1 = vertex1.y;
+      style.props.fillColor.points.x2 = Math.max(vertex1.x, vertex2.x, vertex3.x);
+      style.props.fillColor.points.y2 = vertex1.y;
+    } else {
+      style.props.fillColor.points.x1 ??= Math.min(vertex1.x, vertex2.x, vertex3.x);
+      style.props.fillColor.points.y1 ??= vertex1.y;
+      style.props.fillColor.points.x2 ??= Math.max(vertex1.x, vertex2.x, vertex3.x);
+      style.props.fillColor.points.y2 ??= vertex1.y;
+    }
+
+    const gradient = ctx.createLinearGradient(
+      style.props.fillColor.points.x1,
+      style.props.fillColor.points.y1,
+      style.props.fillColor.points.x2,
+      style.props.fillColor.points.y2
+    );
+
+    style.props.fillColor.colorStop.forEach((stop) => {
+      gradient.addColorStop(stop.position, stop.color);
+    });
+
+    ctx.fillStyle = gradient;
+  } else {
+    ctx.fillStyle = fillColor ?? defaultFillColor;
+  }
   ctx.fill();
 
   ctx.strokeStyle = strokeColor ?? defaultStrokeColor;
@@ -96,13 +174,40 @@ export const drawOval = (ctx, style) => {
     props: { fillColor, strokeColor, strokeWidth },
   } = style;
 
-  style.props.filter = style.props.filter ?? 'none';
+  style.props.filter ??= 'none';
   ctx.filter = style.props.filter;
 
   ctx.beginPath();
   ctx.ellipse(x, y, radiusX, radiusY, 0, 0, 2 * Math.PI);
 
-  ctx.fillStyle = fillColor ?? defaultFillColor;
+  if (style.props.fillColor instanceof Object) {
+    if (!style.props.fillColor.points) {
+      style.props.fillColor.points.x1 = x - radiusX;
+      style.props.fillColor.points.y1 = y;
+      style.props.fillColor.points.x2 = x + radiusX;
+      style.props.fillColor.points.y2 = y;
+    } else {
+      style.props.fillColor.points.x1 ??= x - radiusX;
+      style.props.fillColor.points.y1 ??= y;
+      style.props.fillColor.points.x2 ??= x + radiusX;
+      style.props.fillColor.points.y2 ??= y;
+    }
+
+    const gradient = ctx.createLinearGradient(
+      style.props.fillColor.points.x1,
+      style.props.fillColor.points.y1,
+      style.props.fillColor.points.x2,
+      style.props.fillColor.points.y2
+    );
+
+    style.props.fillColor.colorStop.forEach((stop) => {
+      gradient.addColorStop(stop.position, stop.color);
+    });
+
+    ctx.fillStyle = gradient;
+  } else {
+    ctx.fillStyle = fillColor ?? defaultFillColor;
+  }
   ctx.fill();
 
   ctx.strokeStyle = strokeColor ?? defaultStrokeColor;

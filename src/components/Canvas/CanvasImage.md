@@ -21,8 +21,8 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
@@ -38,7 +38,7 @@ const elements = [
   },
 ];
 
-<Canvas infocanvas={infocanvas} elements={elements} className={'w-full'} />;
+<Canvas infocanvas={infocanvas} elements={elements} className={'border'} />;
 ```
 
 ##### This is an example that allows you to select a background image from the file system
@@ -48,8 +48,8 @@ import React, { useState, useEffect } from 'react';
 import { Canvas } from '@texttree/bible-verse-image';
 
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const initialBackgroundElement = {
@@ -98,7 +98,7 @@ const CanvasWithBackground = () => {
           organization="OBT"
           infocanvas={infocanvas}
           elements={elementsWithBackground}
-          className={'w-full'}
+          className={'border'}
         />
       ) : (
         <p className={'text-red-500'}>Please select an image for the background</p>
@@ -133,8 +133,8 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
@@ -142,7 +142,7 @@ const elements = [
     type: 'image',
     url: 'https://raw.githubusercontent.com/texttree/bible-verse-image/master/images/vcana-logo.svg',
     props: {
-      zoom: 0.5,
+      zoom: 0.125,
       offsetX: 0,
       offsetY: 0,
       filter: 'blur(1px)',
@@ -154,7 +154,7 @@ const elements = [
   organization="OBT"
   infocanvas={infocanvas}
   elements={elements}
-  className={'w-full'}
+  className={'border'}
 />;
 ```
 
@@ -167,8 +167,8 @@ import React from 'react';
 
 import { Canvas } from '@texttree/bible-verse-image';
 const infocanvas = {
-  height: 900,
-  width: 900,
+  height: 250,
+  width: 250,
 };
 
 const elements = [
@@ -176,7 +176,7 @@ const elements = [
     type: 'image',
     url: 'https://images.unsplash.com/photo-1694191864312-ab0171f598c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
     props: {
-      zoom: 0.6,
+      zoom: 0.15,
       offsetX: 0,
       offsetY: 0,
       filter: 'brightness(90%) contrast(1.4) drop-shadow(-9px 9px 3px #e81)',
@@ -188,6 +188,6 @@ const elements = [
   organization="OBT"
   infocanvas={infocanvas}
   elements={elements}
-  className={'w-full'}
+  className={'border'}
 />;
 ```

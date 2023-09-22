@@ -125,7 +125,7 @@ const elements = [
 ];
 
 <div className="flex flex-row">
-  <Canvas infocanvas={infocanvas} elements={elements} className={'w-1/2'} />
+  <Canvas infocanvas={infocanvas} elements={elements} className={'w-1/2 border'} />
   <img src="/ex1.jpg" alt="Example1" className={'w-1/2'} />
 </div>;
 ```
