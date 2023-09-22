@@ -99,7 +99,7 @@ const drawLines = (ctx, lines, style) => {
   for (const line of lines) {
     let x = line.x;
 
-    const y = line.y + style.props.lineHeight / 2;
+    const y = line.y + style.props.lineHeight;
 
     for (const word of line.words) {
       if (word.selected) {
